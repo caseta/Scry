@@ -1,0 +1,22 @@
+language: android
+android:
+  components:
+  - platform-tools
+  - build-tools-27.0.1
+  - android-27
+  - extra-android-m2repository
+script:
+- "./gradlew clean testDebugUnitTestCoverage"
+- "mkdir -p app/build/reports/jacoco/jacocoTestDebugUnitTestReport"
+- "mv app/build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml"
+
+before_install:
+- mkdir -p "$ANDROID_HOME/licenses"
+- cp ./licenses/* "$ANDROID_HOME/licenses/"
+- chmod +x gradlew
+- pip install --user codecov
+after_success:
+  - codecov
+branches:
+  only:
+  - master
