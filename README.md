@@ -1,5 +1,5 @@
 # Scry
-[![Build Status](https://travis-ci.com/caseta/Scry.svg?branch=master)](https://travis-ci.com/caseta/Scry)
+[![Build Status](https://travis-ci.com/caseta/Scry.svg?branch=master)](https://travis-ci.com/caseta/Scry) [![codecov](https://codecov.io/gh/caseta/Scry/branch/master/graph/badge.svg)](https://codecov.io/gh/caseta/Scry)
 
 Showcase Android app that lets users browse through Hearthstone cards, create decks, save cards, etc.
 
