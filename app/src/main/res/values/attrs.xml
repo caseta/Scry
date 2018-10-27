@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--<attr name="colorPrimary" format="reference|color" />-->
+  <!--<attr name="colorPrimaryDark" format="reference|color" />-->
+  <attr name="colorPrimaryLight" format="reference|color" />
+  <!--<attr name="colorAccent" format="reference|color" />-->
+  <attr name="colorAccentDark" format="reference|color" />
+  <attr name="colorAccentLight" format="reference|color" />
+
+  <attr name="textColorOnPrimary" format="reference|color" />
+  <attr name="textColorOnPrimaryLight" format="reference|color" />
+  <attr name="textColorOnPrimaryDark" format="reference|color" />
+  <attr name="textColorOnAccent" format="reference|color" />
+  <attr name="textColorOnAccentLight" format="reference|color" />
+  <attr name="textColorOnAccentDark" format="reference|color" />
+
+  <attr name="textColor" format="reference|color" />
+
+</resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="warlock_primary">#752aa9</color>
+  <color name="warlock_primary_light">#a85adb</color>
+  <color name="warlock_primary_dark">#430079</color>
+  <color name="warlock_secondary">#79e373</color>
+  <color name="warlock_secondary_light">#adffa3</color>
+  <color name="warlock_secondary_dark">#43b044</color>
+
+  <color name="warlock_text_on_primary">@color/white</color>
+  <color name="warlock_text_on_primary_light">@color/black</color>
+  <color name="warlock_text_on_primary_dark">@color/white</color>
+  <color name="warlock_text_on_secondary">@color/black</color>
+  <color name="warlock_text_on_secondary_light">@color/black</color>
+  <color name="warlock_text_on_secondary_dark">@color/black</color>
+
+  <color name="warrior_primary">#8c110a</color>
+  <color name="warrior_primary_light">#c34732</color>
+  <color name="warrior_primary_dark">#590000</color>
+  <color name="warrior_secondary">#287893</color>
+  <color name="warrior_secondary_light">#5fa7c4</color>
+  <color name="warrior_secondary_dark">#004c65</color>
+
+  <color name="warrior_text_on_primary">@color/white</color>
+  <color name="warrior_text_on_primary_light">@color/white</color>
+  <color name="warrior_text_on_primary_dark">@color/white</color>
+  <color name="warrior_text_on_secondary">@color/white</color>
+  <color name="warrior_text_on_secondary_light">@color/black</color>
+  <color name="warrior_text_on_secondary_dark">@color/white</color>
+
+  <color name="priest_primary">#c7c1a1</color>
+  <color name="priest_primary_light">#faf4d2</color>
+  <color name="priest_primary_dark">#969172</color>
+  <color name="priest_secondary">#6bbed0</color>
+  <color name="priest_secondary_light">#9ef1ff</color>
+  <color name="priest_secondary_dark">#358e9f</color>
+
+  <color name="priest_text_on_primary">@color/black</color>
+  <color name="priest_text_on_primary_light">@color/black</color>
+  <color name="priest_text_on_primary_dark">@color/black</color>
+  <color name="priest_text_on_secondary">@color/black</color>
+  <color name="priest_text_on_secondary_light">@color/black</color>
+  <color name="priest_text_on_secondary_dark">@color/black</color>
+
+  <color name="mage_primary">#1490a8</color>
+  <color name="mage_primary_light">#5ac1da</color>
+  <color name="mage_primary_dark">#006279</color>
+  <color name="mage_secondary">#f89021</color>
+  <color name="mage_secondary_light">#ffc155</color>
+  <color name="mage_secondary_dark">#bf6200</color>
+
+  <color name="mage_text_on_primary">@color/black</color>
+  <color name="mage_text_on_primary_light">@color/black</color>
+  <color name="mage_text_on_primary_dark">@color/white</color>
+  <color name="mage_text_on_secondary">@color/black</color>
+  <color name="mage_text_on_secondary_light">@color/black</color>
+  <color name="mage_text_on_secondary_dark">@color/black</color>
+
+  <color name="rogue_primary">#4b4c47</color>
+  <color name="rogue_primary_light">#777872</color>
+  <color name="rogue_primary_dark">#232420</color>
+  <color name="rogue_secondary">#943c7d</color>
+  <color name="rogue_secondary_light">#c66bac</color>
+  <color name="rogue_secondary_dark">#640651</color>
+
+  <color name="rogue_text_on_primary">@color/white</color>
+  <color name="rogue_text_on_primary_light">@color/black</color>
+  <color name="rogue_text_on_primary_dark">@color/white</color>
+  <color name="rogue_text_on_secondary">@color/white</color>
+  <color name="rogue_text_on_secondary_light">@color/black</color>
+  <color name="rogue_text_on_secondary_dark">@color/white</color>
+
+  <color name="druid_primary">#70340f</color>
+  <color name="druid_primary_light">#a35f38</color>
+  <color name="druid_primary_dark">#420a00</color>
+  <color name="druid_secondary">#207c27</color>
+  <color name="druid_secondary_light">#56ac53</color>
+  <color name="druid_secondary_dark">#004f00</color>
+
+  <color name="druid_text_on_primary">@color/white</color>
+  <color name="druid_text_on_primary_light">@color/white</color>
+  <color name="druid_text_on_primary_dark">@color/white</color>
+  <color name="druid_text_on_secondary">@color/white</color>
+  <color name="druid_text_on_secondary_light">@color/black</color>
+  <color name="druid_text_on_secondary_dark">@color/white</color>
+
+  <color name="shaman_primary">#051e82</color>
+  <color name="shaman_primary_light">#4c46b3</color>
+  <color name="shaman_primary_dark">#000054</color>
+  <color name="shaman_secondary">#e42725</color>
+  <color name="shaman_secondary_light">#ff634f</color>
+  <color name="shaman_secondary_dark">#a90000</color>
+
+  <color name="shaman_text_on_primary">@color/white</color>
+  <color name="shaman_text_on_primary_light">@color/white</color>
+  <color name="shaman_text_on_primary_dark">@color/white</color>
+  <color name="shaman_text_on_secondary">@color/white</color>
+  <color name="shaman_text_on_secondary_light">@color/black</color>
+  <color name="shaman_text_on_secondary_dark">@color/white</color>
+
+  <color name="hunter_primary">#0c6b0d</color>
+  <color name="hunter_primary_light">#489a3d</color>
+  <color name="hunter_primary_dark">#003f00</color>
+  <color name="hunter_secondary">#593c28</color>
+  <color name="hunter_secondary_light">#876651</color>
+  <color name="hunter_secondary_dark">#2f1600</color>
+
+  <color name="hunter_text_on_primary">@color/white</color>
+  <color name="hunter_text_on_primary_light">@color/white</color>
+  <color name="hunter_text_on_primary_dark">@color/white</color>
+  <color name="hunter_text_on_secondary">@color/white</color>
+  <color name="hunter_text_on_secondary_light">@color/black</color>
+  <color name="hunter_text_on_secondary_dark">@color/white</color>
+
+  <color name="paladin_primary">#ddd04f</color>
+  <color name="paladin_primary_light">#ffff80</color>
+  <color name="paladin_primary_dark">#a89f19</color>
+  <color name="paladin_secondary">#d7a8d7</color>
+  <color name="paladin_secondary_light">#ffdaff</color>
+  <color name="paladin_secondary_dark">#a579a6</color>
+
+  <color name="paladin_text_on_primary">@color/black</color>
+  <color name="paladin_text_on_primary_light">@color/black</color>
+  <color name="paladin_text_on_primary_dark">@color/black</color>
+  <color name="paladin_text_on_secondary">@color/black</color>
+  <color name="paladin_text_on_secondary_light">@color/black</color>
+  <color name="paladin_text_on_secondary_dark">@color/black</color>
+
+  <color name="grey">#d3d3d3</color>
+  <color name="dark_grey">#6b6b6b</color>
+  <color name="white">#FFFFFF</color>
+  <color name="black">#000000</color>
+  <color name="image_tint">#6F000000</color>
+</resources>

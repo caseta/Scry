@@ -1,0 +1,209 @@
+<resources>
+
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowSharedElementsUseOverlay">false</item>
+
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+
+  </style>
+
+  <style name="AppTheme.Warlock" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="android:windowContentTransitions">true</item>
+    <item name="colorPrimary">@color/warlock_primary</item>
+    <item name="colorPrimaryDark">@color/warlock_primary_dark</item>
+    <item name="colorPrimaryLight">@color/warlock_primary_light</item>
+    <item name="colorAccent">@color/warlock_secondary</item>
+    <item name="colorAccentDark">@color/warlock_secondary_dark</item>
+    <item name="colorAccentLight">@color/warlock_secondary_light</item>
+
+    <item name="textColorOnPrimary">@color/warlock_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/warlock_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/warlock_text_on_primary</item>
+    <item name="textColorOnAccent">@color/warlock_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/warlock_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/warlock_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Warrior" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/warrior_primary</item>
+    <item name="colorPrimaryDark">@color/warrior_primary_dark</item>
+    <item name="colorPrimaryLight">@color/warrior_primary_light</item>
+    <item name="colorAccent">@color/warrior_secondary</item>
+    <item name="colorAccentDark">@color/warrior_secondary_dark</item>
+    <item name="colorAccentLight">@color/warrior_secondary_light</item>
+    <item name="textColorOnPrimary">@color/warrior_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/warrior_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/warrior_text_on_primary</item>
+    <item name="textColorOnAccent">@color/warrior_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/warrior_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/warrior_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Priest" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/priest_primary</item>
+    <item name="colorPrimaryDark">@color/priest_primary_dark</item>
+    <item name="colorPrimaryLight">@color/priest_primary_light</item>
+    <item name="colorAccent">@color/priest_secondary</item>
+    <item name="colorAccentDark">@color/priest_secondary_dark</item>
+    <item name="colorAccentLight">@color/priest_secondary_light</item>
+    <item name="textColorOnPrimary">@color/priest_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/priest_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/priest_text_on_primary</item>
+    <item name="textColorOnAccent">@color/priest_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/priest_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/priest_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Druid" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/druid_primary</item>
+    <item name="colorPrimaryDark">@color/druid_primary_dark</item>
+    <item name="colorPrimaryLight">@color/druid_primary_light</item>
+    <item name="colorAccent">@color/druid_secondary</item>
+    <item name="colorAccentDark">@color/druid_secondary_dark</item>
+    <item name="colorAccentLight">@color/druid_secondary_light</item>
+    <item name="textColorOnPrimary">@color/druid_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/druid_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/druid_text_on_primary</item>
+    <item name="textColorOnAccent">@color/druid_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/druid_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/druid_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Shaman" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/shaman_primary</item>
+    <item name="colorPrimaryDark">@color/shaman_primary_dark</item>
+    <item name="colorPrimaryLight">@color/shaman_primary_light</item>
+    <item name="colorAccent">@color/shaman_secondary</item>
+    <item name="colorAccentDark">@color/shaman_secondary_dark</item>
+    <item name="colorAccentLight">@color/shaman_secondary_light</item>
+    <item name="textColorOnPrimary">@color/shaman_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/shaman_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/shaman_text_on_primary</item>
+    <item name="textColorOnAccent">@color/shaman_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/shaman_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/shaman_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Paladin" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/paladin_primary</item>
+    <item name="colorPrimaryDark">@color/paladin_primary_dark</item>
+    <item name="colorPrimaryLight">@color/paladin_primary_light</item>
+    <item name="colorAccent">@color/paladin_secondary</item>
+    <item name="colorAccentDark">@color/paladin_secondary_dark</item>
+    <item name="colorAccentLight">@color/paladin_secondary_light</item>
+    <item name="textColorOnPrimary">@color/paladin_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/paladin_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/paladin_text_on_primary</item>
+    <item name="textColorOnAccent">@color/paladin_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/paladin_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/paladin_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Rogue" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/rogue_primary</item>
+    <item name="colorPrimaryDark">@color/rogue_primary_dark</item>
+    <item name="colorPrimaryLight">@color/rogue_primary_light</item>
+    <item name="colorAccent">@color/rogue_secondary</item>
+    <item name="colorAccentDark">@color/rogue_secondary_dark</item>
+    <item name="colorAccentLight">@color/rogue_secondary_light</item>
+    <item name="textColorOnPrimary">@color/rogue_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/rogue_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/rogue_text_on_primary</item>
+    <item name="textColorOnAccent">@color/rogue_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/rogue_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/rogue_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Hunter" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/hunter_primary</item>
+    <item name="colorPrimaryDark">@color/hunter_primary_dark</item>
+    <item name="colorPrimaryLight">@color/hunter_primary_light</item>
+    <item name="colorAccent">@color/hunter_secondary</item>
+    <item name="colorAccentDark">@color/hunter_secondary_dark</item>
+    <item name="colorAccentLight">@color/hunter_secondary_light</item>
+    <item name="textColorOnPrimary">@color/hunter_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/hunter_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/hunter_text_on_primary</item>
+    <item name="textColorOnAccent">@color/hunter_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/hunter_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/hunter_text_on_secondary</item>
+
+  </style>
+
+  <style name="AppTheme.Mage" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <item name="colorPrimary">@color/mage_primary</item>
+    <item name="colorPrimaryDark">@color/mage_primary_dark</item>
+    <item name="colorPrimaryLight">@color/mage_primary_light</item>
+    <item name="colorAccent">@color/mage_secondary</item>
+    <item name="colorAccentDark">@color/mage_secondary_dark</item>
+    <item name="colorAccentLight">@color/mage_secondary_light</item>
+    <item name="textColorOnPrimary">@color/mage_text_on_primary</item>
+    <item name="textColorOnPrimaryLight">@color/mage_text_on_primary</item>
+    <item name="textColorOnPrimaryDark">@color/mage_text_on_primary</item>
+    <item name="textColorOnAccent">@color/mage_text_on_secondary</item>
+    <item name="textColorOnAccentLight">@color/mage_text_on_secondary</item>
+    <item name="textColorOnAccentDark">@color/mage_text_on_secondary</item>
+
+  </style>
+
+  <style name="TextAppearance.Base" parent="TextAppearance.AppCompat" />
+
+  <style name="TextAppearance.Base.NavMenu">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="textColor">@color/black</item>
+  </style>
+
+  <style name="NavMenuItem">
+    <item name="android:layout_gravity">center_vertical</item>
+    <item name="android:paddingEnd">@dimen/spacing_zero</item>
+    <item name="android:paddingStart">@dimen/spacing_large</item>
+  </style>
+
+  <style name="ScryButton" parent="android:Widget.Button">
+    <item name="android:textColor">?attr/textColorOnPrimary</item>
+    <item name="android:minHeight">@dimen/min_button_height</item>
+    <item name="android:foreground">?selectableItemBackground</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+    <item name="android:letterSpacing">@dimen/button_letter_spacing</item>
+    <item name="android:elevation">@dimen/button_elevation</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:background">?attr/colorPrimary</item>
+  </style>
+
+  <style name="HeaderText" parent="android:TextAppearance.Widget.TextView">
+    <item name="android:fontFamily">@font/roboto_medium</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textSize">@dimen/text_size_extra_large</item>
+  </style>
+
+  <style name="SubHeaderText" parent="android:TextAppearance.Widget.TextView">
+    <item name="android:fontFamily">@font/roboto</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="SubSubHeaderText" parent="SubHeaderText">
+    <item name="android:textColor">@color/dark_grey</item>
+  </style>
+
+</resources>

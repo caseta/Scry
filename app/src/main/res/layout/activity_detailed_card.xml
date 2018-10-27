@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:clipChildren="false"
+  android:clipToPadding="false">
+
+  <include layout="@layout/include_toolbar" />
+
+  <android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/toolbar_min_height">
+
+    <LinearLayout
+      android:id="@+id/card_container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/grey"
+      android:orientation="vertical">
+
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey">
+
+        <ImageView
+          android:id="@+id/card_image"
+          android:layout_width="match_parent"
+          android:layout_height="300dp"
+          android:layout_gravity="center"
+          android:layout_marginEnd="@dimen/spacing_larger"
+          android:layout_marginStart="@dimen/spacing_larger"
+          android:src="@drawable/card_back_default" />
+
+      </FrameLayout>
+
+      <LinearLayout
+        android:id="@+id/card_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:background="@drawable/rounded_white_card"
+        android:elevation="@dimen/card_elevation"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+          android:id="@+id/card_name"
+          style="@style/HeaderText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          tools:text="Ysera" />
+
+        <TextView
+          android:id="@+id/card_artist"
+          style="@style/SubHeaderText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/spacing_small"
+          tools:text="Artist - Alex Horley Orlandelli" />
+
+        <TextView
+          android:id="@+id/card_set"
+          style="@style/SubHeaderText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/spacing_small"
+          tools:text="Set - The Grand Tournament" />
+
+        <TextView
+          android:id="@+id/card_class"
+          style="@style/SubHeaderText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/spacing_small"
+          tools:text="Class - Warlock" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/divider_height"
+          android:layout_marginBottom="@dimen/spacing_large"
+          android:layout_marginTop="@dimen/spacing_large"
+          android:background="@color/grey" />
+
+        <TextView
+          android:id="@+id/card_flavor_text"
+          style="@style/SubSubHeaderText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          tools:text="Crescendo himself summoned this steed, riding it to victory in the Grand Tournament. Wherever he rides, an army of riders ride behind him, supporting the legendary champion." />
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+  </android.support.v4.widget.NestedScrollView>
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/card_fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/spacing_semi_large"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone"
+    app:layout_anchor="@id/card_text_container"
+    app:layout_anchorGravity="top|right|end"
+    tools:visibility="visible" />
+
+</android.support.design.widget.CoordinatorLayout>

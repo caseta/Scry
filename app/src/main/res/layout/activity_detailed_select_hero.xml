@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:id="@+id/detailed_select_hero_content"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
+
+  <android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/detailed_select_hero_app_bar_height"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+      android:id="@+id/detailed_select_hero_collapsing_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fitsSystemWindows="true"
+      app:contentScrim="?attr/colorPrimary"
+      app:expandedTitleMarginEnd="@dimen/spacing_massive"
+      app:expandedTitleMarginStart="@dimen/spacing_almost_massive"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+      <ImageView
+        android:id="@+id/detailed_select_hero_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detailed_select_hero_app_bar_height"
+        android:fitsSystemWindows="true"
+        android:minHeight="@dimen/detailed_select_hero_image_min_height"
+        android:scaleType="centerCrop"
+        app:layout_collapseMode="parallax"
+        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+        tools:src="@drawable/hero_warlock" />
+
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/detailed_select_hero_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_min_height"
+        app:layout_collapseMode="pin"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:titleTextColor="@color/white" />
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_medium"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/detailed_select_hero_desc"
+        style="@style/SubHeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/warlock_description" />
+
+      <TextView
+        style="@style/HeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/mechanics" />
+
+      <TextView
+        android:id="@+id/detailed_select_hero_mechanics"
+        style="@style/SubHeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        tools:text="@string/warlock_mechanics" />
+
+      <TextView
+        style="@style/HeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/hero_power" />
+
+      <TextView
+        android:id="@+id/detailed_select_hero_power"
+        style="@style/SubHeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        tools:text="@string/warlock_hero_power" />
+
+    </LinearLayout>
+
+  </android.support.v4.widget.NestedScrollView>
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <TextView
+      android:id="@+id/detailed_select_hero_select"
+      style="@style/ScryButton"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/toolbar_min_height"
+      android:orientation="horizontal"
+      android:text="@string/select_hero_select_class" />
+
+  </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

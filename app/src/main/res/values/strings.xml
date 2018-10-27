@@ -1,0 +1,82 @@
+<resources>
+  <string name="app_name">Scry</string>
+
+  <!--Card Activity-->
+  <string name="card_activity_artist">Artist - %s</string>
+  <string name="card_activity_set">Set - %s</string>
+  <string name="card_activity_class">Class - %s</string>
+
+  <!--Menu Items-->
+  <string name="nav_menu_home">Home</string>
+  <string name="nav_menu_update_favorite_hero">Update Favorite Hero</string>
+  <string name="nav_menu_build_deck">Build Deck</string>
+  <string name="nav_menu_my_decks">My Decks</string>
+  <string name="nav_menu_saved_cards">Saved Cards</string>
+
+  <!--Detailed Card Activity-->
+  <string name="detailed_card_activity_saved">%s added to Saved Cards</string>
+  <string name="detailed_card_activity_removed">%s removed from Saved Cards</string>
+
+  <!--Saved Cards-->
+  <string name="saved_cards_no_saved_cards">You don\'t have any saved cards!</string>
+
+  <!--Search-->
+  <string name="search_a_card">Search a Card</string>
+  <string name="search">Search</string>
+
+  <!--Error-->
+  <string name="whoops_error">Whoops! Something went wrong.</string>
+
+  <!--Select Hero-->
+  <string name="select_hero_select_your_class">Select Your Favorite Class</string>
+  <string name="select_hero_select_class">Select Class</string>
+
+  <string name="mechanics">Mechanics</string>
+  <string name="hero_power">Hero Power</string>
+
+  <string name="warlock">Warlock</string>
+  <string name="warlock_description">Calling nightmarish Demons to their aid, warlocks are willing to sacrifice their own life, cards, and even their own minions to overwhelm their enemies. Regarding their own lifeblood as nothing more than a currency, warlocks readily trade away their Health to draw additional cards, but must often pay a terrible price for the services of the infernal beings with whom they consort.</string>
+  <string name="warlock_mechanics">Warlocks are notable for their ability to summon demons. These underpriced minions generally come with a battlecry that is negative for the Warlock (e.g. discard cards or dealing damage to the hero) balancing their unusually low cost. Specializing in sucking the soul from their enemies, Warlocks also have a number of dark direct damage spells at their disposal. One of the Warlock\'s most iconic abilities is their Hero Power Life Tap, which allows them to sacrifice their own health in order to draw an additional card from their deck. This means that Warlocks will rarely suffer an empty hand - so long as they are willing to pay the price.</string>
+  <string name="warlock_hero_power">Life Tap is a powerful tactical Hero Power, allowing the Warlock to draw a card in exchange for both 2 mana and 2 Health. This can be very effective for both early game and late game decks, allowing Handlocks to quickly build a large hand of cards, or an aggressive Zoolock to consistently flood the board with cheaper minions.</string>
+
+  <string name="druid">Druid</string>
+  <string name="druid_description">Shapeshifting protectors of the wild, with powerful Taunt minions and adaptable Choose One effects, druids are also able to accelerate their rate of mana accumulation, allowing them to access high-mana-cost cards earlier than their opponents. Druids are a versatile class, capable of using the forces of nature and primal rage to crush their enemies or empower their allies.</string>
+  <string name="druid_mechanics">The druid finds great versatility through the unique Choose One ability, allowing them to choose one of two options when playing certain cards. Druids boast a large range of enchantments with which to enhance their minions, and are known for having some of the biggest class minions in the game, such as Ironbark Protector and Ancient of War. Druids can also use cards such as Innervate and Wild Growth to manipulate and accelerate their mana gain to great effect. Druids also share a bond with Beasts, with a high number of unique Beasts as well as abilities that benefit them.</string>
+  <string name="druid_hero_power">Shapeshift offers a combination of offensive and defensive benefits. It grants the druid a small but reliable source of Armor, mitigating damage from future attacks; and grants them a temporary point of Attack. The latter allows the hero to directly attack enemies, essentially granting them a weak weapon until the end of the turn. This can be useful for removing enemy minions, trading Health (or Armor) for board control, or simply for chipping away at the enemy hero. A blend of proactive and passive benefits, Shapeshift is a reliable option, even if there is no desirable target to attack.</string>
+
+  <string name="hunter">Hunter</string>
+  <string name="hunter_description">Trackers and huntsmen, with a synergy with Beasts, a selection of bows, and a supply of cunning deadly traps, hunters never miss their mark. Whether unleashing their Beasts upon the enemy or sniping them from afar, hunters possess relentless and immediate damage capabilities.</string>
+  <string name="hunter_mechanics">Hunters favor Beast type minions, with numerous unique Beasts available to them, and many cards such as Starving Buzzard, Houndmaster and Tundra Rhino offering synergies with them. Hunters have limited access to ranged weapons with which to deal direct damage, while the hunter Hero Power allows them to deal 2 points of unstoppable damage to the enemy hero. Hunters also employ traps in the form of secrets to counter enemy actions. Hunters also have a vast pool of synergy with Deathrattle effects. With a host of faithful beasts at their command, hunters are excellently suited to an aggressive playstyle, with strong single-target removal abilities to sweep aside any opposition.</string>
+  <string name="hunter_hero_power">Steady Shot is an extremely direct and straight-forward Hero Power - it deals a small but significant amount of damage to the enemy hero. Unlike many other Hero Powers, this does not offer special synergies or boast a range of possible uses, but what it lacks in strategic complexity it makes up for in sheer effectiveness. Without Health or Armor granting effects, Steady Shot can single-handedly destroy the opponent and win the game in just 15 turns. This allows the hunter to rely upon Steady Shot\'s damage to make steady progress toward victory, regardless of the state of the board.</string>
+
+  <string name="mage">Mage</string>
+  <string name="mage_description">Masters of arcane, fire and frost, mages wield formidable single-target and area of effect damage spells, and can freeze enemies in their tracks. Mages have a strong spell-synergy, capable of turning minor incantations into devastating Fireballs, and can employ a range of magical Secrets to redirect enemy effects, protect themselves from damage, or stop the deadliest foe or spell in its tracks.</string>
+  <string name="mage_mechanics">Mages are the undisputed masters of damaging and removal abilities, with an array of spells to cripple enemy minions and damage the opponent, from single target spells such as Pyroblast and Polymorph to multiple target options such as Arcane Explosion and Flamestrike. Mages have access to spells such as Frost Nova and Blizzard which freeze targets, preventing them from attacking for one turn, as well as spells like Fireball and Frostbolt that can be used either to remove minions or to directly damage the enemy hero. The mage can also use secrets that trigger when a certain condition is met. With a range of options to tackle threats, Mages are masters of board control, clearing or disabling enemy minions while placing their own.</string>
+  <string name="mage_hero_power">At first glance, Fireblast can seem underwhelming compared to other Hero Powers, but its true strength lies in its tactical value. By being able to deal damage to almost any target regardless of Taunts or board state, the mage gains the power to enact a range of strategic plans, such as finishing off powerful but weakened minions, allowing for desirable trades, or even activating friendly effects like Acolyte of Pain or Amani Berserker. It can be used to add extra reach to damaging spells or attacks, to efficiently remove early threats like Murloc Raider, or simply to slowly chip away at the opponent\'s Health.</string>
+
+  <string name="paladin">Paladin</string>
+  <string name="paladin_description">Stalwart champions of the Light, wielding sturdy weapons and gifting the recruits of their order with Divine Shields and a range of powerful Blessings. Paladins can also have a range of spells to heal themselves or smite their enemies, weaken foes, and Secrets to protect vulnerable targets.</string>
+  <string name="paladin_mechanics">The Paladin is a well-rounded class which focuses on strong minions and limiting your opponent\'s ability to use their own. The mechanic Divine Shield is most strongly associated with Paladin cards. Paladins can use weapons to attack directly, and can use secrets that trigger when a certain condition is met. Their Hero Power can be used to summon an endless supply of 1/1 minions. With spells that can heal, buff and protect minions, Paladins can potentially have some of the strongest minions in the game.</string>
+  <string name="paladin_hero_power">Reinforce provides a reliable stream of 1/1 Silver Hand Recruits. This can be useful for generally swelling the Paladin\'s board presence and for generating card advantage by trading for the opponent\'s minions. Effects like Sword of Justice and Raid Leader can be very effective at improving these weak minions. The constant presence of Recruits on the board also provides the perfect target for powerful buffs like Blessing of Kings, punishing the opponent should they ignore these seemingly weak minions.</string>
+
+  <string name="priest">Priest</string>
+  <string name="priest_description">Devout healers with powerful restorative abilities, capable of sustaining themselves and their allies while sweeping away enemies, priests boast a range of healing synergies, but can also rely on their darker abilities to manipulate and destroy enemies, peering into or even seizing control of their opponents\' minds.</string>
+  <string name="priest_mechanics">Priests are masters of healing, and can heal themselves and their minions through their Hero Power and a range of healing spells, as well as boosting minions\' health through abilities such as Divine Spirit. Priests\' healing theme is reinforced by synergies with spells such as Inner Fire and minions such as Lightspawn and Northshire Cleric. However, these masters of the light also have their shadow side, and Priests command a number of darker abilities, including direct damage spells such as Mind Blast and deadly effects like Shadow Word: Pain. The epic card Shadowform allows priests to embrace the shadow, changing into a new form complete with a new direct damage Hero Power; Auchenai Soulpriest provides a similar but non-permanent transformation, allowing the priest to switch from healing to damage dealing and back again.</string>
+  <string name="priest_hero_power">Lesser Heal is the Priest\'s key healing ability, allowing the priest to consistently restore the Health of their minions or themselves, opening up a range of strategic and synergistic options. At its simplest, it can allow priests to steadily regain Health, returning from the brink of death to full Health, something which no other class other than the Warrior can reliably achieve. This can make Priests very hard to kill, and allow them to counter the steady deterioration of their Health from enemy attacks. Conversely, the Priest can restore their minions\' Health, ensuring that there is always a threatening presence on their side of the board.</string>
+
+  <string name="rogue">Rogue</string>
+  <string name="rogue_description">Subtle and evasive assassins, using flurries of swift sharp strikes to slice and incapacitate enemies, rogues prefer to wield light daggers, laced with deadly poisons. Rogues prefer to assault their opponents in rapid bursts of activity, activating Combos to gain powerful additional effects.</string>
+  <string name="rogue_mechanics">Rogues have access to a lot of cheap cards, including several zero-mana cards. This works well with the unique Rogue ability combo, with combo cards granting additional effects when another card has already been played that turn. Rogues also can equip weapons to deal direct damage with their hero, oftentimes willing to sacrifice Health to gain good momentum. In addition to combos, Rogues specialize in utilizing Stealth and Deathrattle effects.</string>
+  <string name="rogue_hero_power">Dagger Mastery equips a 1/2 Wicked Knife, providing the Rogue with an ever-ready (if very weak) weapon. This can be useful for dispatching minions and maintaining control of the board, and can work with effects like Deadly Poison and Blade Flurry to even greater effect.</string>
+
+  <string name="shaman">Shaman</string>
+  <string name="shaman_description">Masters of the elements, shamans command the service of mighty elementals, and even the Elemental Lords themselves. Shamans can Overload their mana in order to rise to the needs of the moment, with their attacks producing varying potency. Shamans can also summon Totems to boost their powers.</string>
+  <string name="shaman_mechanics">Shamans can use Totemic Call to call Totems to their aid, a type of minions exclusive to shamans. With some handy utility effects, Totems can be helpful for survival or for aggressive play. Most Totems start with 0 Attack but cards like Bloodlust can turn a board of weak Totems into a force to be reckoned with. The Shaman also has access to cards with Overload. Overload allows powerful spells to be cast for a low mana cost, but reduces the number of available Mana Crystals available the next turn. This allows the Shaman to deal great burst damage or to clear the board of threats for a low mana cost. In addition to a number of weapons, Elementals find themselves most at home in a Shaman\'s arsenal.</string>
+  <string name="shaman_hero_power">Every time you use the shaman Hero Power, one of 4 different Totems will be summoned at random. You cannot summon a totem that is already on the board, so the only way to have more than one of a specific totem is to utilize cards with effects similar to Youthful Brewmaster or Ancient Brewmaster. </string>
+
+  <string name="warrior">Warrior</string>
+  <string name="warrior_description">These lords of war use heavy weaponry and deadly attacks to slam and devastate the battlefield. While their skill with armor and shields allows them to soak up the mightiest of blows, their gladiatorial bloodlust brings synergy with Enrage and on-damage effects, sending their minions charging at the enemy.</string>
+  <string name="warrior_mechanics">The Warrior can equip a range of weapons to attack their foes directly. Armor can also be easily gained from their Hero Power to remain at sustainable Health. Warrior cards feature an emphasis on effects that trigger when a minion is damaged, cards that target damaged minions, and minions that can Charge onto the battlefield. Warriors are a class of opposites, with cards that focus on viscerally entering the fray to deal direct damage and cards that protect the Warrior from harm.</string>
+  <string name="warrior_hero_power">Armor Up! allows the warrior to build a substantial stack of defensive Armor, acting as an extra barrier to enemy attacks. In contrast to Health, Armor can be stacked indefinitely. Armor Up! is a reliable option, effectively healing the warrior for 2 Health, but allowing the hero\'s combined defensive value to far exceed the maximum Health limit of 30. Shield Slam can even allow Armor to be used offensively.</string>
+
+</resources>

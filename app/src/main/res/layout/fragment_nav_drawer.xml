@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white"
+  android:clickable="true"
+  android:focusable="true"
+  android:orientation="vertical">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_header_hero_height"
+    android:background="?attr/colorPrimaryLight">
+
+    <ImageView
+      android:id="@+id/nav_drawer_hero_image"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:adjustViewBounds="true"
+      android:scaleType="centerCrop"
+      android:tint="@color/image_tint"
+      tools:src="@drawable/hero_warlock" />
+
+    <ImageView
+      android:id="@+id/nav_drawer_hero_icon"
+      android:layout_width="@dimen/hero_icon_small_width"
+      android:layout_height="@dimen/hero_icon_small_height"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="@dimen/spacing_large"
+      android:layout_marginTop="@dimen/spacing_large"
+      tools:src="@drawable/ic_warlock" />
+
+  </RelativeLayout>
+
+  <LinearLayout
+    android:id="@+id/nav_drawer_home"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_item_height"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/spacing_zero"
+    android:paddingStart="@dimen/spacing_large">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_home_black_24dp" />
+
+    <TextView
+      style="@style/NavMenuItem"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/roboto"
+      android:text="@string/nav_menu_home"
+      android:textAppearance="@style/TextAppearance.Base.NavMenu" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/nav_drawer_update_favorite_hero"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_item_height"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/spacing_zero"
+    android:paddingStart="@dimen/spacing_large">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_person_black_24dp" />
+
+    <TextView
+      style="@style/NavMenuItem"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/roboto"
+      android:text="@string/nav_menu_update_favorite_hero"
+      android:textAppearance="@style/TextAppearance.Base.NavMenu" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/nav_drawer_saved_cards"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_item_height"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/spacing_zero"
+    android:paddingStart="@dimen/spacing_large">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_favorite_border_black_24dp" />
+
+    <TextView
+      style="@style/NavMenuItem"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/roboto"
+      android:text="@string/nav_menu_saved_cards"
+      android:textAppearance="@style/TextAppearance.Base.NavMenu" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/nav_drawer_build_deck"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_item_height"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/spacing_zero"
+    android:paddingStart="@dimen/spacing_large"
+    android:visibility="gone">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_home_black_24dp" />
+
+    <TextView
+      style="@style/NavMenuItem"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/nav_menu_build_deck"
+      android:textAppearance="@style/TextAppearance.Base.NavMenu" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/nav_drawer_my_decks"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_menu_item_height"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/spacing_zero"
+    android:paddingStart="@dimen/spacing_large"
+    android:visibility="gone">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_home_black_24dp" />
+
+    <TextView
+      style="@style/NavMenuItem"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/nav_menu_my_decks"
+      android:textAppearance="@style/TextAppearance.Base.NavMenu" />
+
+  </LinearLayout>
+
+</LinearLayout>

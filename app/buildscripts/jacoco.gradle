@@ -1,0 +1,59 @@
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion = "0.8.2"
+  // Custom reports directory can be specified like this:
+  // reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+tasks.withType(Test) {
+  jacoco.includeNoLocationClasses = true
+}
+
+project.afterEvaluate {
+
+  android.applicationVariants.all { variant ->
+    def variantName = variant.name
+    def testTaskName = "test${variantName.capitalize()}UnitTest"
+
+    tasks.create(name: "${testTaskName}Coverage", type: JacocoReport, dependsOn: "$testTaskName") {
+      group = "Reporting"
+      description = "Generate Jacoco coverage reports for the ${variantName.capitalize()} build."
+
+      reports {
+        html.enabled = true
+        xml.enabled = true
+      }
+
+      def excludes = [
+          '**/AllCards.class',
+          '**/Card.class',
+          '**/Sets.class',
+          '**/Hero.class',
+          '**/Rarity.class',
+          '**/Card.CREATOR.class',
+          '**/AppModule.class',
+          '**/RoomModule.class',
+          '**/RetroClient',
+          '**/HearthstoneApi.Companion',
+          '**/R.class',
+          '**/R$*.class',
+          '**/BuildConfig.*',
+          '**/Manifest*.*',
+          '**/*Test*.*',
+          'android/**/*.*'
+      ]
+      def kotlinClasses = fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}", excludes: excludes)
+      classDirectories = files([kotlinClasses])
+
+      sourceDirectories = files([
+          "$project.projectDir/src/main/java",
+          "$project.projectDir/src/${variantName}/java",
+          "$project.projectDir/src/main/kotlin",
+          "$project.projectDir/src/${variantName}/kotlin"
+      ])
+
+      executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+    }
+  }
+}
