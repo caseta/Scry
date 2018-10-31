@@ -22,16 +22,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class, RoomModule::class))
 interface AppComponent {
 
-    fun cardDao(): CardDao
-
-    fun api(): HearthstoneApi
-
-    fun imageLoader(): ImageLoader
-
-    fun sharedPreferencesHelper(): SharedPreferencesHelper
-
-    fun heroUtils(): HeroUtils
-
     fun inject(baseActivity: BaseActivity)
 
     fun inject(selectHeroActivity: SelectHeroActivity)

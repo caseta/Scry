@@ -28,33 +28,14 @@ class SearchAdapterTest {
         assertThat(viewHolder).isNotNull()
     }
 
-    @Test fun testSetClickListener() {
-        val adapter = SearchAdapter()
-        assertThat(adapter.listener).isNull()
-
-        adapter.setOnClickListener(mockListener)
-
-        assertThat(adapter.listener).isNotNull()
-    }
-
     @Test fun testOnBindViewHolderSetsSuggestionClickListener() {
         val adapter = SearchAdapter()
-        adapter.setOnClickListener(mockListener)
+        adapter.listener = mockListener
         adapter.swapData(singletonList(CARD_NAME))
 
         adapter.onBindViewHolder(mockViewHolder, 0)
 
-        verify(mockViewHolder).setOnSuggestionClickListener(mockListener)
-    }
-
-    @Test fun testOnBindViewHolderSetsText() {
-        val adapter = SearchAdapter()
-        adapter.setOnClickListener(mockListener)
-        adapter.swapData(singletonList(CARD_NAME))
-
-        adapter.onBindViewHolder(mockViewHolder, 0)
-
-        verify(mockViewHolder).setText(CARD_NAME)
+        assertThat(adapter.listener).isEqualTo(mockListener)
     }
 
     @Test fun testGetItemCount() {

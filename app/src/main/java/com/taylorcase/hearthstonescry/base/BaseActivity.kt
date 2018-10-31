@@ -55,7 +55,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
 
         if (navDrawerFragment == null) {
             navDrawerFragment = NavDrawerFragment.newInstance()
-            manager.beginTransaction().add(R.id.drawer_container, navDrawerFragment, NAV_FRAG_TAG).commit()
+            manager.beginTransaction().add(R.id.drawer_container, navDrawerFragment!!, NAV_FRAG_TAG).commit()
         }
 
         val inflater = LayoutInflater.from(this)
@@ -122,10 +122,10 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     override fun showError() {
-        Handler(Looper.getMainLooper()).post({
+        runOnUiThread {
             setLoading(false)
             Toast.makeText(this, R.string.whoops_error, Toast.LENGTH_LONG).show()
-        })
+        }
     }
 
     override fun onBackPressed() {

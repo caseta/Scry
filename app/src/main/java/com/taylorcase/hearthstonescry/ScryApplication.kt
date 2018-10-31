@@ -1,10 +1,13 @@
 package com.taylorcase.hearthstonescry
 
 import android.app.Application
+import com.crashlytics.android.Crashlytics
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.taylorcase.hearthstonescry.dagger.components.AppComponent
 import com.taylorcase.hearthstonescry.dagger.components.DaggerAppComponent
 import com.taylorcase.hearthstonescry.dagger.modules.AppModule
 import com.taylorcase.hearthstonescry.dagger.modules.RoomModule
+import io.fabric.sdk.android.Fabric
 import timber.log.Timber
 
 open class ScryApplication : Application() {
@@ -14,16 +17,17 @@ open class ScryApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if (!BuildConfig.DEBUG) {
-            // TODO: Set up Fabric
-            //Fabric.with(this, new Crashlytics());
-        } else {
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        } else {
+            Fabric.with(this, Crashlytics())
+            FirebaseAnalytics.getInstance(this)
         }
+
         initComponent()
     }
 
-    open fun getAppModule() : AppModule {
+    open fun getAppModule(): AppModule {
         return AppModule(this)
     }
 

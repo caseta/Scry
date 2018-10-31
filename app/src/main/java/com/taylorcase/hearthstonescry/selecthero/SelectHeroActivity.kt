@@ -15,8 +15,6 @@ open class SelectHeroActivity : BaseActivity() {
 
     @Inject lateinit var adapter: SelectHeroAdapter
 
-    @VisibleForTesting lateinit var layoutManager: LinearLayoutManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as ScryApplication).getAppComponent()?.inject(this)
@@ -24,8 +22,7 @@ open class SelectHeroActivity : BaseActivity() {
     }
 
     private fun setupRecycler() {
-        layoutManager = LinearLayoutManager(this)
-        select_hero_recycler.layoutManager = layoutManager
+        select_hero_recycler.layoutManager = LinearLayoutManager(this)
         select_hero_recycler.adapter = adapter
     }
 }

@@ -26,7 +26,7 @@ abstract class FragmentTest : InjectingTest() {
     @After
     fun destroyFragment() {
         val manager = activity?.supportFragmentManager
-        manager?.beginTransaction()?.remove(fragment)?.commit()
+        manager?.beginTransaction()?.remove(fragment!!)?.commit()
         activity?.finish()
         fragment = null
         activity = null

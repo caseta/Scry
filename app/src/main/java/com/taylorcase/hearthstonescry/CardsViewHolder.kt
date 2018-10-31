@@ -19,11 +19,12 @@ open class CardsViewHolder(itemView: View, var imageLoader: ImageLoader) : Recyc
         const val EXTRA_POSITION = "position"
     }
 
-    private var context: Context = itemView.context
-    private var card: Card? = null
-    private var cardImageView: ImageView = itemView.findViewById(R.id.card_image)
-    private var cardContainer: LinearLayout = itemView.findViewById(R.id.card_container)
+    private val context: Context = itemView.context
+    private val cardImageView: ImageView = itemView.findViewById(R.id.card_image)
+    private val cardContainer: LinearLayout = itemView.findViewById(R.id.card_container)
+
     private var position: Int? = null
+    private lateinit var card: Card
 
     open fun loadCard(card: Card, position: Int) {
         itemView.setOnClickListener(this)

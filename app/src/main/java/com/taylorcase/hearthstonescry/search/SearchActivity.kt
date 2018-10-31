@@ -44,13 +44,15 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
 
         setupRecycler()
         setupTextListener()
+
+        search_input_text.requestFocus()
     }
 
     private fun setupRecycler() {
         adapter = SearchAdapter()
         search_suggestions_recycler.adapter = adapter
         search_suggestions_recycler.layoutManager = LinearLayoutManager(this)
-        adapter?.setOnClickListener(this)
+        adapter?.listener = this
     }
 
     private fun setupTextListener() {

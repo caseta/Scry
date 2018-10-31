@@ -1,47 +1,53 @@
 buildscript {
-    ext.kotlin_version = '1.2.41'
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
+  ext.kotlinVersion = '1.2.41'
+  ext.gradlePluginVersion = '3.0.0'
+  ext.playServicesVersion = '4.0.1'
+  ext.fabricToolsVersion = '1.25.4'
+  repositories {
+    google()
+    jcenter()
+    maven {
+      url 'https://maven.fabric.io/public'
     }
-    dependencies {
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.2'
-        classpath 'com.android.tools.build:gradle:3.0.0'
-        classpath 'com.google.gms:google-services:4.0.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'io.fabric.tools:gradle:1.25.4'
-    }
+  }
+  dependencies {
+    classpath "com.dicedmelon.gradle:jacoco-android:0.1.2"
+    classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+    classpath "com.google.gms:google-services:$playServicesVersion"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    classpath "io.fabric.tools:gradle:$fabricToolsVersion"
+  }
 }
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url 'https://maven.google.com/'
-        }
+  repositories {
+    google()
+    jcenter()
+    maven {
+      url 'https://maven.google.com/'
     }
+  }
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }
 
 ext {
-    supportLibVersion = '27.1.1'
-    archRoomVersion = '1.1.1'
-    rxlifecycleVersion = '2.2.2'
-    rxBindingVersion = '2.0.0'
-    rxJava2Version = '2.2.0'
-    rxAndroidVersion = '2.1.0'
-    okHttp3Version = '3.8.0'
-    daggerVersion = '2.5'
-    moshiVersion = '1.6.0'
-    glideVersion = '4.8.0'
-    timberVersion = '4.7.1'
-    robolectricVersion = '3.8'
-    mockitoKotlinVersion = '1.5.0'
+  supportLibVersion = '27.1.1'
+  archRoomVersion = '1.1.1'
+  rxlifecycleVersion = '2.2.2'
+  rxBindingVersion = '2.0.0'
+  rxJava2Version = '2.2.0'
+  rxAndroidVersion = '2.1.0'
+  okHttp3Version = '3.8.0'
+  daggerVersion = '2.19'
+  moshiVersion = '1.6.0'
+  glideVersion = '4.8.0'
+  timberVersion = '4.7.1'
+  robolectricVersion = '3.8'
+  mockitoKotlinVersion = '1.5.0'
+  mockitoCoreVersion = '2.19.0'
+  junitVersion = '4.12'
+  crashlyticsVersion = '2.9.5'
 }

@@ -6,15 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
-import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
-import com.taylorcase.hearthstonescry.savedcards.SavedCardsContract
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroActivity
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.ImageLoader
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_splash.*
 import javax.inject.Inject
 
@@ -50,7 +45,9 @@ open class SplashActivity : AppCompatActivity(), SplashContract.View {
     private fun hasFavoriteHero() = heroUtils.hasFavoriteHero()
 
     override fun showError() {
-        Toast.makeText(this, R.string.whoops_error, Toast.LENGTH_LONG).show()
+        runOnUiThread {
+            Toast.makeText(this, R.string.whoops_error, Toast.LENGTH_LONG).show()
+        }
     }
 
     public override fun onDestroy() {

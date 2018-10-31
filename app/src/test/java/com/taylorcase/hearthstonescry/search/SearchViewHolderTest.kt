@@ -31,27 +31,18 @@ class SearchViewHolderTest {
     @Test fun testSetSuggestionListener() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
         val searchViewHolder = SearchViewHolder(itemView)
-        assertThat(searchViewHolder.listener).isNull()
+        assertThat(searchViewHolder.onSuggestionClickListener).isNull()
 
-        searchViewHolder.setOnSuggestionClickListener(mockSuggestionListener)
+        searchViewHolder.onSuggestionClickListener = mockSuggestionListener
 
-        assertThat(searchViewHolder.listener).isNotNull()
-    }
-
-    @Test fun testSetText() {
-        val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
-        val searchViewHolder = SearchViewHolder(itemView)
-
-        searchViewHolder.setText(CARD_NAME)
-
-        Assertions.assertThat(searchViewHolder.searchSuggestionTextView).containsText(CARD_NAME)
+        assertThat(searchViewHolder.onSuggestionClickListener).isNotNull()
     }
 
     @Test fun testOnClickCallsListenerSuggestionClicked() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
         val searchViewHolder = SearchViewHolder(itemView)
-        searchViewHolder.setOnSuggestionClickListener(mockSuggestionListener)
-        searchViewHolder.setText(CARD_NAME)
+        searchViewHolder.onSuggestionClickListener = mockSuggestionListener
+        searchViewHolder.searchSuggestionTextView!!.text = CARD_NAME
 
         searchViewHolder.onClick(null)
 

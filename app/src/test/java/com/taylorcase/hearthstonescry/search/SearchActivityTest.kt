@@ -7,6 +7,7 @@ import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
+import kotlinx.android.synthetic.main.include_toolbar_search.*
 import org.assertj.android.api.Assertions.*
 import org.assertj.core.api.Assertions
 import org.junit.After
@@ -39,6 +40,12 @@ open class SearchActivityTest : InjectingTest() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
         verify(mockSearchPresenter)?.attach(activity!!)
+    }
+
+    @Test fun testOnCreateSearchInputHasFocus() {
+        activity = buildActivity(SearchActivity::class.java).create().get()
+
+        assertThat(activity!!.search_input_text).hasFocus()
     }
 
     @Test fun testOnCreateSetsUpRecyclerView() {

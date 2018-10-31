@@ -17,15 +17,11 @@ open class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.setOnSuggestionClickListener(this.listener!!)
-        holder.setText(suggestions[position])
+        holder.onSuggestionClickListener = listener
+        holder.searchSuggestionTextView?.text = suggestions[position]
     }
 
     override fun getItemCount() = suggestions.size
-
-    fun setOnClickListener(listener: SearchViewHolder.OnSuggestionClickListener) {
-        this.listener = listener
-    }
 
     fun swapData(suggestions: List<String>) {
         this.suggestions = suggestions

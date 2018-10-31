@@ -26,10 +26,14 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
     @Inject lateinit var imageLoader: ImageLoader
     @Inject lateinit var presenter: DetailedCardContract.Presenter
 
-    @VisibleForTesting var card: Card? = null
+    @VisibleForTesting private val card
+        get() = intent.getParcelableExtra<Card>(CARD_EXTRA)
+
+    @VisibleForTesting private val position
+        get() = intent.getIntExtra(EXTRA_POSITION, -1)
+
     private var cardName: String = ""
     private var isCardSaved: Boolean = false
-    @VisibleForTesting var position: Int? = null
     @VisibleForTesting var heart: Drawable? = null
     @VisibleForTesting var heartFilled: Drawable? = null
 
@@ -41,28 +45,22 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         presenter.attach(this)
         card_fab.setOnClickListener(this)
 
-        val intent = intent
-        if (intent != null) {
-            setLoading(true)
-            val card = intent.getParcelableExtra<Card>(CARD_EXTRA)
-            this.card = card
-            this.position = intent.getIntExtra(EXTRA_POSITION, -1)
+        setLoading(true)
 
-            populateValues(card)
+        populateValues()
+        populateProperHearts()
 
-            populateProperHearts()
-            isCardSaved = presenter.isCardSaved(card)
-            toggleHeart()
-        }
+        isCardSaved = presenter.isCardSaved(card)
+        toggleHeart()
 
         slideUpDown()
     }
 
-    private fun populateValues(card: Card) {
+    private fun populateValues() {
         val iv = findViewById<ImageView>(R.id.card_image)
         iv.transitionName = card.img
         card_container.transitionName = card.cardId
-        imageLoader.loadImage(card.img, this, findViewById(R.id.card_image))
+        imageLoader.loadImage(card.img, this, iv)
         card_name.text = card.name
         card_artist.text = getString(R.string.card_activity_artist, card.artist)
         card_set.text = getString(R.string.card_activity_set, card.cardSet)
@@ -83,10 +81,10 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         when (v?.id) {
             R.id.card_fab -> {
                 isCardSaved = if (isCardSaved) {
-                    presenter.removeCard(this.card!!)
+                    presenter.removeCard(card)
                     false
                 } else {
-                    presenter.saveCard(this.card!!)
+                    presenter.saveCard(card)
                     true
                 }
 

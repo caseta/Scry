@@ -1,9 +1,5 @@
 package com.taylorcase.hearthstonescry.selecthero
 
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
 import com.taylorcase.hearthstonescry.InjectingTest
 import kotlinx.android.synthetic.main.activity_select_hero.*
 import org.assertj.core.api.Assertions.assertThat
@@ -21,7 +17,6 @@ class SelectHeroActivityTest : InjectingTest() {
     @Test fun testOnCreateSetsUpRecycler() {
         activity = buildActivity(SelectHeroActivity::class.java).create().get()
 
-        assertThat(activity!!.layoutManager).isNotNull()
         assertThat(activity!!.select_hero_recycler).isNotNull()
         assertThat(activity!!.select_hero_recycler.adapter).isEqualTo(mockSelectHeroAdapter)
     }
