@@ -2,6 +2,7 @@
 .gradle
 /gradle.properties
 /fabric.properties
+/app/fabric.properties
 /local.properties
 .idea/*
 /.idea/workspace.xml
