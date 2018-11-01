@@ -58,6 +58,7 @@ open class CardRepository @Inject constructor() {
                 for (card in cachedCards) {
                     if (card.name == cardName) {
                         list.add(card)
+                        break
                     }
                 }
                 Observable.just(list)
