@@ -1,7 +1,6 @@
 package com.taylorcase.hearthstonescry.selecthero
 
 import android.os.Bundle
-import android.support.annotation.VisibleForTesting
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_select_hero.*
 import com.taylorcase.hearthstonescry.R
