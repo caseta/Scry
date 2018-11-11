@@ -7,7 +7,7 @@ apply from: 'buildscripts/jacoco.gradle'
 
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 0
+def versionPatch = 1
 
 def appBuildVersion = versionMajor * 1000000 + versionMajor * 1000 + versionPatch * 100
 def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
