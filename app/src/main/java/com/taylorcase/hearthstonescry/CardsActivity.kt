@@ -16,7 +16,6 @@ import javax.inject.Inject
 open class CardsActivity : CardsGridActivity(), CardsContract.View {
 
     @Inject lateinit var presenter: CardsContract.Presenter
-    @Inject lateinit var networkManager: NetworkManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +28,7 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View {
 
     private fun setupOnRefreshListener() {
         cards_swipe_refresh.setOnRefreshListener {
-            if (networkManager.isConnected) {
-                presenter.refreshAllCards()
-            } else {
-                cards_swipe_refresh.isRefreshing = false
-                displaySnackbar(getString(R.string.cards_activity_network_error))
-            }
+            presenter.refreshAllCards()
         }
     }
 
@@ -45,6 +39,11 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View {
     override fun displayCards(cards: List<Card>?) {
         cards_swipe_refresh.isRefreshing = false
         cards?.let { showCards(it) }
+    }
+
+    override fun displayNetworkError() {
+        cards_swipe_refresh.isRefreshing = false
+        displaySnackbar(getString(R.string.cards_activity_network_error))
     }
 
     public override fun onDestroy() {

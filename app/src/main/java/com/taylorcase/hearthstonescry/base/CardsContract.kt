@@ -7,6 +7,7 @@ interface CardsContract {
     interface View : MvpView {
 
         fun displayCards(cards: List<Card>?)
+        fun displayNetworkError()
     }
 
     interface Presenter : MvpPresenter<View> {

@@ -4,6 +4,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.CardsPresenter
 import com.taylorcase.hearthstonescry.utils.HeroUtils
+import com.taylorcase.hearthstonescry.utils.NetworkManager
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 
@@ -12,6 +13,7 @@ class BasePresenterTest {
     private val mockView = mock<CardsContract.View>()
     private val mockHeroUtils = mock<HeroUtils>()
     private val mockCardRepo = mock<CardRepository>()
+    private val mockNetworkManager = mock<NetworkManager>()
 
     @Test fun testAttachSetsReference() {
         val presenter = demandPresenter()
@@ -44,6 +46,6 @@ class BasePresenterTest {
     }
 
     private fun demandPresenter() : CardsPresenter {
-        return CardsPresenter(mockHeroUtils, mockCardRepo)
+        return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager)
     }
 }

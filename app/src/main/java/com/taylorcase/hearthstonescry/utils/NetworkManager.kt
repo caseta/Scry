@@ -5,7 +5,8 @@ import javax.inject.Inject
 
 open class NetworkManager @Inject constructor(private val connectivityManager: ConnectivityManager) {
 
-    val isConnected
-        get() = connectivityManager.allNetworks.any { connectivityManager.getNetworkInfo(it).isConnected }
-
+    open fun isConnected(): Boolean {
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+    }
 }

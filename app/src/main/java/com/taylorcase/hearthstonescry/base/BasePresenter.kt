@@ -9,7 +9,7 @@ abstract class BasePresenter<V : MvpView> : MvpPresenter<V> {
 
     var viewReference: WeakReference<Any>? = null
 
-    var compositeDisposable = CompositeDisposable()
+    private var compositeDisposable = CompositeDisposable()
 
     override fun attach(view: V) {
         viewReference = WeakReference(view)
