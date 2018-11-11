@@ -8,7 +8,6 @@ import android.support.annotation.VisibleForTesting
 import android.text.Html
 import android.view.View
 import android.view.View.*
-import android.widget.ImageView
 import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.base.BaseActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
@@ -19,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_detailed_card.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 import android.view.animation.AnimationUtils
+import com.taylorcase.hearthstonescry.utils.DeviceUtils
 
 @InjectLayout(R.layout.activity_detailed_card)
 open class DetailedCardActivity : BaseActivity(), View.OnClickListener, DetailedCardContract.View {
@@ -32,7 +32,6 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
     @VisibleForTesting private val position
         get() = intent.getIntExtra(EXTRA_POSITION, -1)
 
-    private var cardName: String = ""
     private var isCardSaved: Boolean = false
     @VisibleForTesting var heart: Drawable? = null
     @VisibleForTesting var heartFilled: Drawable? = null
@@ -57,16 +56,13 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
     }
 
     private fun populateValues() {
-        val iv = findViewById<ImageView>(R.id.card_image)
-        iv.transitionName = card.img
+        card_image.transitionName = card.img
         card_container.transitionName = card.cardId
-        imageLoader.loadImage(card.img, this, iv)
+        imageLoader.loadImage(card.img, this, card_image)
         card_name.text = card.name
         card_artist.text = getString(R.string.card_activity_artist, card.artist)
         card_set.text = getString(R.string.card_activity_set, card.cardSet)
         card_class.text = getString(R.string.card_activity_class, card.playerClass)
-
-        cardName = card.name
 
         val flavorText = card.flavor
         if (flavorText.isNotEmpty()) {
@@ -95,9 +91,9 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
     }
 
     private fun displaySnackbarMessage() {
-        var message = String.format(getString(R.string.detailed_card_activity_removed), cardName)
+        var message = String.format(getString(R.string.detailed_card_activity_removed), card.name)
         if (isCardSaved) {
-            message = String.format(getString(R.string.detailed_card_activity_saved), cardName)
+            message = String.format(getString(R.string.detailed_card_activity_saved), card.name)
         }
         displaySnackbar(message)
     }
@@ -122,7 +118,11 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
 
     override fun onBackPressed() {
         slideUpDown()
-        setResultAndFinish()
+        if (!DeviceUtils.isSamsungDevice()) {
+            setResultAndFinish()
+        } else {
+            finish()
+        }
     }
 
     private fun setResultAndFinish() {
@@ -142,8 +142,7 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
 
             card_text_container.startAnimation(bottomUp)
             card_text_container.visibility = View.VISIBLE
-            val handler = Handler()
-            handler.postDelayed({ card_fab.show() }, 700)
+            Handler().postDelayed({ card_fab.show() }, 700)
         } else {
             card_fab.hide()
             val bottomDown = AnimationUtils.loadAnimation(this, R.anim.bottom_down)

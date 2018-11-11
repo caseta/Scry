@@ -4,15 +4,12 @@
 
     <item name="android:windowContentTransitions">true</item>
     <item name="android:windowSharedElementsUseOverlay">false</item>
-
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
 
   </style>
 
   <style name="AppTheme.Warlock" parent="Theme.AppCompat.Light.NoActionBar">
 
-    <item name="android:windowContentTransitions">true</item>
     <item name="colorPrimary">@color/warlock_primary</item>
     <item name="colorPrimaryDark">@color/warlock_primary_dark</item>
     <item name="colorPrimaryLight">@color/warlock_primary_light</item>

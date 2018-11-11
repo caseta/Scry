@@ -1,5 +1,6 @@
 package com.taylorcase.hearthstonescry.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.taylorcase.hearthstonescry.CardsAdapter
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.ScryApplication
+import com.taylorcase.hearthstonescry.utils.DeviceUtils
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
@@ -45,8 +47,8 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
         cardsRecyclerView = findViewById(R.id.cards_recycler_view)
         val layoutManager = GridLayoutManager(this, CARD_ROW_WIDTH)
         layoutManager.isAutoMeasureEnabled = false
-        cards_recycler_view.layoutManager = layoutManager
-        cards_recycler_view.adapter = adapter
+        cardsRecyclerView?.layoutManager = layoutManager
+        cardsRecyclerView?.adapter = adapter
     }
 
     fun showCards(cards: List<Card>) {
@@ -55,15 +57,17 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
     }
 
     override fun onActivityReenter(resultCode: Int, data: Intent) {
-        val position = data.getIntExtra(EXTRA_POSITION, -1)
-        postponeEnterTransition()
-        cardsRecyclerView?.addOnLayoutChangeListener({ _, _, _, _, _, _, _, _, _ ->
-            cardsRecyclerView?.removeOnLayoutChangeListener(this)
-            startPostponedEnterTransition()
-        })
-        cardsRecyclerView?.scrollToPosition(position)
+        if (resultCode == Activity.RESULT_OK && !DeviceUtils.isSamsungDevice()) {
+            val position = data.getIntExtra(EXTRA_POSITION, -1)
+            postponeEnterTransition()
+            cardsRecyclerView?.addOnLayoutChangeListener({ _, _, _, _, _, _, _, _, _ ->
+                cards_recycler_view.removeOnLayoutChangeListener(this)
+                startPostponedEnterTransition()
+            })
+            cardsRecyclerView?.scrollToPosition(position)
 
-        toolbar.translationZ = -1f
+            toolbar.translationZ = -1f
+        }
     }
 
     override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {

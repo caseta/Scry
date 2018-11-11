@@ -12,8 +12,9 @@ import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.ImageLoader
 import android.support.v4.app.ActivityOptionsCompat
+import com.taylorcase.hearthstonescry.utils.DeviceUtils
 
-open class CardsViewHolder(itemView: View, var imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     companion object {
         const val EXTRA_POSITION = "position"
@@ -40,9 +41,17 @@ open class CardsViewHolder(itemView: View, var imageLoader: ImageLoader) : Recyc
     override fun onClick(v: View?) {
         itemView.isEnabled = false
         itemView.isClickable = false
-        val backgroundPair = Pair.create(cardContainer as View, cardContainer.transitionName)
-        val imagePair = Pair.create(cardImageView as View, cardImageView.transitionName)
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, backgroundPair, imagePair)
-        context.startActivity(Intent(context, DetailedCardActivity::class.java).putExtra(EXTRA_POSITION, position).putExtra(CARD_EXTRA, card), options.toBundle())
+
+        val detailedCardIntent = Intent(context, DetailedCardActivity::class.java).putExtra(CARD_EXTRA, card)
+
+        if (DeviceUtils.isSamsungDevice()) {
+            context.startActivity(detailedCardIntent)
+        } else {
+            val backgroundPair = Pair.create(cardContainer as View, cardContainer.transitionName)
+            val imagePair = Pair.create(cardImageView as View, cardImageView.transitionName)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, backgroundPair, imagePair)
+            detailedCardIntent.putExtra(EXTRA_POSITION, position)
+            context.startActivity(detailedCardIntent, options.toBundle())
+        }
     }
 }

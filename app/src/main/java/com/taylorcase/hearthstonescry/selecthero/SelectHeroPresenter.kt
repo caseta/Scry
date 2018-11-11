@@ -6,7 +6,7 @@ import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import javax.inject.Inject
 
-open class SelectHeroPresenter @Inject constructor(var sharedPreferencesHelper: SharedPreferencesHelper) : BasePresenter<SelectHeroContract.View>(), SelectHeroContract.Presenter {
+open class SelectHeroPresenter @Inject constructor(private val sharedPreferencesHelper: SharedPreferencesHelper) : BasePresenter<SelectHeroContract.View>(), SelectHeroContract.Presenter {
 
     override fun getHeroAndTheme(selectedHero: Int) {
         var hero = Hero.WARLOCK

@@ -29,7 +29,7 @@
         <ImageView
           android:id="@+id/card_image"
           android:layout_width="match_parent"
-          android:layout_height="300dp"
+          android:layout_height="@dimen/detailed_card_image_height"
           android:layout_gravity="center"
           android:layout_marginEnd="@dimen/spacing_larger"
           android:layout_marginStart="@dimen/spacing_larger"

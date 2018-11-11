@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 open class CardsPresenter @Inject constructor(private val heroUtils: HeroUtils, private val cardRepository: CardRepository) : BasePresenter<CardsContract.View>(), CardsContract.Presenter {
 
-    lateinit var view: CardsContract.View
+    val view: CardsContract.View?
+        get() = getView() as? CardsContract.View
 
     override fun loadCards() {
-        view = getView() as CardsContract.View
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -30,7 +30,6 @@ open class CardsPresenter @Inject constructor(private val heroUtils: HeroUtils, 
 
     // TODO: Combine this with above
     private fun resetSuccess() {
-        view = getView() as CardsContract.View
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -38,7 +37,6 @@ open class CardsPresenter @Inject constructor(private val heroUtils: HeroUtils, 
     }
 
     private fun displayCards(cards: List<Card>) {
-        view = getView() as CardsContract.View
-        view.displayCards(cards)
+        view?.displayCards(cards)
     }
 }

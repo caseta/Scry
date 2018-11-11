@@ -2,6 +2,7 @@ package com.taylorcase.hearthstonescry.dagger.modules
 
 import android.app.Application
 import android.content.Context
+import android.net.ConnectivityManager
 import com.taylorcase.hearthstonescry.*
 import com.taylorcase.hearthstonescry.savedcards.SavedCardsContract
 import com.taylorcase.hearthstonescry.savedcards.SavedCardsPresenter
@@ -13,10 +14,7 @@ import com.taylorcase.hearthstonescry.search.SearchPresenter
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroAdapter
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroContract
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroPresenter
-import com.taylorcase.hearthstonescry.utils.GlideImageLoader
-import com.taylorcase.hearthstonescry.utils.HeroUtils
-import com.taylorcase.hearthstonescry.utils.ImageLoader
-import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
+import com.taylorcase.hearthstonescry.utils.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -37,6 +35,11 @@ open class AppModule(private val application: Application) {
     @Provides @Singleton
     internal open fun providesImageLoader(): ImageLoader {
         return GlideImageLoader()
+    }
+
+    @Provides @Singleton
+    internal open fun providesConnectivityManager(application: Application) : ConnectivityManager {
+        return application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     @Provides @Singleton

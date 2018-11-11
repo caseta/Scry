@@ -3,8 +3,6 @@ package com.taylorcase.hearthstonescry.base
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.support.annotation.VisibleForTesting
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.DrawerLayout
@@ -166,6 +164,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+        displaySnackbar(getString(R.string.detailed_card_activity_image_load_fail))
         supportStartPostponedEnterTransition()
         setLoading(false)
         return false

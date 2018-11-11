@@ -1,6 +1,9 @@
 <resources>
   <string name="app_name">Scry</string>
 
+  <!--CardsActivity-->
+  <string name="cards_activity_network_error">You need a network connection to refresh your cards!</string>
+
   <!--Card Activity-->
   <string name="card_activity_artist">Artist - %s</string>
   <string name="card_activity_set">Set - %s</string>
@@ -16,6 +19,7 @@
   <!--Detailed Card Activity-->
   <string name="detailed_card_activity_saved">%s added to Saved Cards</string>
   <string name="detailed_card_activity_removed">%s removed from Saved Cards</string>
+  <string name="detailed_card_activity_image_load_fail">Image failed to load, check your network connection!</string>
 
   <!--Saved Cards-->
   <string name="saved_cards_no_saved_cards">You don\'t have any saved cards!</string>
