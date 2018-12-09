@@ -21,7 +21,7 @@ Features
 
 Maintenance
 ------
-- [ ] Add Crashlytics
+- [x] Add Crashlytics
 - [x] Setup unit testing with Dagger 2
 - [x] Setup error callbacks for all network RxJava 2 calls
 - [x] Add leak canary
