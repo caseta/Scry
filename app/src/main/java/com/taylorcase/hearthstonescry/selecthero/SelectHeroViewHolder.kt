@@ -30,7 +30,7 @@ open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: Ima
         imageLoader.loadDrawableCenterCrop(heroUtils.getHeroImageForHero(hero), itemView.select_hero_image)
 
         itemView.select_hero_header_text.text = hero.toString()
-        itemView.select_hero_sub_header_text.text = heroUtils.getDescriptionForHero(context, hero)
+        itemView.select_hero_sub_header_text.text = heroUtils.getDescriptionForHero(hero)
     }
 
     override fun onClick(v: View?) {

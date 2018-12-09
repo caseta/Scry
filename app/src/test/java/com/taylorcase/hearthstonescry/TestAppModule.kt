@@ -129,7 +129,7 @@ class TestAppModule(application: Application) : AppModule(application) {
 
     @Provides
     @Singleton
-    override fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper) : HeroUtils {
+    override fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils {
         return mockHeroUtils!!
     }
 

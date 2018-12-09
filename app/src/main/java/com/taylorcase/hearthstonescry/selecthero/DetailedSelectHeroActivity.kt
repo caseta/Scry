@@ -52,9 +52,9 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
     }
 
     private fun setText() {
-        detailed_select_hero_desc.text = heroUtils.getDescriptionForHero(this, hero)
-        detailed_select_hero_mechanics.text = heroUtils.getMechanicsForHero(this, hero)
-        detailed_select_hero_power.text = heroUtils.getHeroPowerForHero(this, hero)
+        detailed_select_hero_desc.text = heroUtils.getDescriptionForHero(hero)
+        detailed_select_hero_mechanics.text = heroUtils.getMechanicsForHero(hero)
+        detailed_select_hero_power.text = heroUtils.getHeroPowerForHero(hero)
     }
 
     override fun onClick(v: View?) {

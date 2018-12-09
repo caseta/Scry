@@ -88,7 +88,7 @@ open class AppModule(private val application: Application) {
     }
 
     @Provides @Singleton
-    internal open fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper) : HeroUtils {
-        return HeroUtils(sharedPreferencesHelper)
+    internal open fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils {
+        return HeroUtils(sharedPreferencesHelper, application)
     }
 }

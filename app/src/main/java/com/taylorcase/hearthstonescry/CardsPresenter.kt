@@ -13,7 +13,8 @@ import javax.inject.Inject
 open class CardsPresenter @Inject constructor(
         private val heroUtils: HeroUtils,
         private val cardRepository: CardRepository,
-        private val networkManager: NetworkManager) : BasePresenter<CardsContract.View>(), CardsContract.Presenter {
+        private val networkManager: NetworkManager
+) : BasePresenter<CardsContract.View>(), CardsContract.Presenter {
 
     val view: CardsContract.View?
         get() = getView() as? CardsContract.View

@@ -1,12 +1,15 @@
 package com.taylorcase.hearthstonescry.utils
 
-import android.content.Context
+import android.app.Application
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.enums.Hero.*
 import javax.inject.Inject
 
-open class HeroUtils @Inject constructor(val sharedPreferencesHelper: SharedPreferencesHelper) {
+open class HeroUtils @Inject constructor(
+        private val sharedPreferencesHelper: SharedPreferencesHelper,
+        private val context: Application
+) {
 
     open fun getHeroIconForHero(hero: Hero): Int {
         return when (hero) {
@@ -44,7 +47,7 @@ open class HeroUtils @Inject constructor(val sharedPreferencesHelper: SharedPref
         }
     }
 
-    open fun getDescriptionForHero(context: Context, hero: Hero): String {
+    open fun getDescriptionForHero(hero: Hero): String {
         val resources = context.resources
         return when (hero) {
             WARRIOR -> resources.getString(R.string.warrior_description)
@@ -61,7 +64,7 @@ open class HeroUtils @Inject constructor(val sharedPreferencesHelper: SharedPref
         }
     }
 
-    open fun getMechanicsForHero(context: Context, hero: Hero): String {
+    open fun getMechanicsForHero(hero: Hero): String {
         val resources = context.resources
         return when (hero) {
             WARRIOR -> resources.getString(R.string.warrior_mechanics)
@@ -78,7 +81,7 @@ open class HeroUtils @Inject constructor(val sharedPreferencesHelper: SharedPref
         }
     }
 
-    open fun getHeroPowerForHero(context: Context, hero: Hero): String {
+    open fun getHeroPowerForHero(hero: Hero): String {
         val resources = context.resources
         return when (hero) {
             WARRIOR -> resources.getString(R.string.warrior_hero_power)

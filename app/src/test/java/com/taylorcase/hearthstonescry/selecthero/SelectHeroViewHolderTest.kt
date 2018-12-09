@@ -82,14 +82,14 @@ class SelectHeroViewHolderTest {
     }
 
     @Test fun testLoadHeroSetsDescriptionText() {
-        doReturn(WARLOCK_DESCRIPTION).whenever(mockHeroUtils).getDescriptionForHero(application, WARLOCK)
+        doReturn(WARLOCK_DESCRIPTION).whenever(mockHeroUtils).getDescriptionForHero(WARLOCK)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
 
         selectHeroViewHolder.loadHero(WARLOCK)
 
         assertThat(itemView.select_hero_sub_header_text.text).isEqualTo(WARLOCK_DESCRIPTION)
-        verify(mockHeroUtils).getDescriptionForHero(application, WARLOCK)
+        verify(mockHeroUtils).getDescriptionForHero(WARLOCK)
     }
 
     @Test fun testOnClickDescriptionToggleHidesDescription() {

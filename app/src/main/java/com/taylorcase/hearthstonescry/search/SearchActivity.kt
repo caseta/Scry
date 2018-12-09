@@ -103,5 +103,6 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
     public override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
+        adapter?.listener = null
     }
 }

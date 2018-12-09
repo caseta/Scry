@@ -42,6 +42,22 @@ open class NavDrawerFragment : Fragment(), View.OnClickListener {
 
         imageLoader.loadDrawableCenterCrop(heroUtils.getFavoriteHeroIcon(), nav_drawer_hero_icon)
         imageLoader.loadDrawableCenterInside(heroUtils.getFavoriteHeroImage(), nav_drawer_hero_image)
+
+        selectProperTab()
+    }
+
+    private fun selectProperTab() {
+        when (activity) {
+            is CardsActivity -> {
+                nav_drawer_home.isPressed = true
+            }
+            is SavedCardsActivity -> {
+                nav_drawer_saved_cards.isPressed = true
+            }
+            is SelectHeroActivity -> {
+                nav_drawer_update_favorite_hero.isPressed = true
+            }
+        }
     }
 
     override fun onClick(v: View?) {

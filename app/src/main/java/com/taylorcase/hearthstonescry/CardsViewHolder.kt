@@ -3,6 +3,7 @@ package com.taylorcase.hearthstonescry
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.annotation.VisibleForTesting
 import android.support.v4.util.Pair
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -20,27 +21,27 @@ open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader)
         const val EXTRA_POSITION = "position"
     }
 
-    private val context: Context = itemView.context
+    @VisibleForTesting var context: Context = itemView.context
     private val cardImageView: ImageView = itemView.findViewById(R.id.card_image)
     private val cardContainer: LinearLayout = itemView.findViewById(R.id.card_container)
 
     private var position: Int? = null
-    private lateinit var card: Card
+    @VisibleForTesting lateinit var card: Card
 
     open fun loadCard(card: Card, position: Int) {
         itemView.setOnClickListener(this)
-        itemView.isEnabled = true
-        itemView.isClickable = true
+        setClickable(true)
+
         this.card = card
         this.position = position
+
         cardImageView.transitionName = card.img
         cardContainer.transitionName = card.cardId
         imageLoader.loadImage(card.img, cardImageView)
     }
 
     override fun onClick(v: View?) {
-        itemView.isEnabled = false
-        itemView.isClickable = false
+        setClickable(false)
 
         val detailedCardIntent = Intent(context, DetailedCardActivity::class.java).putExtra(CARD_EXTRA, card)
 
@@ -53,5 +54,10 @@ open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader)
             detailedCardIntent.putExtra(EXTRA_POSITION, position)
             context.startActivity(detailedCardIntent, options.toBundle())
         }
+    }
+
+    private fun setClickable(clickable: Boolean) {
+        itemView.isEnabled = clickable
+        itemView.isClickable = clickable
     }
 }
