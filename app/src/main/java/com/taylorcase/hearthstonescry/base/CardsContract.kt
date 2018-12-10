@@ -7,6 +7,7 @@ interface CardsContract {
     interface View : MvpView {
 
         fun displayCards(cards: List<Card>?)
+
         fun displayNetworkError()
     }
 
@@ -15,5 +16,9 @@ interface CardsContract {
         fun loadCards()
 
         fun refreshAllCards()
+
+        fun shouldAskToRateApp(): Boolean
+
+        fun userWasAskedToRateApp()
     }
 }

@@ -6,6 +6,7 @@ import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.enums.Hero.*
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.NetworkManager
+import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import io.reactivex.Single
 import org.junit.Test
 import java.util.Collections.*
@@ -21,6 +22,7 @@ class CardsPresenterTest {
     private val mockCard = mock<Card>()
     private val mockCardRepo = mock<CardRepository>()
     private val mockNetworkManager = mock<NetworkManager>()
+    private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
 
     @Before fun setup() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
@@ -70,7 +72,7 @@ class CardsPresenterTest {
     }
 
     private fun demandCardsPresenter() : CardsPresenter {
-        val presenter = CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager)
+        val presenter = CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
         presenter.attach(mockView)
         return presenter
     }

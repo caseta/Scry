@@ -1,19 +1,17 @@
 package com.taylorcase.hearthstonescry
 
 import android.os.Bundle
-import com.rengwuxian.materialedittext.MaterialEditText
+import android.view.View
 import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.base.CardsGridActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.utils.NetworkManager
 import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @InjectLayout(R.layout.activity_cards)
-open class CardsActivity : CardsGridActivity(), CardsContract.View {
+open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClickListener  {
 
     @Inject lateinit var presenter: CardsContract.Presenter
 
@@ -24,6 +22,15 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View {
         presenter.attach(this)
 
         setupOnRefreshListener()
+
+        askToRateApp()
+    }
+
+    private fun askToRateApp() {
+        if (presenter.shouldAskToRateApp()) {
+            ReviewAppDialog().show(supportFragmentManager, ReviewAppDialog.REVIEW_APP_TAG)
+            presenter.userWasAskedToRateApp()
+        }
     }
 
     private fun setupOnRefreshListener() {

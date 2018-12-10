@@ -5,6 +5,7 @@ import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.CardsPresenter
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.NetworkManager
+import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 
@@ -14,6 +15,7 @@ class BasePresenterTest {
     private val mockHeroUtils = mock<HeroUtils>()
     private val mockCardRepo = mock<CardRepository>()
     private val mockNetworkManager = mock<NetworkManager>()
+    private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
 
     @Test fun testAttachSetsReference() {
         val presenter = demandPresenter()
@@ -46,6 +48,6 @@ class BasePresenterTest {
     }
 
     private fun demandPresenter() : CardsPresenter {
-        return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager)
+        return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
     }
 }

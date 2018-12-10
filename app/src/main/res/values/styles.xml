@@ -187,6 +187,13 @@
     <item name="android:background">?attr/colorPrimary</item>
   </style>
 
+  <style name="ScryButton.Transparent">
+    <item name="android:minHeight">@dimen/spacing_zero</item>
+    <item name="android:letterSpacing">@dimen/button_letter_spacing_zero</item>
+    <item name="android:textColor">?attr/colorPrimary</item>
+    <item name="android:background">@color/transparent</item>
+  </style>
+
   <style name="HeaderText" parent="android:TextAppearance.Widget.TextView">
     <item name="android:fontFamily">@font/roboto_medium</item>
     <item name="android:textColor">@color/black</item>

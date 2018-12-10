@@ -5,6 +5,7 @@ import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.NetworkManager
+import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -13,11 +14,20 @@ import javax.inject.Inject
 open class CardsPresenter @Inject constructor(
         private val heroUtils: HeroUtils,
         private val cardRepository: CardRepository,
-        private val networkManager: NetworkManager
+        private val networkManager: NetworkManager,
+        private val sharedPreferencesHelper: SharedPreferencesHelper
 ) : BasePresenter<CardsContract.View>(), CardsContract.Presenter {
 
     val view: CardsContract.View?
         get() = getView() as? CardsContract.View
+
+    override fun shouldAskToRateApp(): Boolean {
+        return sharedPreferencesHelper.shouldAskUserToRateApp()
+    }
+
+    override fun userWasAskedToRateApp() {
+        sharedPreferencesHelper.userWasAskedToRateApp()
+    }
 
     override fun loadCards() {
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
