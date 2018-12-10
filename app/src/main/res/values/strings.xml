@@ -31,6 +31,17 @@
   <!--Error-->
   <string name="whoops_error">Whoops! Something went wrong.</string>
 
+  <!--Review App-->
+  <string name="review_app_mind_rating">Mind rating us on the Play Store?</string>
+  <string name="review_app_mind_sending">Mind sending us some feedback so we can improve?</string>
+  <string name="review_app_hello">Hello!</string>
+  <string name="review_app_are_you_enjoying">Are you enjoying Scry?</string>
+  <string name="review_app_nahhh">Nahhh</string>
+  <string name="review_app_oh_yeah">Oh yeah</string>
+  <string name="review_app_cancel">Cancel</string>
+  <string name="review_app_rate">Rate</string>
+  <string name="review_app_send_feedback">Send Feedback</string>
+
   <!--Select Hero-->
   <string name="select_hero_select_your_class">Select Your Favorite Class</string>
   <string name="select_hero_select_class">Select Class</string>

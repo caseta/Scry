@@ -38,10 +38,12 @@
 
   <dimen name="text_size_medium">14sp</dimen>
   <dimen name="text_size_large">16sp</dimen>
+  <dimen name="text_size_very_large">20sp</dimen>
   <dimen name="text_size_extra_large">24sp</dimen>
 
   <dimen name="card_elevation">4dp</dimen>
 
+  <dimen name="button_letter_spacing_zero">0</dimen>
   <dimen name="button_letter_spacing">0.2</dimen>
   <dimen name="button_elevation">8dp</dimen>
   <dimen name="min_button_height">48dp</dimen>

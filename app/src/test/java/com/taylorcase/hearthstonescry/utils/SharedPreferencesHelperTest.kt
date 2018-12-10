@@ -3,10 +3,7 @@ package com.taylorcase.hearthstonescry.utils
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.enums.Hero
@@ -182,7 +179,7 @@ class SharedPreferencesHelperTest {
         verify(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         verify(mockSharedPreferences).edit()
         verify(mockEditor).putString(FAVORITE_HERO_KEY, WARLOCK.toString())
-        verify(mockEditor).apply()
+        verify(mockEditor, times(2)).apply()
     }
 
     @Test fun testGetSavedHeroString() {

@@ -12,13 +12,6 @@ import javax.inject.Inject
 
 open class SharedPreferencesHelper @Inject constructor(var context: Application) {
 
-    companion object {
-        const val SHARED_PREF = "shared preferences"
-        const val SAVED_CARDS_SET = "saved_cards_set"
-        const val SAVED_THEME = "theme"
-        const val FAVORITE_HERO_KEY = "favorite hero"
-    }
-
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
 
     /**
@@ -90,6 +83,8 @@ open class SharedPreferencesHelper @Inject constructor(var context: Application)
         val editor = sharedPreferences.edit()
         editor.putString(FAVORITE_HERO_KEY, hero.toString())
         editor.apply()
+
+        updateSaveHeroCount(editor)
     }
 
     open fun getSavedHeroString(): String = sharedPreferences.getString(FAVORITE_HERO_KEY, "")
@@ -101,5 +96,40 @@ open class SharedPreferencesHelper @Inject constructor(var context: Application)
         } else {
             return sharedPreferences.getInt(SAVED_THEME, R.style.AppTheme_Warlock)
         }
+    }
+
+    private fun updateSaveHeroCount(editor: SharedPreferences.Editor) {
+        var saveHeroCount = sharedPreferences.getInt(SAVE_HERO_COUNT_KEY, SAVE_HERO_COUNT_ZERO)
+        if (saveHeroCount < 2) {
+            saveHeroCount += 1
+            editor.putInt(SAVE_HERO_COUNT_KEY, saveHeroCount)
+            editor.apply()
+        }
+    }
+
+    open fun userWasAskedToRateApp() {
+        val editor = sharedPreferences.edit()
+        editor.putInt(ASK_TO_RATE_APP_KEY, USER_WAS_ASKED_TO_RATE)
+        editor.apply()
+    }
+
+    // Ask the user to rate the app the second time they change heroes
+    // Also make sure they only get asked once
+    open fun shouldAskUserToRateApp() : Boolean {
+        val hasBeenAsked = sharedPreferences.getInt(ASK_TO_RATE_APP_KEY, USER_HAS_NOT_BEEN_ASKED_TO_RATE)
+        val saveHeroCount = sharedPreferences.getInt(SAVE_HERO_COUNT_KEY, SAVE_HERO_COUNT_ZERO)
+        return hasBeenAsked == USER_HAS_NOT_BEEN_ASKED_TO_RATE && saveHeroCount > 1
+    }
+
+    companion object {
+        const val SHARED_PREF = "shared preferences"
+        const val SAVED_CARDS_SET = "saved_cards_set"
+        const val SAVED_THEME = "theme"
+        const val FAVORITE_HERO_KEY = "favorite hero"
+        const val ASK_TO_RATE_APP_KEY = "rate app"
+        const val USER_HAS_NOT_BEEN_ASKED_TO_RATE = 0
+        const val USER_WAS_ASKED_TO_RATE = 1
+        const val SAVE_HERO_COUNT_KEY = "save hero count key"
+        const val SAVE_HERO_COUNT_ZERO = 0
     }
 }
