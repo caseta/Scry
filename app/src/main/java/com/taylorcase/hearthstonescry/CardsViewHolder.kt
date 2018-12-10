@@ -17,10 +17,6 @@ import com.taylorcase.hearthstonescry.utils.DeviceUtils
 
 open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-    companion object {
-        const val EXTRA_POSITION = "position"
-    }
-
     @VisibleForTesting var context: Context = itemView.context
     private val cardImageView: ImageView = itemView.findViewById(R.id.card_image)
     private val cardContainer: LinearLayout = itemView.findViewById(R.id.card_container)
@@ -59,5 +55,9 @@ open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader)
     private fun setClickable(clickable: Boolean) {
         itemView.isEnabled = clickable
         itemView.isClickable = clickable
+    }
+
+    companion object {
+        const val EXTRA_POSITION = "position"
     }
 }

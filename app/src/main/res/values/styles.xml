@@ -188,7 +188,9 @@
   </style>
 
   <style name="ScryButton.Transparent">
-    <item name="android:minHeight">@dimen/spacing_zero</item>
+    <item name="android:fontFamily">@font/roboto_bold</item>
+    <item name="android:minWidth">@dimen/transparent_button_width</item>
+    <item name="android:minHeight">@dimen/transparent_button_height</item>
     <item name="android:letterSpacing">@dimen/button_letter_spacing_zero</item>
     <item name="android:textColor">?attr/colorPrimary</item>
     <item name="android:background">@color/transparent</item>

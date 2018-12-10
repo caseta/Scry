@@ -25,7 +25,8 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
         app_review_nahhh.setOnClickListener(this)
         app_review_rate.setOnClickListener(this)
         app_review_send_feedback.setOnClickListener(this)
-        app_review_cancel.setOnClickListener(this)
+        app_review_cancel_rate.setOnClickListener(this)
+        app_review_cancel_feedback.setOnClickListener(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,7 +39,8 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
             R.id.app_review_rate -> rateAppClicked()
             R.id.app_review_yes -> yesClicked()
             R.id.app_review_nahhh -> nahhhClicked()
-            R.id.app_review_cancel -> dismiss()
+            R.id.app_review_cancel_rate -> dismiss()
+            R.id.app_review_cancel_feedback -> dismiss()
         }
     }
 
@@ -65,7 +67,7 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
         app_review_sub_header.text = getString(R.string.review_app_mind_rating)
         app_review_yes.visibility = View.GONE
         app_review_nahhh.visibility = View.GONE
-        app_review_cancel.visibility = View.VISIBLE
+        app_review_cancel_rate.visibility = View.VISIBLE
         app_review_rate.visibility = View.VISIBLE
     }
 
@@ -73,7 +75,7 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
         app_review_sub_header.text = getString(R.string.review_app_mind_sending)
         app_review_yes.visibility = View.GONE
         app_review_nahhh.visibility = View.GONE
-        app_review_cancel.visibility = View.VISIBLE
+        app_review_cancel_feedback.visibility = View.VISIBLE
         app_review_send_feedback.visibility = View.VISIBLE
     }
 

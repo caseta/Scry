@@ -20,10 +20,6 @@ import javax.inject.Inject
 @InjectLayout(R.layout.activity_cards)
 abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
 
-    companion object {
-        private const val CARD_ROW_WIDTH = 3
-    }
-
     @Inject lateinit var adapter: CardsAdapter
 
     @VisibleForTesting var cardsRecyclerView: RecyclerView? = null
@@ -72,5 +68,9 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
 
     override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
         // NO-OP
+    }
+
+    companion object {
+        private const val CARD_ROW_WIDTH = 3
     }
 }

@@ -3,91 +3,94 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_gravity="center"
-  android:layout_margin="@dimen/spacing_medium"
   android:orientation="vertical"
-  android:padding="@dimen/spacing_medium">
+  android:paddingBottom="@dimen/spacing_medium"
+  android:paddingEnd="@dimen/spacing_semi_large"
+  android:paddingStart="@dimen/spacing_semi_large"
+  android:paddingTop="@dimen/spacing_semi_large">
 
   <TextView
     android:id="@+id/actual_header"
     style="@style/HeaderText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_large"
-    android:text="@string/review_app_hello" />
+    android:text="@string/review_app_hello"
+    android:textSize="@dimen/text_size_very_large" />
 
   <TextView
     android:id="@+id/app_review_sub_header"
     style="@style/SubSubHeaderText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_large"
-    android:layout_marginEnd="@dimen/spacing_large"
-    android:layout_marginStart="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_medium"
     android:text="@string/review_app_are_you_enjoying"
-    android:textSize="@dimen/text_size_very_large" />
+    android:textSize="@dimen/text_size_large" />
 
-  <LinearLayout
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_large"
-    android:layout_marginTop="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_semi_large"
     android:orientation="horizontal">
-
-    <View
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1" />
 
     <TextView
       android:id="@+id/app_review_nahhh"
       style="@style/ScryButton.Transparent"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_small"
-      android:layout_weight="1"
+      android:layout_marginEnd="@dimen/spacing_medium"
+      android:layout_toStartOf="@+id/app_review_yes"
       android:text="@string/review_app_nahhh"
       android:visibility="visible" />
 
     <TextView
       android:id="@+id/app_review_yes"
       style="@style/ScryButton.Transparent"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_small"
-      android:layout_weight="1"
-      android:text="@string/review_app_oh_yeah"
+      android:layout_alignParentEnd="true"
+      android:text="@string/review_app_yeah"
       android:visibility="visible" />
 
     <TextView
-      android:id="@+id/app_review_cancel"
+      android:id="@+id/app_review_cancel_rate"
       style="@style/ScryButton.Transparent"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_small"
-      android:layout_weight="1"
+      android:layout_marginEnd="@dimen/spacing_medium"
+      android:layout_toStartOf="@+id/app_review_rate"
       android:text="@string/review_app_cancel"
       android:visibility="gone" />
 
     <TextView
       android:id="@+id/app_review_rate"
       style="@style/ScryButton.Transparent"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_small"
-      android:layout_weight="1"
+      android:layout_alignParentEnd="true"
       android:text="@string/review_app_rate"
+      android:visibility="gone" />
+
+    <TextView
+      android:id="@+id/app_review_cancel_feedback"
+      style="@style/ScryButton.Transparent"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/spacing_medium"
+      android:layout_toStartOf="@+id/app_review_send_feedback"
+      android:text="@string/review_app_cancel"
       android:visibility="gone" />
 
     <TextView
       android:id="@+id/app_review_send_feedback"
       style="@style/ScryButton.Transparent"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_small"
-      android:layout_weight="1"
+      android:layout_alignParentEnd="true"
+      android:paddingEnd="@dimen/spacing_medium"
+      android:paddingStart="@dimen/spacing_medium"
       android:text="@string/review_app_send_feedback"
       android:visibility="gone" />
 
-  </LinearLayout>
+  </RelativeLayout>
 
 </LinearLayout>

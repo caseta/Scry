@@ -20,12 +20,6 @@ import javax.inject.Inject
 
 open class NavDrawerFragment : Fragment(), View.OnClickListener {
 
-    companion object {
-        val NAV_FRAG_TAG: String = NavDrawerFragment::class.java.simpleName
-
-        fun newInstance(): NavDrawerFragment = NavDrawerFragment()
-    }
-
     @Inject lateinit var heroUtils: HeroUtils
     @Inject lateinit var imageLoader: ImageLoader
 
@@ -70,5 +64,11 @@ open class NavDrawerFragment : Fragment(), View.OnClickListener {
         if (activity is BaseActivity) {
             activity.closeDrawer()
         }
+    }
+
+    companion object {
+        val NAV_FRAG_TAG: String = NavDrawerFragment::class.java.simpleName
+
+        fun newInstance(): NavDrawerFragment = NavDrawerFragment()
     }
 }

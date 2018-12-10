@@ -30,11 +30,6 @@ import javax.inject.Inject
 
 abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView, View.OnClickListener {
 
-    companion object {
-        const val HOME = 0
-        const val BACK_ARROW = 1
-    }
-
     @VisibleForTesting var navDrawerFragment: NavDrawerFragment? = null
     private var drawerLayout: DrawerLayout? = null
 
@@ -198,5 +193,10 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
             KeyboardUtils.hideKeyboard(drawerView)
             super.onDrawerSlide(drawerView, slideOffset)
         }
+    }
+
+    companion object {
+        const val HOME = 0
+        const val BACK_ARROW = 1
     }
 }

@@ -12,10 +12,6 @@ import kotlinx.android.synthetic.main.item_select_hero_card.view.*
 
 open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: ImageLoader, var heroUtils: HeroUtils) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-    companion object {
-        const val EXTRA_HERO = "hero"
-    }
-
     private var context: Context = itemView.context
     private var hero: Hero? = null
 
@@ -54,5 +50,9 @@ open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: Ima
     private fun setItemViewEnable(isEnabled: Boolean) {
         itemView.isEnabled = isEnabled
         itemView.isClickable = isEnabled
+    }
+
+    companion object {
+        const val EXTRA_HERO = "hero"
     }
 }

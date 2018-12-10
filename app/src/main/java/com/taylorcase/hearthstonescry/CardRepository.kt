@@ -15,10 +15,6 @@ import javax.inject.Singleton
 @Singleton
 open class CardRepository @Inject constructor() {
     
-    companion object {
-        private const val HEADER_KEY = "X-Mashape-Key"
-    }
-
     @VisibleForTesting var cachedCards = emptyList<Card>()
 
     @Inject lateinit var api: HearthstoneApi
@@ -122,5 +118,9 @@ open class CardRepository @Inject constructor() {
         val headers = HashMap<String, String>()
         headers[HEADER_KEY] = BuildConfig.HEARTHSTONE_API_KEY
         return headers
+    }
+
+    companion object {
+        private const val HEADER_KEY = "X-Mashape-Key"
     }
 }
