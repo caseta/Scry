@@ -22,6 +22,7 @@ open class AllCards {
     @SerializedName("Kobolds & Catacombs") @Expose var kacCards: List<Card>? = null
     @SerializedName("The Witchwood") @Expose var wwCards: List<Card>? = null
     @SerializedName("The Boomsday Project") @Expose var bpCards: List<Card>? = null
+    @SerializedName("Rastakhan's Rumble") @Expose var rrCards: List<Card>? = null
 
     open val listOfAllCards: List<Card>
         get() {
@@ -42,12 +43,13 @@ open class AllCards {
             allCardsList.addAll(kacCards!!)
             allCardsList.addAll(wwCards!!)
             allCardsList.addAll(bpCards!!)
+            allCardsList.addAll(rrCards!!)
 
             return allCardsList
         }
 
     override fun toString(): String {
-        return "AllCards(basicCards=$basicCards, classicCards=$classicCards, naxxCards=$naxxCards, gvgCards=$gvgCards, blackrockCards=$blackrockCards, grandTournamentCards=$grandTournamentCards, loeCards=$loeCards, wotogCards=$wotogCards, onikCards=$onikCards, msogCards=$msogCards, hofCards=$hofCards, jtugCards=$jtugCards, kotftCards=$kotftCards, kacCards=$kacCards, wwCards=$wwCards, bpCards=$bpCards)"
+        return "AllCards(basicCards=$basicCards, classicCards=$classicCards, naxxCards=$naxxCards, gvgCards=$gvgCards, blackrockCards=$blackrockCards, grandTournamentCards=$grandTournamentCards, loeCards=$loeCards, wotogCards=$wotogCards, onikCards=$onikCards, msogCards=$msogCards, hofCards=$hofCards, jtugCards=$jtugCards, kotftCards=$kotftCards, kacCards=$kacCards, wwCards=$wwCards, bpCards=$bpCards, rrCards=$rrCards)"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -72,6 +74,7 @@ open class AllCards {
         if (kacCards != other.kacCards) return false
         if (wwCards != other.wwCards) return false
         if (bpCards != other.bpCards) return false
+        if (rrCards != other.rrCards) return false
 
         return true
     }
@@ -93,6 +96,7 @@ open class AllCards {
         result = 31 * result + (kacCards?.hashCode() ?: 0)
         result = 31 * result + (wwCards?.hashCode() ?: 0)
         result = 31 * result + (bpCards?.hashCode() ?: 0)
+        result = 31 * result + (rrCards?.hashCode() ?: 0)
         return result
     }
 }
