@@ -10,6 +10,8 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroActivity
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.ImageLoader
+import com.taylorcase.hearthstonescry.utils.makeGone
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.activity_splash.*
 import javax.inject.Inject
 
@@ -26,14 +28,14 @@ open class SplashActivity : AppCompatActivity(), SplashContract.View {
 
         presenter.attach(this)
 
-        cards_loader.visibility = VISIBLE
+        cards_loader.makeVisible()
         imageLoader.loadDrawableCenterCrop(R.drawable.wilfred_fizzlebang, findViewById(R.id.splash_screen_image_view))
 
         presenter.loadCards()
     }
 
     override fun cardsLoadedSuccessfully() {
-        cards_loader.visibility = GONE
+        cards_loader.makeGone()
         if (hasFavoriteHero()) {
             startActivity(Intent(this, CardsActivity::class.java))
         } else {

@@ -8,6 +8,8 @@ import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
+import com.taylorcase.hearthstonescry.utils.makeGone
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
@@ -32,8 +34,8 @@ open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
             presenter.loadSavedCards()
         } else {
             showCards(emptyList())
-            cards_no_saves.visibility = VISIBLE
-            cards_recycler_view.visibility = GONE
+            cards_no_saves.makeVisible()
+            cards_recycler_view.makeGone()
         }
     }
 

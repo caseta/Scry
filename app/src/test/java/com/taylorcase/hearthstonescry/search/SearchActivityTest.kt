@@ -27,7 +27,7 @@ open class SearchActivityTest : InjectingTest() {
     @Test fun testOnCreateCallsPresenterPopulateCardNames() {
         buildActivity(SearchActivity::class.java).create().get()
 
-        verify(mockSearchPresenter)?.populateCardNames()
+        verify(mockSearchPresenter).populateCardNames()
     }
 
     @Test fun testOnCreateSetsLoadingToTrue() {
@@ -39,7 +39,7 @@ open class SearchActivityTest : InjectingTest() {
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        verify(mockSearchPresenter)?.attach(activity!!)
+        verify(mockSearchPresenter).attach(activity!!)
     }
 
     @Test fun testOnCreateSearchInputHasFocus() {
@@ -81,7 +81,7 @@ open class SearchActivityTest : InjectingTest() {
 
         activity!!.onSuggestionClicked("Suggestion")
 
-        verify(mockSearchPresenter)?.performSearch("Suggestion")
+        verify(mockSearchPresenter).performSearch("Suggestion")
     }
 
     @Test fun testNavigateToDetailedActivity() {
@@ -100,7 +100,7 @@ open class SearchActivityTest : InjectingTest() {
 
         activity!!.onDestroy()
 
-        verify(mockSearchPresenter)?.detach()
+        verify(mockSearchPresenter).detach()
     }
 
     @After

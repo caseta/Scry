@@ -20,7 +20,7 @@ class BaseActivityTest : InjectingTest() {
     @Test fun testOnCreateGetsTheme() {
         buildActivity(CardsActivity::class.java).create().get()
 
-        verify(mockSharedPreferencesHelper)?.getTheme()
+        verify(mockSharedPreferencesHelper).getTheme()
     }
 
     @Test fun testOnCreateCreatesNavDrawerFragmentWhenNull() {

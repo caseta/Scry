@@ -15,18 +15,18 @@ import org.mockito.Mockito.validateMockitoUsage
 
 open class InjectingTest {
 
-    var mockSplashPresenter: SplashContract.Presenter? = null
-    var mockCardsPresenter: CardsContract.Presenter? = null
-    var mockSearchPresenter: SearchContract.Presenter? = null
-    var mockSavedCardsPresenter: SavedCardsContract.Presenter? = null
-    var mockDetailedCardPresenter: DetailedCardContract.Presenter? = null
-    var mockSelectHeroPresenter: SelectHeroContract.Presenter? = null
+    lateinit var mockSplashPresenter: SplashContract.Presenter
+    lateinit var mockCardsPresenter: CardsContract.Presenter
+    lateinit var mockSearchPresenter: SearchContract.Presenter
+    lateinit var mockSavedCardsPresenter: SavedCardsContract.Presenter
+    lateinit var mockDetailedCardPresenter: DetailedCardContract.Presenter
+    lateinit var mockSelectHeroPresenter: SelectHeroContract.Presenter
 
-    var mockSharedPreferencesHelper: SharedPreferencesHelper? = null
-    var mockSelectHeroAdapter: SelectHeroAdapter? = null
-    var mockCardsAdapter: CardsAdapter? = null
-    var mockHeroUtils: HeroUtils? = null
-    var mockImageLoader: ImageLoader? = null
+    lateinit var mockSharedPreferencesHelper: SharedPreferencesHelper
+    lateinit var mockSelectHeroAdapter: SelectHeroAdapter
+    lateinit var mockCardsAdapter: CardsAdapter
+    lateinit var mockHeroUtils: HeroUtils
+    lateinit var mockImageLoader: ImageLoader
 
     @Before
     open fun setup() {

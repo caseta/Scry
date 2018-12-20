@@ -27,7 +27,7 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     fun testOnCreateActivityPresenterCallsAttach() {
         demandActivity()
 
-        verify(mockSelectHeroPresenter)?.attach(activity!!)
+        verify(mockSelectHeroPresenter).attach(activity!!)
         verifyDemands()
     }
 
@@ -37,7 +37,7 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
 
         activity!!.onDestroy()
 
-        verify(mockSelectHeroPresenter)?.detach()
+        verify(mockSelectHeroPresenter).detach()
         verifyDemands()
     }
 
@@ -48,8 +48,8 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     }
 
     private fun verifyDemands() {
-        verify(mockHeroUtils)!!.getHeroForString(warlock)
-        verify(mockHeroUtils)!!.getCurrentAssetsColor()
+        verify(mockHeroUtils).getHeroForString(warlock)
+        verify(mockHeroUtils).getCurrentAssetsColor()
     }
 
     @After

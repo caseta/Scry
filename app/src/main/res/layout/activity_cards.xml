@@ -21,6 +21,39 @@
     android:text="@string/saved_cards_no_saved_cards"
     android:visibility="gone" />
 
+  <LinearLayout
+    android:id="@+id/card_sort_filter_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorAccentDark"
+    android:elevation="@dimen/toolbar_elevation"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:paddingTop="@dimen/spacing_medium">
+
+    <TextView
+      android:id="@+id/cards_sort_button"
+      style="@style/FilterSortTextView"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/sort" />
+
+    <View
+      android:layout_width="@dimen/vertical_divider_width"
+      android:layout_height="fill_parent"
+      android:background="@color/grey" />
+
+    <TextView
+      android:id="@+id/cards_filter_button"
+      style="@style/FilterSortTextView"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/filter" />
+
+  </LinearLayout>
+
   <android.support.v4.widget.SwipeRefreshLayout
     android:id="@+id/cards_swipe_refresh"
     android:layout_width="match_parent"

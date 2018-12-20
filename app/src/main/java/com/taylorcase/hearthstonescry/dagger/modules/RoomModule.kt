@@ -17,12 +17,8 @@ class RoomModule(application: Application) {
             .build()
 
     @Singleton @Provides
-    internal fun provideAppDatabase(): AppDatabase {
-        return database
-    }
+    internal fun provideAppDatabase(): AppDatabase = database
 
     @Singleton @Provides
-    internal fun provideCardDao(): CardDao {
-        return database.cardDao()
-    }
+    internal fun provideCardDao(): CardDao = database.cardDao()
 }

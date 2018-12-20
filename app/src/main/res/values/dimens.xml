@@ -8,6 +8,7 @@
   <dimen name="spacing_larger">32dp</dimen>
   <dimen name="spacing_almost_massive">48dp</dimen>
   <dimen name="spacing_massive">64dp</dimen>
+  <dimen name="spacing_ultra_massive">88dp</dimen>
 
   <dimen name="nav_menu_header_hero_height">200dp</dimen>
   <dimen name="nav_menu_item_height">50dp</dimen>
@@ -34,6 +35,7 @@
   <dimen name="hero_icon_width">150dp</dimen>
   <dimen name="hero_carousel_recycler_height">200dp</dimen>
 
+  <dimen name="vertical_divider_width">1dp</dimen>
   <dimen name="divider_height">1dp</dimen>
 
   <dimen name="text_size_medium">14sp</dimen>
@@ -51,6 +53,10 @@
 
   <dimen name="transparent_button_height">34dp</dimen>
   <dimen name="transparent_button_width">88dp</dimen>
+
+  <dimen name="bordered_button_line_width">2px</dimen>
+  <dimen name="bordered_button_height">36dp</dimen>
+  <dimen name="bordered_button_width">64dp</dimen>
 
   <dimen name="card_corner_radius">4dp</dimen>
 

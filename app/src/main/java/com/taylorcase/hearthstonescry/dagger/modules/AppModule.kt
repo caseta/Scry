@@ -23,72 +23,44 @@ import javax.inject.Singleton
 open class AppModule(private val application: Application) {
 
     @Provides @Singleton
-    open fun provideContext(): Application {
-        return application
-    }
+    open fun provideContext(): Application = application
 
     @Provides @Singleton
-    internal open fun providesHearthstoneApi(): HearthstoneApi {
-        return RetroClient.apiService
-    }
+    internal open fun providesHearthstoneApi(): HearthstoneApi = RetroClient.apiService
 
     @Provides @Singleton
-    internal open fun providesImageLoader(): ImageLoader {
-        return GlideImageLoader()
-    }
+    internal open fun providesImageLoader(): ImageLoader = GlideImageLoader()
 
     @Provides @Singleton
-    internal open fun providesConnectivityManager(application: Application) : ConnectivityManager {
-        return application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }
+    internal open fun providesConnectivityManager(application: Application) : ConnectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     @Provides @Singleton
-    internal open fun providesSplashPresenter(presenter: SplashPresenter) : SplashContract.Presenter {
-        return presenter
-    }
+    internal open fun providesSplashPresenter(presenter: SplashPresenter) : SplashContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesCardsPresenter(presenter: CardsPresenter) : CardsContract.Presenter {
-        return presenter
-    }
+    internal open fun providesCardsPresenter(presenter: CardsPresenter) : CardsContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesDetailedCardPresenter(presenter: DetailedCardPresenter) : DetailedCardContract.Presenter {
-        return presenter
-    }
+    internal open fun providesDetailedCardPresenter(presenter: DetailedCardPresenter) : DetailedCardContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesSavedCardsPresenter(presenter: SavedCardsPresenter) : SavedCardsContract.Presenter {
-        return presenter
-    }
+    internal open fun providesSavedCardsPresenter(presenter: SavedCardsPresenter) : SavedCardsContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesSearchPresenter(presenter: SearchPresenter) : SearchContract.Presenter {
-        return presenter
-    }
+    internal open fun providesSearchPresenter(presenter: SearchPresenter) : SearchContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesSelectHeroPresenter(presenter: SelectHeroPresenter) : SelectHeroContract.Presenter {
-        return presenter
-    }
+    internal open fun providesSelectHeroPresenter(presenter: SelectHeroPresenter) : SelectHeroContract.Presenter = presenter
 
     @Provides @Singleton
-    internal open fun providesSelectHeroAdapter(imageLoader: ImageLoader, context: Application, heroUtils: HeroUtils) : SelectHeroAdapter {
-        return SelectHeroAdapter(imageLoader, context, heroUtils)
-    }
+    internal open fun providesSelectHeroAdapter(imageLoader: ImageLoader, context: Application, heroUtils: HeroUtils) : SelectHeroAdapter = SelectHeroAdapter(imageLoader, context, heroUtils)
 
     @Provides @Singleton
-    internal open fun providesCardsAdapter(imageLoader: ImageLoader) : CardsAdapter {
-        return CardsAdapter(imageLoader)
-    }
+    internal open fun providesCardsAdapter(imageLoader: ImageLoader) : CardsAdapter = CardsAdapter(imageLoader)
 
     @Provides @Singleton
-    internal open fun providesSharedPreferencesHelper(application: Application) : SharedPreferencesHelper {
-        return SharedPreferencesHelper(application)
-    }
+    internal open fun providesSharedPreferencesHelper(application: Application) : SharedPreferencesHelper =  SharedPreferencesHelper(application)
 
     @Provides @Singleton
-    internal open fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils {
-        return HeroUtils(sharedPreferencesHelper, application)
-    }
+    internal open fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils = HeroUtils(sharedPreferencesHelper, application)
 }

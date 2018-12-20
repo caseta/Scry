@@ -49,7 +49,7 @@ class CardsGridActivityTest : InjectingTest() {
 
         activity!!.showCards(cards)
 
-        verify(mockCardsAdapter)?.swapData(cards)
+        verify(mockCardsAdapter).swapData(cards)
         assertThat(activity!!.progress_bar).isInvisible
     }
 

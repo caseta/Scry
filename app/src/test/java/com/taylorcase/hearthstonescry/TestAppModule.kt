@@ -40,21 +40,15 @@ class TestAppModule(application: Application) : AppModule(application) {
     @Provides
     @Singleton
     override
-    fun provideContext(): Application {
-        return RuntimeEnvironment.application as ScryApplication
-    }
+    fun provideContext(): Application = RuntimeEnvironment.application as ScryApplication
 
     @Provides
     @Singleton
-    override fun providesHearthstoneApi(): HearthstoneApi {
-        return mock(HearthstoneApi::class.java)
-    }
+    override fun providesHearthstoneApi(): HearthstoneApi = mock(HearthstoneApi::class.java)
 
     @Provides
     @Singleton
-    override fun providesSplashPresenter(presenter: SplashPresenter): SplashContract.Presenter {
-        return mockSplashPresenter!!
-    }
+    override fun providesSplashPresenter(presenter: SplashPresenter): SplashContract.Presenter = mockSplashPresenter!!
 
     fun getMockedSplashPresenter(): SplashContract.Presenter {
         mockSplashPresenter = mock(SplashContract.Presenter::class.java)
@@ -63,9 +57,7 @@ class TestAppModule(application: Application) : AppModule(application) {
 
     @Provides
     @Singleton
-    override fun providesCardsPresenter(presenter: CardsPresenter): CardsContract.Presenter {
-        return mockCardsPresenter!!
-    }
+    override fun providesCardsPresenter(presenter: CardsPresenter): CardsContract.Presenter = mockCardsPresenter!!
 
     fun getMockedCardsPresenter(): CardsContract.Presenter {
         mockCardsPresenter = mock(CardsContract.Presenter::class.java)
@@ -74,9 +66,7 @@ class TestAppModule(application: Application) : AppModule(application) {
 
     @Provides
     @Singleton
-    override fun providesDetailedCardPresenter(presenter: DetailedCardPresenter): DetailedCardContract.Presenter {
-        return mockDetailedCardPresenter!!
-    }
+    override fun providesDetailedCardPresenter(presenter: DetailedCardPresenter): DetailedCardContract.Presenter = mockDetailedCardPresenter!!
 
     fun getMockedDetailedCardPresenter(): DetailedCardContract.Presenter {
         mockDetailedCardPresenter = mock(DetailedCardContract.Presenter::class.java)
@@ -85,9 +75,7 @@ class TestAppModule(application: Application) : AppModule(application) {
 
     @Provides
     @Singleton
-    override fun providesSavedCardsPresenter(presenter: SavedCardsPresenter): SavedCardsContract.Presenter {
-        return mockSavedCardsPresenter!!
-    }
+    override fun providesSavedCardsPresenter(presenter: SavedCardsPresenter): SavedCardsContract.Presenter = mockSavedCardsPresenter!!
 
     fun getMockedSavedCardsPresenter(): SavedCardsContract.Presenter {
         mockSavedCardsPresenter = mock(SavedCardsContract.Presenter::class.java)
@@ -96,75 +84,61 @@ class TestAppModule(application: Application) : AppModule(application) {
 
     @Provides
     @Singleton
-    override fun providesSearchPresenter(presenter: SearchPresenter): SearchContract.Presenter {
-        return mockSearchPresenter!!
-    }
+    override fun providesSearchPresenter(presenter: SearchPresenter): SearchContract.Presenter = mockSearchPresenter!!
 
-    fun getMockedSearchPresenter(): SearchContract.Presenter? {
+    fun getMockedSearchPresenter(): SearchContract.Presenter {
         mockSearchPresenter = mock(SearchContract.Presenter::class.java)
         return mockSearchPresenter!!
     }
 
     @Provides
     @Singleton
-    override fun providesSelectHeroPresenter(presenter: SelectHeroPresenter): SelectHeroContract.Presenter {
-        return mockSelectHeroPresenter!!
-    }
+    override fun providesSelectHeroPresenter(presenter: SelectHeroPresenter): SelectHeroContract.Presenter = mockSelectHeroPresenter!!
 
-    fun getMockedSelectHeroPresenter(): SelectHeroContract.Presenter? {
+    fun getMockedSelectHeroPresenter(): SelectHeroContract.Presenter {
         mockSelectHeroPresenter = mock(SelectHeroContract.Presenter::class.java)
         return mockSelectHeroPresenter!!
     }
 
     @Provides
     @Singleton
-    override fun providesSharedPreferencesHelper(application: Application) : SharedPreferencesHelper {
-        return mockSharedPreferencesHelper!!
-    }
+    override fun providesSharedPreferencesHelper(application: Application) : SharedPreferencesHelper = mockSharedPreferencesHelper!!
 
-    fun getMockedSharedPreferencesHelper(): SharedPreferencesHelper? {
+    fun getMockedSharedPreferencesHelper(): SharedPreferencesHelper {
         mockSharedPreferencesHelper = mock(SharedPreferencesHelper::class.java)
         return mockSharedPreferencesHelper!!
     }
 
     @Provides
     @Singleton
-    override fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils {
-        return mockHeroUtils!!
-    }
+    override fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils = mockHeroUtils!!
 
-    fun getMockedHeroUtils(): HeroUtils? {
+    fun getMockedHeroUtils(): HeroUtils {
         mockHeroUtils = mock(HeroUtils::class.java)
         return mockHeroUtils!!
     }
 
     @Provides
     @Singleton
-    override fun providesImageLoader(): ImageLoader {
-        return mockImageLoader!!
-    }
+    override fun providesImageLoader(): ImageLoader = mockImageLoader!!
 
-    fun getMockedImageLoader(): ImageLoader? {
+    fun getMockedImageLoader(): ImageLoader {
         mockImageLoader = mock(ImageLoader::class.java)
         return mockImageLoader!!
     }
 
     @Provides @Singleton
-    override fun providesSelectHeroAdapter(imageLoader: ImageLoader, context: Application, heroUtils: HeroUtils): SelectHeroAdapter {
-        return mockSelectHeroAdapter!!
-    }
+    override fun providesSelectHeroAdapter(imageLoader: ImageLoader, context: Application, heroUtils: HeroUtils): SelectHeroAdapter = mockSelectHeroAdapter!!
 
-    fun getMockedSelectHeroAdapter(): SelectHeroAdapter? {
+    fun getMockedSelectHeroAdapter(): SelectHeroAdapter {
         mockSelectHeroAdapter = mock(SelectHeroAdapter::class.java)
         return mockSelectHeroAdapter!!
     }
 
     @Provides @Singleton
-    override fun providesCardsAdapter(imageLoader: ImageLoader) : CardsAdapter {
-        return mockCardsAdapter!!
-    }
+    override fun providesCardsAdapter(imageLoader: ImageLoader) : CardsAdapter = mockCardsAdapter!!
 
-    fun getMockedCardsAdapter(): CardsAdapter? {
+    fun getMockedCardsAdapter(): CardsAdapter {
         mockCardsAdapter = mock(CardsAdapter::class.java)
         return mockCardsAdapter!!
     }

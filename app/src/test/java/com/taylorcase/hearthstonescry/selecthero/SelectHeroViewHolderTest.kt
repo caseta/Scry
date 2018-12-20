@@ -12,6 +12,8 @@ import com.taylorcase.hearthstonescry.model.enums.Hero.*
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroViewHolder.Companion.EXTRA_HERO
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.ImageLoader
+import com.taylorcase.hearthstonescry.utils.makeGone
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.item_select_hero_card.view.*
 import org.assertj.android.api.Assertions
 import org.assertj.core.api.Assertions.*
@@ -95,7 +97,7 @@ class SelectHeroViewHolderTest {
     @Test fun testOnClickDescriptionToggleHidesDescription() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
-        itemView.select_hero_sub_header_text.visibility = View.VISIBLE
+        itemView.select_hero_sub_header_text.makeVisible()
 
         selectHeroViewHolder.onClick(itemView.select_hero_description_toggle)
 
@@ -105,7 +107,7 @@ class SelectHeroViewHolderTest {
     @Test fun testOnClickDescriptionToggleShowsDescription() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
-        itemView.select_hero_sub_header_text.visibility = View.GONE
+        itemView.select_hero_sub_header_text.makeGone()
 
         selectHeroViewHolder.onClick(itemView.select_hero_description_toggle)
 

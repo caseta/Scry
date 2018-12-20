@@ -23,7 +23,7 @@ class SavedCardsActivityTest : InjectingTest() {
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        verify(mockSavedCardsPresenter)?.attach(activity!!)
+        verify(mockSavedCardsPresenter).attach(activity!!)
     }
 
     @Test fun testOnCreateActivitySwipeRefreshIsDisabled() {
@@ -38,8 +38,8 @@ class SavedCardsActivityTest : InjectingTest() {
 
         activity!!.loadCards()
 
-        verify(mockSavedCardsPresenter)?.getSavedCardCount()
-        verify(mockSavedCardsPresenter)?.loadSavedCards()
+        verify(mockSavedCardsPresenter).getSavedCardCount()
+        verify(mockSavedCardsPresenter).loadSavedCards()
     }
 
     @Test fun testLoadCardsWithZeroSavedCardsShowsEmptyList() {
@@ -48,9 +48,9 @@ class SavedCardsActivityTest : InjectingTest() {
 
         activity!!.loadCards()
 
-        verify(mockSavedCardsPresenter)?.getSavedCardCount()
-        verify(mockSavedCardsPresenter, never())?.loadSavedCards()
-        verify(mockCardsAdapter)?.swapData(emptyList())
+        verify(mockSavedCardsPresenter).getSavedCardCount()
+        verify(mockSavedCardsPresenter, never()).loadSavedCards()
+        verify(mockCardsAdapter).swapData(emptyList())
         Assertions.assertThat(activity!!.progress_bar).isNotVisible
         Assertions.assertThat(activity!!.cards_no_saves).isVisible
         Assertions.assertThat(activity!!.cards_recycler_view).isGone
@@ -63,7 +63,7 @@ class SavedCardsActivityTest : InjectingTest() {
         activity!!.displayCards(cards)
 
         Assertions.assertThat(activity!!.progress_bar).isNotVisible
-        verify(mockCardsAdapter)?.swapData(cards)
+        verify(mockCardsAdapter).swapData(cards)
     }
 
     @Test fun testOnDestroyDetachesPresenter() {
@@ -71,7 +71,7 @@ class SavedCardsActivityTest : InjectingTest() {
 
         activity!!.onDestroy()
 
-        verify(mockSavedCardsPresenter)?.detach()
+        verify(mockSavedCardsPresenter).detach()
     }
 
     @After

@@ -7,6 +7,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.taylorcase.hearthstonescry.model.enums.Sets
 
 @Entity(tableName = "card")
 open class Card : Parcelable {
@@ -103,5 +104,19 @@ open class Card : Parcelable {
         override fun newArray(size: Int): Array<Card?> {
             return arrayOfNulls(size)
         }
+    }
+
+    // TODO: Make this config driven, so they can be updated without an app update
+    fun isInStandard(): Boolean {
+        if (cardSet == Sets.BASIC.toString() ||
+                cardSet == Sets.CLASSIC.toString() ||
+                cardSet == Sets.KOBOLDS_AND_CATACOMBS.toString() ||
+                cardSet == Sets.JOURNEY_TO_UNGORO.toString() ||
+                cardSet == Sets.THE_WITCHWOOD.toString() ||
+                cardSet == Sets.BOOMSDAY_PROJECT.toString() ||
+                cardSet == Sets.RASTAKHANS_RUMBLE.toString()) {
+            return true
+        }
+        return false
     }
 }

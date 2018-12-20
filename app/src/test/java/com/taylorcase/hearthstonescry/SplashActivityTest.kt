@@ -22,7 +22,7 @@ class SplashActivityTest : InjectingTest() {
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        verify(mockSplashPresenter)?.attach(activity!!)
+        verify(mockSplashPresenter).attach(activity!!)
     }
 
     @Test fun testOnCreateActivityLoaderIsVisible() {
@@ -47,7 +47,7 @@ class SplashActivityTest : InjectingTest() {
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         assertThat(intent).isNotNull.hasComponent(application, CardsActivity::class.java)
-        verify(mockHeroUtils)?.hasFavoriteHero()
+        verify(mockHeroUtils).hasFavoriteHero()
     }
 
     @Test fun testCardsLoadedSuccessfullyDoesNotHaveFavoriteHeroStartsSelectHeroActivity() {
@@ -57,13 +57,13 @@ class SplashActivityTest : InjectingTest() {
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         assertThat(intent).isNotNull.hasComponent(application, SelectHeroActivity::class.java)
-        verify(mockHeroUtils)?.hasFavoriteHero()
+        verify(mockHeroUtils).hasFavoriteHero()
     }
 
     @Test fun testOnCreateActivityCallsPresenterLoadCards() {
         buildActivity(SplashActivity::class.java).create().get()
 
-        verify(mockSplashPresenter)?.loadCards()
+        verify(mockSplashPresenter).loadCards()
     }
 
     @Test fun testOnDestroyDetachesPresenter() {
@@ -71,7 +71,7 @@ class SplashActivityTest : InjectingTest() {
 
         activity!!.onDestroy()
 
-        verify(mockSplashPresenter)?.detach()
+        verify(mockSplashPresenter).detach()
     }
     
     @After

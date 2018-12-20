@@ -6,14 +6,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.enums.Hero
-import com.taylorcase.hearthstonescry.utils.HeroUtils
-import com.taylorcase.hearthstonescry.utils.ImageLoader
+import com.taylorcase.hearthstonescry.utils.*
 import kotlinx.android.synthetic.main.item_select_hero_card.view.*
 
 open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: ImageLoader, var heroUtils: HeroUtils) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     private var context: Context = itemView.context
-    private var hero: Hero? = null
+    lateinit var hero: Hero
 
     open fun loadHero(hero: Hero) {
         this.hero = hero
@@ -32,11 +31,11 @@ open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: Ima
     override fun onClick(v: View?) {
         val id = v?.id
         if (id == itemView.select_hero_description_toggle.id) {
-            if (itemView.select_hero_sub_header_text.visibility == View.VISIBLE) {
-                itemView.select_hero_sub_header_text.visibility = View.GONE
+            if (itemView.select_hero_sub_header_text.isVisible()) {
+                itemView.select_hero_sub_header_text.makeGone()
                 itemView.select_hero_description_toggle.setImageDrawable(itemView.resources.getDrawable(R.drawable.ic_keyboard_arrow_up_black_24dp))
             } else {
-                itemView.select_hero_sub_header_text.visibility = View.VISIBLE
+                itemView.select_hero_sub_header_text.makeVisible()
                 itemView.select_hero_description_toggle.setImageDrawable(itemView.resources.getDrawable(R.drawable.ic_keyboard_arrow_down_black_24dp))
             }
         } else {

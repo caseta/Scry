@@ -20,7 +20,7 @@ open class CardsActivityTest : InjectingTest() {
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(CardsActivity::class.java).create().get()
 
-        verify(mockCardsPresenter)?.attach(activity!!)
+        verify(mockCardsPresenter).attach(activity!!)
     }
 
     @Test fun testOnDestroyDetachesPresenter() {
@@ -28,7 +28,7 @@ open class CardsActivityTest : InjectingTest() {
 
         activity!!.onDestroy()
 
-        verify(mockCardsPresenter)?.detach()
+        verify(mockCardsPresenter).detach()
     }
 
     @After
