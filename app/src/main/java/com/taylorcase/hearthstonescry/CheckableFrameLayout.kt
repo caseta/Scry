@@ -1,4 +1,4 @@
-package com.taylorcase.hearthstonescry.filter
+package com.taylorcase.hearthstonescry
 
 import android.content.Context
 import android.util.AttributeSet
@@ -30,12 +30,12 @@ class CheckableFrameLayout @JvmOverloads constructor(
         }
     }
 
-    private val CheckedStateSet = intArrayOf(android.R.attr.state_checked)
+    private val checkedStateSet = intArrayOf(android.R.attr.state_checked)
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
         val drawableState = super.onCreateDrawableState(extraSpace + 1)
         if (isChecked) {
-            View.mergeDrawableStates(drawableState, CheckedStateSet)
+            View.mergeDrawableStates(drawableState, checkedStateSet)
         }
         return drawableState
     }

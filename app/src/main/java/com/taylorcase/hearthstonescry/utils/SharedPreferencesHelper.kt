@@ -6,6 +6,7 @@ import android.content.Context.*
 import android.content.SharedPreferences
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.Card
+import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import java.util.HashSet
 import javax.inject.Inject

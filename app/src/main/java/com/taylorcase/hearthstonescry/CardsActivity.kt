@@ -9,6 +9,7 @@ import com.taylorcase.hearthstonescry.base.CardsGridActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.filter.FilterActivity
 import com.taylorcase.hearthstonescry.model.Card
+import com.taylorcase.hearthstonescry.model.FilterItem
 import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
@@ -17,6 +18,8 @@ import javax.inject.Inject
 open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClickListener  {
 
     @Inject lateinit var presenter: CardsContract.Presenter
+
+    private var filterItem: FilterItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,15 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         cards_filter_button.setOnClickListener(this)
 
         askToRateApp()
+
+        filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
+
+        if (filterItem == null) filterItem = FilterItem()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cards_filter_button.isEnabled = true
     }
 
     private fun askToRateApp() {
@@ -44,7 +56,16 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
     }
 
     public override fun loadCards() {
-        presenter.loadCards()
+        val filterItem = this.filterItem
+        if (filterItem == null) {
+            presenter.loadCards()
+        } else {
+            if (filterItem.isFilterEmpty()) {
+                presenter.loadCards()
+            } else {
+                presenter.loadCardsWithFilters(filterItem)
+            }
+        }
     }
 
     override fun displayCards(cards: List<Card>?) {
@@ -52,10 +73,20 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         cards?.let { showCards(it) }
     }
 
+    override fun onSaveInstanceState(bundle: Bundle?) {
+        super.onSaveInstanceState(bundle)
+
+        bundle?.putParcelable(FilterItem.FILTER_EXTRA, filterItem)
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.cards_filter_button -> {
+                cards_filter_button.isEnabled = false
                 val intent = Intent(this, FilterActivity::class.java)
+                if (filterItem != null) {
+                    intent.putExtra(FilterItem.FILTER_EXTRA, filterItem)
+                }
                 startActivityForResult(intent, FILTER_DATA_REQUEST)
             }
         }
@@ -69,9 +100,15 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         }
 
         if (resultCode == Activity.RESULT_OK && requestCode == FILTER_DATA_REQUEST) {
+            filterItem = data?.getParcelableExtra(FilterActivity.FILTER_DATA)!!
             adapter.swapData(emptyList())
             setLoading(true)
-            presenter.loadCardsWithFilters(data?.getParcelableExtra(FilterActivity.FILTER_DATA)!!)
+            if (filterItem!!.isFilterEmpty()) {
+                presenter.loadCards()
+            } else {
+                filterItem = data.getParcelableExtra(FilterActivity.FILTER_DATA)!!
+                presenter.loadCardsWithFilters(filterItem!!)
+            }
         } else {
             showError()
         }
@@ -85,6 +122,7 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
     public override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
+        filterItem = null
     }
 
     companion object {

@@ -2,26 +2,28 @@ package com.taylorcase.hearthstonescry.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.taylorcase.hearthstonescry.model.enums.League
 
 class FilterItem constructor(
-        val heroList: List<String>,
-        val costList: List<String>,
-        val setList: List<String>,
-        val isStandard: Boolean,
-        val rarityList: List<String>
+        val heroList: List<String> = emptyList(),
+        val costList: List<String> = emptyList(),
+        val setList: List<String> = emptyList(),
+        val league: String = "",
+        val rarityList: List<String> = emptyList()
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
             parcel.createStringArrayList(),
             parcel.createStringArrayList(),
             parcel.createStringArrayList(),
-            parcel.readByte() != 0.toByte(),
+            parcel.readString(),
             parcel.createStringArrayList())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeStringList(heroList)
         parcel.writeStringList(costList)
         parcel.writeStringList(setList)
-        parcel.writeByte(if (isStandard) 1 else 0)
+        parcel.writeString(league)
         parcel.writeStringList(rarityList)
     }
 
@@ -37,6 +39,87 @@ class FilterItem constructor(
         override fun newArray(size: Int): Array<FilterItem?> {
             return arrayOfNulls(size)
         }
+
+        const val FILTER_EXTRA = "filter extra"
     }
 
+    fun isFilterEmpty(): Boolean {
+        return heroList.isEmpty() && costList.isEmpty() &&
+                setList.isEmpty() && league.isEmpty() &&
+                rarityList.isEmpty()
+    }
+
+    fun isCardValid(card: Card): Boolean {
+        var setValid = false
+        var heroValid = false
+        var rarityValid = false
+        var costValid = false
+
+        if (setList.isNotEmpty()) {
+            loop@ for (set in setList) {
+                if (card.cardSet == set) {
+                    setValid = true
+                    break@loop
+                }
+            }
+
+            if (!setValid) {
+                return false
+            }
+        }
+
+        if (heroList.isNotEmpty()) {
+            loop@ for (hero in heroList) {
+                if (card.playerClass == hero) {
+                    heroValid = true
+                    break@loop
+                }
+            }
+
+            if (!heroValid) {
+                return false
+            }
+        }
+
+        if (rarityList.isNotEmpty()) {
+            loop@ for (rarity in rarityList) {
+                if (card.rarity == rarity) {
+                    rarityValid = true
+                    break@loop
+                }
+            }
+
+            if (!rarityValid) {
+                return false
+            }
+        }
+
+        if (costList.isNotEmpty()) {
+            loop@ for (mCost in costList) {
+                if (card.cost.toString() == mCost) {
+                    costValid = true
+                    break@loop
+                }
+                if (mCost.toInt() >= 7 && card.cost >= 7) {
+                    costValid = true
+                    break@loop
+                }
+            }
+
+            if (!costValid) {
+                return false
+            }
+        }
+
+        val league = league
+        if (league.isNotBlank()) {
+            if (league == League.STANDARD.toString()) {
+                if (!card.isInStandard()) {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
 }

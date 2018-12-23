@@ -6,8 +6,6 @@ import com.taylorcase.hearthstonescry.api.HearthstoneApi
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Hero
-import com.taylorcase.hearthstonescry.model.enums.Rarity
-import com.taylorcase.hearthstonescry.model.enums.Sets
 import com.taylorcase.hearthstonescry.room.CardDao
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -28,77 +26,8 @@ open class CardRepository @Inject constructor() {
 
     open fun observeCardsWithFilters(filterItem: FilterItem): Single<List<Card>> {
         return observeAllCards().toObservable().flatMapIterable {
-            it.filter { card -> isFilterValid(card, filterItem) }
+            it.filter { card -> filterItem.isCardValid(card) }
         }.toList()
-    }
-
-    private fun isFilterValid(card: Card, filterItem: FilterItem): Boolean {
-        var setValid = false
-        var heroValid = false
-        var rarityValid = false
-        var costValid = false
-
-        if (filterItem.setList.isNotEmpty()) {
-            loop@ for (set in filterItem.setList) {
-                if (card.cardSet == set) {
-                    setValid = true
-                    break@loop
-                }
-            }
-
-            if (!setValid) {
-                return false
-            }
-        }
-
-        if (filterItem.heroList.isNotEmpty()) {
-            loop@ for (hero in filterItem.heroList) {
-                if (card.playerClass == hero) {
-                    heroValid = true
-                    break@loop
-                }
-            }
-
-            if (!heroValid) {
-                return false
-            }
-        }
-
-        if (filterItem.rarityList.isNotEmpty()) {
-            loop@ for (rarity in filterItem.rarityList) {
-                if (card.rarity == rarity) {
-                    rarityValid = true
-                    break@loop
-                }
-            }
-
-            if (!rarityValid) {
-                return false
-            }
-        }
-
-        if (filterItem.costList.isNotEmpty()) {
-            loop@ for (mCost in filterItem.costList) {
-                if (card.cost.toString() == mCost) {
-                    costValid = true
-                    break@loop
-                }
-                if (mCost.toInt() >= 7 && card.cost >= 7) {
-                    costValid = true
-                    break@loop
-                }
-            }
-
-            if (!costValid) {
-                return false
-            }
-        }
-
-        if (filterItem.isStandard) {
-            return card.isInStandard()
-        }
-
-        return true
     }
 
     open fun observeCardsWithHero(hero: Hero): Single<List<Card>> {

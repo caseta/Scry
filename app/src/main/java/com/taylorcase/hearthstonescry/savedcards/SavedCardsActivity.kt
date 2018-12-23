@@ -27,6 +27,8 @@ open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
         presenter.attach(this)
 
         cards_swipe_refresh.isEnabled = false
+
+        card_sort_filter_container.makeGone()
     }
 
     public override fun loadCards() {
@@ -39,9 +41,7 @@ open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
         }
     }
 
-    override fun displayCards(cards: List<Card>) {
-        showCards(cards)
-    }
+    override fun displayCards(cards: List<Card>) = showCards(cards)
 
     public override fun onDestroy() {
         super.onDestroy()

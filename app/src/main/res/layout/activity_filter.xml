@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/spacing_large"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_druid"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -49,9 +49,9 @@
             android:text="@string/druid"
             android:textColor="@color/druid_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_hunter"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -68,9 +68,9 @@
             android:text="@string/hunter"
             android:textColor="@color/hunter_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_mage"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -85,7 +85,7 @@
             android:text="@string/mage"
             android:textColor="@color/mage_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       </LinearLayout>
 
@@ -95,7 +95,7 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_paladin"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -110,9 +110,9 @@
             android:text="@string/paladin"
             android:textColor="@color/paladin_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_priest"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -129,9 +129,9 @@
             android:text="@string/priest"
             android:textColor="@color/priest_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_rogue"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -146,7 +146,7 @@
             android:text="@string/rogue"
             android:textColor="@color/rogue_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       </LinearLayout>
 
@@ -156,7 +156,7 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_shaman"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -171,9 +171,9 @@
             android:text="@string/shaman"
             android:textColor="@color/shaman_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_warlock"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -190,9 +190,9 @@
             android:text="@string/warlock"
             android:textColor="@color/warlock_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_warrior"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -207,7 +207,7 @@
             android:text="@string/warrior"
             android:textColor="@color/warrior_text_on_primary" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       </LinearLayout>
 
@@ -217,7 +217,7 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_neutral"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -233,7 +233,7 @@
             android:text="@string/neutral"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
         <TextView
           style="@style/ScryButton.Bordered"
@@ -275,7 +275,7 @@
         android:layout_marginTop="@dimen/spacing_large"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_free"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -291,9 +291,9 @@
             android:text="@string/free"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_common"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -311,9 +311,9 @@
             android:text="@string/common"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_rare"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -329,7 +329,7 @@
             android:text="@string/rare"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       </LinearLayout>
 
@@ -339,7 +339,7 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_epic"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -355,9 +355,9 @@
             android:text="@string/epic"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_legendary"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -375,7 +375,7 @@
             android:text="@string/legendary"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
         <TextView
           style="@style/ScryButton.Bordered"
@@ -702,7 +702,7 @@
         android:layout_marginTop="@dimen/spacing_large"
         android:orientation="horizontal">
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_standard"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -720,9 +720,9 @@
             android:text="@string/standard"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        <com.taylorcase.hearthstonescry.filter.CheckableFrameLayout
+        <com.taylorcase.hearthstonescry.CheckableFrameLayout
           android:id="@+id/filter_wild"
           style="@style/ScryButton.Bordered"
           android:layout_width="0dp"
@@ -740,7 +740,7 @@
             android:text="@string/wild"
             android:textColor="@color/black" />
 
-        </com.taylorcase.hearthstonescry.filter.CheckableFrameLayout>
+        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       </LinearLayout>
 
