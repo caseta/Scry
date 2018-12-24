@@ -11,7 +11,7 @@ abstract class FragmentTest : InjectingTest() {
         private const val TAG = "tag"
     }
 
-    private var activity: AppCompatActivity? = null
+    var activity: AppCompatActivity? = null
     private var fragment: Fragment? = null
 
     open fun startFragment(fragment: Fragment): Fragment {

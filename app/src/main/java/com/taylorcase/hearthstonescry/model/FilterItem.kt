@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.taylorcase.hearthstonescry.model.enums.League
 
-class FilterItem constructor(
+open class FilterItem constructor(
         val heroList: List<String> = emptyList(),
         val costList: List<String> = emptyList(),
         val setList: List<String> = emptyList(),
@@ -54,6 +54,7 @@ class FilterItem constructor(
         var heroValid = false
         var rarityValid = false
         var costValid = false
+        val league = league
 
         if (setList.isNotEmpty()) {
             loop@ for (set in setList) {
@@ -95,12 +96,12 @@ class FilterItem constructor(
         }
 
         if (costList.isNotEmpty()) {
-            loop@ for (mCost in costList) {
-                if (card.cost.toString() == mCost) {
+            loop@ for (cost in costList) {
+                if (card.cost.toString() == cost) {
                     costValid = true
                     break@loop
                 }
-                if (mCost.toInt() >= 7 && card.cost >= 7) {
+                if (cost.toInt() >= 7 && card.cost >= 7) {
                     costValid = true
                     break@loop
                 }
@@ -111,7 +112,6 @@ class FilterItem constructor(
             }
         }
 
-        val league = league
         if (league.isNotBlank()) {
             if (league == League.STANDARD.toString()) {
                 if (!card.isInStandard()) {

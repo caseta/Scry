@@ -21,13 +21,13 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
         private const val hero = "hero"
     }
 
-    private var activity: DetailedSelectHeroActivity? = null
+    private lateinit var activity: DetailedSelectHeroActivity
 
     @Test
     fun testOnCreateActivityPresenterCallsAttach() {
         demandActivity()
 
-        verify(mockSelectHeroPresenter).attach(activity!!)
+        verify(mockSelectHeroPresenter).attach(activity)
         verifyDemands()
     }
 
@@ -35,7 +35,7 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     fun testOnDestroyDetachesPresenter() {
         demandActivity()
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
         verify(mockSelectHeroPresenter).detach()
         verifyDemands()
@@ -54,8 +54,6 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
-
 }

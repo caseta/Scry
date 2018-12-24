@@ -3,6 +3,7 @@ package com.taylorcase.hearthstonescry.filter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.VisibleForTesting
 import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
@@ -27,9 +28,9 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 @InjectLayout(R.layout.activity_filter)
 open class FilterActivity : BaseActivity(), View.OnClickListener {
 
-    private lateinit var allFilters: Array<Checkable>
+    @VisibleForTesting lateinit var allFilters: Array<Checkable>
 
-    private var filterItem: FilterItem? = null
+    @VisibleForTesting private var filterItem: FilterItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,14 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
         setupToolbar(toolbar, getString(R.string.filter), BACK_ARROW)
 
         populateAllFilters()
+        setAllFilterClickListeners()
 
+        filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
+        if (filterItem == null) filterItem = intent?.extras?.getParcelable(FilterItem.FILTER_EXTRA)
+        if (filterItem == null) filterItem = FilterItem()
+    }
+
+    private fun setAllFilterClickListeners() {
         filter_apply_button.setOnClickListener(this)
         for (filter in allFilters) {
             if (filter is CheckBox) {
@@ -46,13 +54,9 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
                 (filter as CheckableFrameLayout).setOnClickListener(this)
             }
         }
-
-        filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
-        if (filterItem == null) filterItem = intent?.extras?.getParcelable(FilterItem.FILTER_EXTRA)
-        if (filterItem == null) filterItem = FilterItem()
     }
 
-    override fun onResume() {
+    public override fun onResume() {
         super.onResume()
 
         filterItem?.let {

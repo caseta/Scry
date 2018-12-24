@@ -15,7 +15,7 @@ open class Card : Parcelable {
     @PrimaryKey @SerializedName("cardId") @Expose var cardId: String = ""
     @ColumnInfo(name = "dbfId") @SerializedName("dbfId") @Expose var dbfId: String = ""
     @ColumnInfo(name = "name") @SerializedName("name") @Expose open var name: String = ""
-    @ColumnInfo(name = "cardSet") @SerializedName("cardSet") @Expose var cardSet: String = ""
+    @ColumnInfo(name = "cardSet") @SerializedName("cardSet") @Expose open var cardSet: String = ""
     @ColumnInfo(name = "type") @SerializedName("type") @Expose var type: String = ""
     @ColumnInfo(name = "faction") @SerializedName("faction") @Expose var faction: String = ""
     @ColumnInfo(name = "rarity") @SerializedName("rarity") @Expose open var rarity: String = ""

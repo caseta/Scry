@@ -3,6 +3,7 @@ package com.taylorcase.hearthstonescry
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.VisibleForTesting
 import android.view.View
 import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.base.CardsGridActivity
@@ -19,7 +20,7 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
 
     @Inject lateinit var presenter: CardsContract.Presenter
 
-    private var filterItem: FilterItem? = null
+    @VisibleForTesting var filterItem: FilterItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
