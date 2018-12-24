@@ -16,7 +16,8 @@ Features
 ------
 - [x] Add favorite hero
 - [x] Add saved cards
-- [ ] Add card filter view
+- [x] Add card filter view
+- [ ] Add sort cards feature 
 - [ ] Add create deck feature
 
 Maintenance
