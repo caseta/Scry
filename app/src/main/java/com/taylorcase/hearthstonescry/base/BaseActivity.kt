@@ -32,8 +32,6 @@ import javax.inject.Inject
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableString
 
-
-
 abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView, View.OnClickListener {
 
     @VisibleForTesting var navDrawerFragment: NavDrawerFragment? = null
@@ -104,9 +102,11 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
         setSupportActionBar(toolbar)
 
         val actionBar = supportActionBar
-        actionBar?.title = title
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.let {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeButtonEnabled(true)
+        }
 
         if (navigationMethod == HOME) {
             toolbar.setNavigationOnClickListener(this)
@@ -146,9 +146,11 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     fun closeDrawer(): Boolean {
-        if (drawerLayout != null && drawerLayout!!.isDrawerOpen(START)) {
-            drawerLayout!!.closeDrawer(START)
-            return true
+        drawerLayout?.let {
+            if (it.isDrawerOpen(START)) {
+                it.closeDrawer(START)
+                return true
+            }
         }
         return false
     }

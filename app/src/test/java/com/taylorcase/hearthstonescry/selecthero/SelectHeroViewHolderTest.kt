@@ -26,10 +26,6 @@ import org.robolectric.shadows.ShadowApplication
 @RunWith(RobolectricTestRunner::class)
 class SelectHeroViewHolderTest {
 
-    companion object {
-        private const val WARLOCK_DESCRIPTION = "Wow, I love warlocks!"
-    }
-
     private val mockImageLoader = mock<ImageLoader>()
     private val mockHeroUtils = mock<HeroUtils>()
 
@@ -123,5 +119,9 @@ class SelectHeroViewHolderTest {
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         Assertions.assertThat(intent).isNotNull.hasComponent(application, DetailedSelectHeroActivity::class.java).hasExtra(EXTRA_HERO, WARLOCK.toString())
+    }
+
+    companion object {
+        private const val WARLOCK_DESCRIPTION = "Wow, I love warlocks!"
     }
 }

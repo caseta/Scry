@@ -11,11 +11,11 @@ import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.base.BaseActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
 import kotlinx.android.synthetic.main.activity_detailed_card.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 import android.view.animation.AnimationUtils
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.*
 
 @InjectLayout(R.layout.activity_detailed_card)

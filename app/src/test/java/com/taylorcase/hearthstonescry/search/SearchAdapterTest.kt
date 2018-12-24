@@ -13,10 +13,6 @@ import java.util.Collections.*
 @RunWith(RobolectricTestRunner::class)
 class SearchAdapterTest {
     
-    companion object {
-        private const val CARD_NAME = "Ysera"
-    }
-
     private val mockViewHolder = mock<SearchViewHolder>()
     private val mockListener = mock<SearchViewHolder.OnSuggestionClickListener>()
 
@@ -55,5 +51,8 @@ class SearchAdapterTest {
 
         assertThat(adapter.itemCount).isEqualTo(1)
     }
-    
+
+    companion object {
+        private const val CARD_NAME = "Ysera"
+    }
 }

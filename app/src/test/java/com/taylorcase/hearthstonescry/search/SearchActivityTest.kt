@@ -4,7 +4,7 @@ import com.nhaarman.mockito_kotlin.verify
 import com.taylorcase.hearthstonescry.DetailedCardActivity
 import com.taylorcase.hearthstonescry.InjectingTest
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
 import kotlinx.android.synthetic.main.include_toolbar_search.*

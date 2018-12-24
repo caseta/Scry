@@ -69,15 +69,7 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_standard.hasOnClickListeners())
     }
 
-//    @Test fun testOnCreateSavedInstanceFilterSetsProperly() {
-////        activity = buildActivity(FilterActivity::class.java).create().get()
-//
-//    }
-//
-//    @Test fun testOnCreateIntentExtraFilterItemSetsProperly() {
-//
-//    }
-//
+
     @Test fun testOnResumeSetsWarlockCheckedProperly() {
         val filterItem = FilterItem(heroList = arrayListOf(Hero.WARLOCK.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)

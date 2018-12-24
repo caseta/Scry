@@ -19,16 +19,9 @@ import kotlin.collections.HashSet
 
 class SharedPreferencesHelperTest {
 
-    companion object {
-        private const val CARD_NAME = "Ysera"
-        private const val SECOND_CARD_NAME = "Lich King"
-    }
-
     private val mockContext = mock<Application>()
     private val mockSharedPreferences = mock<SharedPreferences>()
     private val mockEditor = mock<SharedPreferences.Editor>()
-    private val mockCard = mock<Card>()
-    private val secondMockCard = mock<Card>()
 
     @Test fun testGetSavedCardNamesReturnsSavedSet() {
         val expectedSet = HashSet<String>()
@@ -53,29 +46,27 @@ class SharedPreferencesHelperTest {
     }
 
     @Test fun testGetSavedCardsWithOneCard() {
-        doReturn(CARD_NAME).whenever(mockCard).name
-        doReturn(SECOND_CARD_NAME).whenever(secondMockCard).name
+        val card = Card(name = CARD_NAME)
+        val secondCard = Card(name = SECOND_CARD_NAME)
         val expectedSavedCardsList = ArrayList<Card>()
-        expectedSavedCardsList.add(mockCard)
+        expectedSavedCardsList.add(card)
         val helper = demandHelperWithSavedCardName()
 
-        val savedCards = helper.getSavedCards(listOf(mockCard, secondMockCard))
+        val savedCards = helper.getSavedCards(listOf(card, secondCard))
 
         verifySavedCardName()
-        verify(mockCard).name
         assertThat(savedCards).isEqualTo(expectedSavedCardsList)
         assertThat(savedCards).hasSize(1)
     }
 
     @Test fun testGetSavedCardsReturnsNoCardsWithZeroMatches() {
-        doReturn(SECOND_CARD_NAME).whenever(secondMockCard).name
+        val secondCard = Card(name = SECOND_CARD_NAME)
         val expectedSavedCardsList = ArrayList<Card>()
         val helper = demandHelperWithSavedCardName()
 
-        val savedCards = helper.getSavedCards(listOf(secondMockCard))
+        val savedCards = helper.getSavedCards(listOf(secondCard))
 
         verifySavedCardName()
-        verify(secondMockCard).name
         assertThat(savedCards).isEqualTo(expectedSavedCardsList)
         assertThat(savedCards).hasSize(0)
     }
@@ -96,63 +87,57 @@ class SharedPreferencesHelperTest {
     }
 
     @Test fun testIsCardSavedTrue() {
-        doReturn(CARD_NAME).whenever(mockCard).name
+        val card = Card(name = CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
-        assertThat(helper.isCardSaved(mockCard)).isTrue()
+        assertThat(helper.isCardSaved(card)).isTrue()
         verifySavedCardName()
-        verify(mockCard).name
     }
 
     @Test fun testIsCardSavedFalse() {
-        doReturn(SECOND_CARD_NAME).whenever(mockCard).name
+        val card = Card(name = SECOND_CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
-        assertThat(helper.isCardSaved(mockCard)).isFalse()
+        assertThat(helper.isCardSaved(card)).isFalse()
         verifySavedCardName()
-        verify(mockCard).name
     }
 
     @Test fun testSaveCardWritesToSharedPreferencesWithNoPreviousCards() {
-        doReturn(CARD_NAME).whenever(mockCard).name
+        val card = Card(name = CARD_NAME)
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val expectedSet = HashSet<String>()
         expectedSet.add(CARD_NAME)
         val helper = SharedPreferencesHelper(mockContext)
 
-        helper.saveCard(mockCard)
+        helper.saveCard(card)
 
         verifySavedCardName()
         verifyEditorStringSetAddition(expectedSet)
-        verify(mockCard).name
     }
 
     @Test fun testSaveCardWritesToSharedPreferencesWithPreviousCards() {
-        doReturn(CARD_NAME).whenever(mockCard).name
-        doReturn(SECOND_CARD_NAME).whenever(secondMockCard).name
+        val secondCard = Card(name = SECOND_CARD_NAME)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val expectedSet = HashSet<String>()
         expectedSet.add(CARD_NAME)
         expectedSet.add(SECOND_CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
-        helper.saveCard(secondMockCard)
+        helper.saveCard(secondCard)
 
         verifySavedCardName()
         verifyEditorStringSetAddition(expectedSet)
-        verify(secondMockCard).name
     }
 
     @Test fun testRemoveCard() {
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
-        doReturn(CARD_NAME).whenever(mockCard).name
+        val card = Card(name = CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
-        helper.removeCard(mockCard)
+        helper.removeCard(card)
 
         verifySavedCardName()
-        verify(mockCard).name
         verifyEditorStringSetAddition(HashSet())
     }
 
@@ -231,4 +216,8 @@ class SharedPreferencesHelperTest {
         verify(mockSharedPreferences).getStringSet(SAVED_CARDS_SET, HashSet<String>())
     }
 
+    companion object {
+        private const val CARD_NAME = "Ysera"
+        private const val SECOND_CARD_NAME = "Lich King"
+    }
 }

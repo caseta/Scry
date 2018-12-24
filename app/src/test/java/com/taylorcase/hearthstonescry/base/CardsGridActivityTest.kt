@@ -23,7 +23,6 @@ import java.util.Collections.*
 @RunWith(RobolectricTestRunner::class)
 class CardsGridActivityTest : InjectingTest() {
 
-    private val mockCard = mock<Card>()
     private val mockRecycler = mock<RecyclerView>()
 
     private lateinit var activity: CardsActivity
@@ -44,7 +43,8 @@ class CardsGridActivityTest : InjectingTest() {
     }
 
     @Test fun testShowCardsCallsAdapterSwapData() {
-        val cards = singletonList(mockCard)
+        val card = Card()
+        val cards = singletonList(card)
         activity = buildActivity(CardsActivity::class.java).create().get()
 
         activity.showCards(cards)

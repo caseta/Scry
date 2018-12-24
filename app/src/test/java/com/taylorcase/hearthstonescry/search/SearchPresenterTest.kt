@@ -14,12 +14,7 @@ import java.util.Collections.*
 
 class SearchPresenterTest {
 
-    companion object {
-        private const val CARD_NAME = "Ysera"
-    }
-
     private val mockView = mock<SearchContract.View>()
-    private val mockCard = mock<Card>()
     private val mockCardRepo = mock<CardRepository>()
 
     @Before
@@ -55,14 +50,15 @@ class SearchPresenterTest {
     }
 
     @Test fun performSearchCallsViewToNavigateSuccessfully() {
-        val cards = singletonList(mockCard)
+        val card = Card()
+        val cards = singletonList(card)
         doReturn(Observable.just(cards)).whenever(mockCardRepo).observeCard(CARD_NAME)
         val presenter = demandSearchPresenter()
 
         presenter.performSearch(CARD_NAME)
 
         verify(mockCardRepo).observeCard(CARD_NAME)
-        verify(mockView).navigateToProperDetailedCard(mockCard)
+        verify(mockView).navigateToProperDetailedCard(card)
     }
 
     private fun demandSearchPresenter() : SearchPresenter {
@@ -71,4 +67,7 @@ class SearchPresenterTest {
         return presenter
     }
 
+    companion object {
+        private const val CARD_NAME = "Ysera"
+    }
 }

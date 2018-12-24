@@ -16,14 +16,12 @@ import java.util.Collections.*
 @RunWith(RobolectricTestRunner::class)
 class SavedCardsActivityTest : InjectingTest() {
 
-    private val mockCard = mock<Card>()
-
     private lateinit var activity: SavedCardsActivity
 
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        verify(mockSavedCardsPresenter).attach(activity!!)
+        verify(mockSavedCardsPresenter).attach(activity)
     }
 
     @Test fun testOnCreateActivitySwipeRefreshIsDisabled() {
@@ -57,7 +55,7 @@ class SavedCardsActivityTest : InjectingTest() {
     }
 
     @Test fun testDisplayCardsCallsAdapterSwapData() {
-        val cards = singletonList(mockCard)
+        val cards = singletonList(Card())
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
         activity.displayCards(cards)

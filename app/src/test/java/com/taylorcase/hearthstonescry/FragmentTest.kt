@@ -7,17 +7,13 @@ import org.robolectric.Robolectric.*
 
 abstract class FragmentTest : InjectingTest() {
 
-    companion object {
-        private const val TAG = "tag"
-    }
-
-    var activity: AppCompatActivity? = null
-    private var fragment: Fragment? = null
+    lateinit var activity: AppCompatActivity
+    private lateinit var fragment: Fragment
 
     open fun startFragment(fragment: Fragment): Fragment {
         this.fragment = fragment
         activity = buildActivity(AppCompatActivity::class.java).create().start().visible().get()
-        val manager = activity?.supportFragmentManager
+        val manager = activity.supportFragmentManager
         manager?.beginTransaction()?.add(fragment, TAG)?.commit()
         manager?.executePendingTransactions()
         return fragment
@@ -25,10 +21,12 @@ abstract class FragmentTest : InjectingTest() {
 
     @After
     fun destroyFragment() {
-        val manager = activity?.supportFragmentManager
-        manager?.beginTransaction()?.remove(fragment!!)?.commit()
-        activity?.finish()
-        fragment = null
-        activity = null
+        val manager = activity.supportFragmentManager
+        manager?.beginTransaction()?.remove(fragment)?.commit()
+        activity.finish()
+    }
+
+    companion object {
+        private const val TAG = "tag"
     }
 }

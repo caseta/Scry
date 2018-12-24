@@ -1,11 +1,9 @@
 package com.taylorcase.hearthstonescry
 
 import android.content.Intent
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import com.nhaarman.mockito_kotlin.*
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.makeGone
 import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.activity_detailed_card.*

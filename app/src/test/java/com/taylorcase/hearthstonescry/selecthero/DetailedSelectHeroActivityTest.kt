@@ -16,11 +16,6 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 open class DetailedSelectHeroActivityTest : InjectingTest() {
 
-    companion object {
-        private const val warlock = "Warlock"
-        private const val hero = "hero"
-    }
-
     private lateinit var activity: DetailedSelectHeroActivity
 
     @Test
@@ -55,5 +50,10 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     @After
     fun destroyActivity() {
         activity.finish()
+    }
+
+    companion object {
+        private const val warlock = "Warlock"
+        private const val hero = "hero"
     }
 }
