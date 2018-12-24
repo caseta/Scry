@@ -20,8 +20,6 @@ class SavedCardsPresenterTest {
     private val mockView = mock<SavedCardsContract.View>()
     private val mockSharedPref = mock<SharedPreferencesHelper>()
     private val mockCardsRepo = mock<CardRepository>()
-    private val mockCard = mock<Card>()
-    private val mockCard2 = mock<Card>()
 
     @Before fun setup() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
@@ -39,8 +37,10 @@ class SavedCardsPresenterTest {
     }
 
     @Test fun testLoadSavedCardsDisplaysCardsSuccessfully() {
-        val list = singletonList(mockCard)
-        val secondList = singletonList(mockCard2)
+        val card = Card()
+        val secondCard = Card()
+        val list = singletonList(card)
+        val secondList = singletonList(secondCard)
         doReturn(Single.just(list)).whenever(mockCardsRepo).observeAllCards()
         doReturn(secondList).whenever(mockSharedPref).getSavedCards(list)
         val presenter = demandPresenter()

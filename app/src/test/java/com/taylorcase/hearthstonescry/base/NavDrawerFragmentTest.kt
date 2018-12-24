@@ -23,16 +23,16 @@ class NavDrawerFragmentTest : FragmentTest() {
         doReturn(R.drawable.ic_warlock).whenever(mockHeroUtils)?.getFavoriteHeroIcon()
         val fragment = startFragment(NavDrawerFragment())
 
-        verify(mockHeroUtils)?.getFavoriteHeroIcon()
-        verify(mockImageLoader)?.loadDrawableCenterCrop(R.drawable.ic_warlock, fragment.nav_drawer_hero_icon)
+        verify(mockHeroUtils).getFavoriteHeroIcon()
+        verify(mockImageLoader).loadDrawableCenterCrop(R.drawable.ic_warlock, fragment.nav_drawer_hero_icon)
     }
 
     @Test fun testOnStartLoadsHeroImage() {
         doReturn(R.drawable.hero_warlock).whenever(mockHeroUtils)?.getFavoriteHeroImage()
         val fragment = startFragment(NavDrawerFragment())
 
-        verify(mockHeroUtils)?.getFavoriteHeroIcon()
-        verify(mockImageLoader)?.loadDrawableCenterInside(R.drawable.hero_warlock, fragment.nav_drawer_hero_image)
+        verify(mockHeroUtils).getFavoriteHeroIcon()
+        verify(mockImageLoader).loadDrawableCenterInside(R.drawable.hero_warlock, fragment.nav_drawer_hero_image)
     }
 
     @Test fun testOnHomeClickStartsCardsActivity() {

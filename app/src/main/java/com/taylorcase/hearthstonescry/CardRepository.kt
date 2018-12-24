@@ -4,6 +4,7 @@ import android.app.Application
 import android.support.annotation.VisibleForTesting
 import com.taylorcase.hearthstonescry.api.HearthstoneApi
 import com.taylorcase.hearthstonescry.model.Card
+import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.room.CardDao
 import io.reactivex.Observable
@@ -23,16 +24,16 @@ open class CardRepository @Inject constructor() {
 
     open fun refreshCards() = cachedCards.isEmpty() && !useDatabase()
 
+    open fun observeCardsWithFilters(filterItem: FilterItem): Single<List<Card>> {
+        return observeAllCards().toObservable().flatMapIterable {
+            it.filter { card -> filterItem.isCardValid(card) }
+        }.toList()
+    }
+
     open fun observeCardsWithHero(hero: Hero): Single<List<Card>> {
         return when {
             cachedCards.isNotEmpty() -> {
-                val list = ArrayList<Card>()
-                for (card in cachedCards) {
-                    if (isValidCard(card, hero)) {
-                        list.add(card)
-                    }
-                }
-                Single.just(list)
+                Single.just(cachedCards.filter { card -> isValidCard(card, hero) })
             }
             useDatabase() -> cardDao.observeAllCardsWithHero(hero.toString())
             else -> observeCardsWithHeroWithApi(hero)
@@ -50,14 +51,7 @@ open class CardRepository @Inject constructor() {
     open fun observeCard(cardName: String): Observable<List<Card>> {
         return when {
             cachedCards.isNotEmpty() -> {
-                val list = ArrayList<Card>()
-                for (card in cachedCards) {
-                    if (card.name == cardName) {
-                        list.add(card)
-                        break
-                    }
-                }
-                Observable.just(list)
+                Observable.just(cachedCards.filter { card -> card.name == cardName })
             }
             useDatabase() -> cardDao.observeCard(cardName).toObservable()
             else -> observeCardWithApi(cardName)

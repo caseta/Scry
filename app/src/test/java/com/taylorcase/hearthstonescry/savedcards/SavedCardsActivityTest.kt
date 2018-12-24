@@ -16,67 +16,64 @@ import java.util.Collections.*
 @RunWith(RobolectricTestRunner::class)
 class SavedCardsActivityTest : InjectingTest() {
 
-    private val mockCard = mock<Card>()
-
-    private var activity: SavedCardsActivity? = null
+    private lateinit var activity: SavedCardsActivity
 
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        verify(mockSavedCardsPresenter)?.attach(activity!!)
+        verify(mockSavedCardsPresenter).attach(activity)
     }
 
     @Test fun testOnCreateActivitySwipeRefreshIsDisabled() {
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        Assertions.assertThat(activity!!.cards_swipe_refresh).isDisabled
+        Assertions.assertThat(activity.cards_swipe_refresh).isDisabled
     }
 
     @Test fun testLoadCardsSavedCountIsGreaterThanZeroCallsLoadSavedCards() {
         doReturn(1).whenever(mockSavedCardsPresenter)?.getSavedCardCount()
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        activity!!.loadCards()
+        activity.loadCards()
 
-        verify(mockSavedCardsPresenter)?.getSavedCardCount()
-        verify(mockSavedCardsPresenter)?.loadSavedCards()
+        verify(mockSavedCardsPresenter).getSavedCardCount()
+        verify(mockSavedCardsPresenter).loadSavedCards()
     }
 
     @Test fun testLoadCardsWithZeroSavedCardsShowsEmptyList() {
         doReturn(-1).whenever(mockSavedCardsPresenter)?.getSavedCardCount()
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        activity!!.loadCards()
+        activity.loadCards()
 
-        verify(mockSavedCardsPresenter)?.getSavedCardCount()
-        verify(mockSavedCardsPresenter, never())?.loadSavedCards()
-        verify(mockCardsAdapter)?.swapData(emptyList())
-        Assertions.assertThat(activity!!.progress_bar).isNotVisible
-        Assertions.assertThat(activity!!.cards_no_saves).isVisible
-        Assertions.assertThat(activity!!.cards_recycler_view).isGone
+        verify(mockSavedCardsPresenter).getSavedCardCount()
+        verify(mockSavedCardsPresenter, never()).loadSavedCards()
+        verify(mockCardsAdapter).swapData(emptyList())
+        Assertions.assertThat(activity.progress_bar).isNotVisible
+        Assertions.assertThat(activity.cards_no_saves).isVisible
+        Assertions.assertThat(activity.cards_recycler_view).isGone
     }
 
     @Test fun testDisplayCardsCallsAdapterSwapData() {
-        val cards = singletonList(mockCard)
+        val cards = singletonList(Card())
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        activity!!.displayCards(cards)
+        activity.displayCards(cards)
 
-        Assertions.assertThat(activity!!.progress_bar).isNotVisible
-        verify(mockCardsAdapter)?.swapData(cards)
+        Assertions.assertThat(activity.progress_bar).isNotVisible
+        verify(mockCardsAdapter).swapData(cards)
     }
 
     @Test fun testOnDestroyDetachesPresenter() {
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
-        verify(mockSavedCardsPresenter)?.detach()
+        verify(mockSavedCardsPresenter).detach()
     }
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
 }

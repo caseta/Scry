@@ -10,9 +10,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.ImageLoader
 import android.support.v4.app.ActivityOptionsCompat
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.DeviceUtils
 
 open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView), View.OnClickListener {

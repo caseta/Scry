@@ -19,7 +19,6 @@ class CardsPresenterTest {
 
     private val mockView = mock<CardsContract.View>()
     private val mockHeroUtils = mock<HeroUtils>()
-    private val mockCard = mock<Card>()
     private val mockCardRepo = mock<CardRepository>()
     private val mockNetworkManager = mock<NetworkManager>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
@@ -32,23 +31,25 @@ class CardsPresenterTest {
     }
 
     @Test fun testLoadCardsSuccessfullyCallsViewDisplayCards() {
+        val card = Card()
         val presenter = demandCardsPresenter()
         doReturn(WARLOCK).whenever(mockHeroUtils).getFavoriteHero()
-        doReturn(Single.just(singletonList(mockCard))).whenever(mockCardRepo).observeCardsWithHero(WARLOCK)
+        doReturn(Single.just(singletonList(card))).whenever(mockCardRepo).observeCardsWithHero(WARLOCK)
 
         presenter.loadCards()
 
         verify(mockHeroUtils).getFavoriteHero()
         verify(mockCardRepo).observeCardsWithHero(WARLOCK)
-        verify(mockView).displayCards(singletonList(mockCard))
+        verify(mockView).displayCards(singletonList(card))
     }
 
     @Test fun testRefreshAllCardsSuccessfullyCallsDisplayCards() {
+        val card = Card()
         val presenter = demandCardsPresenter()
         doReturn(true).whenever(mockNetworkManager).isConnected()
-        doReturn(Single.just(singletonList(mockCard))).whenever(mockCardRepo).observeAllCardsWithApi()
+        doReturn(Single.just(singletonList(card))).whenever(mockCardRepo).observeAllCardsWithApi()
         doReturn(WARLOCK).whenever(mockHeroUtils).getFavoriteHero()
-        doReturn(Single.just(singletonList(mockCard))).whenever(mockCardRepo).observeCardsWithHero(WARLOCK)
+        doReturn(Single.just(singletonList(card))).whenever(mockCardRepo).observeCardsWithHero(WARLOCK)
 
         presenter.refreshAllCards()
 
@@ -56,7 +57,7 @@ class CardsPresenterTest {
         verify(mockCardRepo).observeAllCardsWithApi()
         verify(mockHeroUtils).getFavoriteHero()
         verify(mockCardRepo).observeCardsWithHero(WARLOCK)
-        verify(mockView).displayCards(singletonList(mockCard))
+        verify(mockView).displayCards(singletonList(card))
     }
 
     @Test fun testRefreshCardsCallsDisplayNetworkErrorWhenNotConnected() {

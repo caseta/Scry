@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.ScryApplication
+import com.taylorcase.hearthstonescry.savedcards.SavedCardsActivity
 import com.taylorcase.hearthstonescry.utils.DeviceUtils
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject

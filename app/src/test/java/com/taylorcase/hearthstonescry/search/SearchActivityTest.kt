@@ -4,7 +4,7 @@ import com.nhaarman.mockito_kotlin.verify
 import com.taylorcase.hearthstonescry.DetailedCardActivity
 import com.taylorcase.hearthstonescry.InjectingTest
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
 import kotlinx.android.synthetic.main.include_toolbar_search.*
@@ -22,38 +22,38 @@ import java.util.*
 @RunWith(RobolectricTestRunner::class)
 open class SearchActivityTest : InjectingTest() {
 
-    private var activity: SearchActivity? = null
+    private lateinit var activity: SearchActivity
 
     @Test fun testOnCreateCallsPresenterPopulateCardNames() {
-        buildActivity(SearchActivity::class.java).create().get()
+        activity = buildActivity(SearchActivity::class.java).create().get()
 
-        verify(mockSearchPresenter)?.populateCardNames()
+        verify(mockSearchPresenter).populateCardNames()
     }
 
     @Test fun testOnCreateSetsLoadingToTrue() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        assertThat(activity!!.progress_bar).isVisible
+        assertThat(activity.progress_bar).isVisible
     }
 
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        verify(mockSearchPresenter)?.attach(activity!!)
+        verify(mockSearchPresenter).attach(activity)
     }
 
     @Test fun testOnCreateSearchInputHasFocus() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        assertThat(activity!!.search_input_text).hasFocus()
+        assertThat(activity.search_input_text).hasFocus()
     }
 
     @Test fun testOnCreateSetsUpRecyclerView() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        Assertions.assertThat(activity!!.adapter).isNotNull()
-        Assertions.assertThat(activity!!.search_suggestions_recycler.adapter).isEqualTo(activity!!.adapter)
-        Assertions.assertThat(activity!!.search_suggestions_recycler.layoutManager).isNotNull()
+        Assertions.assertThat(activity.adapter).isNotNull()
+        Assertions.assertThat(activity.search_suggestions_recycler.adapter).isEqualTo(activity.adapter)
+        Assertions.assertThat(activity.search_suggestions_recycler.layoutManager).isNotNull()
     }
 
     @Test fun testOnSetCardNamesAddsAllNames() {
@@ -61,9 +61,9 @@ open class SearchActivityTest : InjectingTest() {
         names.add("Jimmy")
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        activity!!.setCardNames(names)
+        activity.setCardNames(names)
 
-        Assertions.assertThat(activity!!.allNames).contains("Jimmy")
+        Assertions.assertThat(activity.allNames).contains("Jimmy")
     }
 
     @Test fun testOnSetCardNamesSetsLoadingToFalse() {
@@ -71,24 +71,24 @@ open class SearchActivityTest : InjectingTest() {
         names.add("Jimmy")
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        activity!!.setCardNames(names)
+        activity.setCardNames(names)
 
-        assertThat(activity!!.progress_bar).isNotVisible
+        assertThat(activity.progress_bar).isNotVisible
     }
 
     @Test fun testOnSuggestionClickedCallsPresenterPerformSearch() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        activity!!.onSuggestionClicked("Suggestion")
+        activity.onSuggestionClicked("Suggestion")
 
-        verify(mockSearchPresenter)?.performSearch("Suggestion")
+        verify(mockSearchPresenter).performSearch("Suggestion")
     }
 
     @Test fun testNavigateToDetailedActivity() {
         val card = Card()
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        activity!!.navigateToProperDetailedCard(card)
+        activity.navigateToProperDetailedCard(card)
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         assertThat(intent).isNotNull
@@ -98,14 +98,13 @@ open class SearchActivityTest : InjectingTest() {
     @Test fun testOnDestroyDetachesPresenter() {
         activity = buildActivity(SearchActivity::class.java).create().get()
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
-        verify(mockSearchPresenter)?.detach()
+        verify(mockSearchPresenter).detach()
     }
 
     @After
     fun destroyActivity() {
-        activity?.finish()
-        activity = null
+        activity.finish()
     }
 }

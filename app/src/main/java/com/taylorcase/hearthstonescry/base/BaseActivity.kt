@@ -1,6 +1,7 @@
 package com.taylorcase.hearthstonescry.base
 
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.annotation.VisibleForTesting
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.target.Target
 import com.taylorcase.hearthstonescry.base.NavDrawerFragment.Companion.NAV_FRAG_TAG
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
+import com.taylorcase.hearthstonescry.filter.FilterActivity
 import com.taylorcase.hearthstonescry.search.SearchActivity
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.KeyboardUtils
@@ -27,6 +29,8 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import javax.inject.Inject
+import android.text.style.ForegroundColorSpan
+import android.text.SpannableString
 
 abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView, View.OnClickListener {
 
@@ -63,11 +67,22 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (heroUtils.shouldAssetsBeWhite()) {
-            menuInflater.inflate(R.menu.search_white, menu)
+        if (this is FilterActivity) {
+            menuInflater.inflate(R.menu.clear_filter, menu)
+            if (heroUtils.shouldAssetsBeWhite()) {
+                val span = SpannableString(getString(R.string.clear_filter))
+                span.setSpan(ForegroundColorSpan(Color.WHITE), 0, span.length, 0)
+                menu.getItem(0).title = span
+            }
+
         } else {
-            menuInflater.inflate(R.menu.search_black, menu)
+            if (heroUtils.shouldAssetsBeWhite()) {
+                menuInflater.inflate(R.menu.search_white, menu)
+            } else {
+                menuInflater.inflate(R.menu.search_black, menu)
+            }
         }
+
         return true
     }
 
@@ -79,6 +94,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
         if (id == android.R.id.home) {
             onBackPressed()
         }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -86,9 +102,11 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
         setSupportActionBar(toolbar)
 
         val actionBar = supportActionBar
-        actionBar?.title = title
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.let {
+            actionBar.title = title
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeButtonEnabled(true)
+        }
 
         if (navigationMethod == HOME) {
             toolbar.setNavigationOnClickListener(this)
@@ -128,9 +146,11 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     fun closeDrawer(): Boolean {
-        if (drawerLayout != null && drawerLayout!!.isDrawerOpen(START)) {
-            drawerLayout!!.closeDrawer(START)
-            return true
+        drawerLayout?.let {
+            if (it.isDrawerOpen(START)) {
+                it.closeDrawer(START)
+                return true
+            }
         }
         return false
     }

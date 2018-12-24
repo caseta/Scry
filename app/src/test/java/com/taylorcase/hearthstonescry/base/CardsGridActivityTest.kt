@@ -23,49 +23,48 @@ import java.util.Collections.*
 @RunWith(RobolectricTestRunner::class)
 class CardsGridActivityTest : InjectingTest() {
 
-    private val mockCard = mock<Card>()
     private val mockRecycler = mock<RecyclerView>()
 
-    private var activity: CardsActivity? = null
+    private lateinit var activity: CardsActivity
 
     @Test fun testOnCreateSetsLoadingToTrue() {
         activity = buildActivity(CardsActivity::class.java).create().get()
 
-        assertThat(activity!!.progress_bar).isVisible
+        assertThat(activity.progress_bar).isVisible
     }
 
     @Test fun testOnCreateSetsUpRecyclerView() {
         activity = buildActivity(CardsActivity::class.java).create().get()
 
-        Assertions.assertThat(activity!!.adapter).isNotNull()
-        Assertions.assertThat(activity!!.cards_recycler_view).isNotNull()
-        Assertions.assertThat(activity!!.cards_recycler_view.layoutManager).isInstanceOf(GridLayoutManager::class.java)
-        Assertions.assertThat(activity!!.cards_recycler_view.adapter).isEqualTo(activity!!.adapter)
+        Assertions.assertThat(activity.adapter).isNotNull()
+        Assertions.assertThat(activity.cards_recycler_view).isNotNull()
+        Assertions.assertThat(activity.cards_recycler_view.layoutManager).isInstanceOf(GridLayoutManager::class.java)
+        Assertions.assertThat(activity.cards_recycler_view.adapter).isEqualTo(activity.adapter)
     }
 
     @Test fun testShowCardsCallsAdapterSwapData() {
-        val cards = singletonList(mockCard)
+        val card = Card()
+        val cards = singletonList(card)
         activity = buildActivity(CardsActivity::class.java).create().get()
 
-        activity!!.showCards(cards)
+        activity.showCards(cards)
 
-        verify(mockCardsAdapter)?.swapData(cards)
-        assertThat(activity!!.progress_bar).isInvisible
+        verify(mockCardsAdapter).swapData(cards)
+        assertThat(activity.progress_bar).isInvisible
     }
 
     @Test fun testOnActivityReenterScrollsRecyclerToPosition() {
         val intent = Intent().putExtra(EXTRA_POSITION, 1)
         activity = buildActivity(CardsActivity::class.java).create().get()
-        activity!!.cardsRecyclerView = mockRecycler
+        activity.cardsRecyclerView = mockRecycler
 
-        activity!!.onActivityReenter(RESULT_OK, intent)
+        activity.onActivityReenter(RESULT_OK, intent)
 
         verify(mockRecycler).scrollToPosition(1)
     }
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
 }

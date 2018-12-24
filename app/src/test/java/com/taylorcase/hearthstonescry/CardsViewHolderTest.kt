@@ -20,29 +20,25 @@ import org.robolectric.RuntimeEnvironment.*
 @RunWith(RobolectricTestRunner::class)
 class CardsViewHolderTest {
 
-    companion object {
-        private const val IMG_ID = "id"
-        private const val CARD_ID = "cardId"
-    }
-
     private val mockImageLoader = mock<ImageLoader>()
-    private val mockCard = mock<Card>()
     private val mockView = mock<View>()
 
     @Test fun testLoadCardSetsOnClickListener() {
+        val card = Card()
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)
 
-        cardsViewHolder.loadCard(mockCard, 0)
+        cardsViewHolder.loadCard(card, 0)
 
         assertThat(cardsViewHolder.itemView.hasOnClickListeners()).isTrue()
     }
 
     @Test fun testLoadCardSetsItemAsClickableAndEnabled() {
+        val card = Card()
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)
 
-        cardsViewHolder.loadCard(mockCard, 0)
+        cardsViewHolder.loadCard(card, 0)
 
         Assertions.assertThat(cardsViewHolder.itemView).isClickable
         Assertions.assertThat(cardsViewHolder.itemView).isEnabled
@@ -50,18 +46,22 @@ class CardsViewHolderTest {
 
     @Ignore
     @Test fun testOnClickSetsItemAsNotClickableAndNotEnabled() {
-        doReturn(IMG_ID).whenever(mockCard).img
-        doReturn(CARD_ID).whenever(mockCard).cardId
+        val card = Card(img = IMG_ID, cardId = CARD_ID)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)
-        cardsViewHolder.card = mockCard
+        cardsViewHolder.card = card
         cardsViewHolder.context = buildActivity(Activity::class.java).create().start().visible().get()
 
-        cardsViewHolder.loadCard(mockCard, 0)
+        cardsViewHolder.loadCard(card, 0)
         cardsViewHolder.onClick(mockView)
 
         Assertions.assertThat(cardsViewHolder.itemView).isNotClickable
         assertThat(cardsViewHolder.itemView.isEnabled).isFalse()
+    }
+
+    companion object {
+        private const val IMG_ID = "id"
+        private const val CARD_ID = "cardId"
     }
 
 }

@@ -38,6 +38,10 @@ android {
     buildConfigField "String", "HEARTHSTONE_API_KEY", apiKey
   }
 
+  androidExtensions {
+    experimental = true
+  }
+
   buildTypes {
     release {}
 

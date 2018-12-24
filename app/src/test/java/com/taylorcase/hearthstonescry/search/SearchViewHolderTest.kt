@@ -15,10 +15,6 @@ import org.robolectric.RuntimeEnvironment.*
 @RunWith(RobolectricTestRunner::class)
 class SearchViewHolderTest {
 
-    companion object {
-        private const val CARD_NAME = "Ysera"
-    }
-    
     private val mockSuggestionListener = mock<SearchViewHolder.OnSuggestionClickListener>()
 
     @Test fun testCreateSetsTextViewWithClickListener() {
@@ -47,5 +43,9 @@ class SearchViewHolderTest {
         searchViewHolder.onClick(null)
 
         verify(mockSuggestionListener).onSuggestionClicked(CARD_NAME)
+    }
+
+    companion object {
+        private const val CARD_NAME = "Ysera"
     }
 }

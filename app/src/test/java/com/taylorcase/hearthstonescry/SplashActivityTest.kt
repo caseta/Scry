@@ -17,66 +17,65 @@ import org.robolectric.shadows.ShadowApplication
 @RunWith(RobolectricTestRunner::class)
 class SplashActivityTest : InjectingTest() {
 
-    private var activity: SplashActivity? = null
+    private lateinit var activity: SplashActivity
 
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        verify(mockSplashPresenter)?.attach(activity!!)
+        verify(mockSplashPresenter).attach(activity)
     }
 
     @Test fun testOnCreateActivityLoaderIsVisible() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        assertThat(activity!!.cards_loader).isVisible
+        assertThat(activity.cards_loader).isVisible
     }
 
     @Test fun testCardsLoadedSuccessfullyCardsLoaderVisibilityGone() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        activity!!.cardsLoadedSuccessfully()
+        activity.cardsLoadedSuccessfully()
 
-        assertThat(activity!!.cards_loader).isGone
+        assertThat(activity.cards_loader).isGone
     }
 
     @Test fun testCardsLoadedSuccessfullyHasFavoriteHeroStartsCardsActivity() {
         doReturn(true).whenever(mockHeroUtils)?.hasFavoriteHero()
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        activity!!.cardsLoadedSuccessfully()
+        activity.cardsLoadedSuccessfully()
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         assertThat(intent).isNotNull.hasComponent(application, CardsActivity::class.java)
-        verify(mockHeroUtils)?.hasFavoriteHero()
+        verify(mockHeroUtils).hasFavoriteHero()
     }
 
     @Test fun testCardsLoadedSuccessfullyDoesNotHaveFavoriteHeroStartsSelectHeroActivity() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        activity!!.cardsLoadedSuccessfully()
+        activity.cardsLoadedSuccessfully()
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         assertThat(intent).isNotNull.hasComponent(application, SelectHeroActivity::class.java)
-        verify(mockHeroUtils)?.hasFavoriteHero()
+        verify(mockHeroUtils).hasFavoriteHero()
     }
 
     @Test fun testOnCreateActivityCallsPresenterLoadCards() {
-        buildActivity(SplashActivity::class.java).create().get()
+        activity = buildActivity(SplashActivity::class.java).create().get()
 
-        verify(mockSplashPresenter)?.loadCards()
+        verify(mockSplashPresenter).loadCards()
     }
 
     @Test fun testOnDestroyDetachesPresenter() {
         activity = buildActivity(SplashActivity::class.java).create().get()
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
-        verify(mockSplashPresenter)?.detach()
+        verify(mockSplashPresenter).detach()
     }
     
     @After
     fun destroyActivity() {
-        activity?.finish()
-        activity = null
+        activity.finish()
     }
 }

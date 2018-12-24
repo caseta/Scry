@@ -16,18 +16,13 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 open class DetailedSelectHeroActivityTest : InjectingTest() {
 
-    companion object {
-        private const val warlock = "Warlock"
-        private const val hero = "hero"
-    }
-
-    private var activity: DetailedSelectHeroActivity? = null
+    private lateinit var activity: DetailedSelectHeroActivity
 
     @Test
     fun testOnCreateActivityPresenterCallsAttach() {
         demandActivity()
 
-        verify(mockSelectHeroPresenter)?.attach(activity!!)
+        verify(mockSelectHeroPresenter).attach(activity)
         verifyDemands()
     }
 
@@ -35,9 +30,9 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     fun testOnDestroyDetachesPresenter() {
         demandActivity()
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
-        verify(mockSelectHeroPresenter)?.detach()
+        verify(mockSelectHeroPresenter).detach()
         verifyDemands()
     }
 
@@ -48,14 +43,17 @@ open class DetailedSelectHeroActivityTest : InjectingTest() {
     }
 
     private fun verifyDemands() {
-        verify(mockHeroUtils)!!.getHeroForString(warlock)
-        verify(mockHeroUtils)!!.getCurrentAssetsColor()
+        verify(mockHeroUtils).getHeroForString(warlock)
+        verify(mockHeroUtils).getCurrentAssetsColor()
     }
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
 
+    companion object {
+        private const val warlock = "Warlock"
+        private const val hero = "hero"
+    }
 }

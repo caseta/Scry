@@ -93,5 +93,54 @@
   <string name="warrior_description">These lords of war use heavy weaponry and deadly attacks to slam and devastate the battlefield. While their skill with armor and shields allows them to soak up the mightiest of blows, their gladiatorial bloodlust brings synergy with Enrage and on-damage effects, sending their minions charging at the enemy.</string>
   <string name="warrior_mechanics">The Warrior can equip a range of weapons to attack their foes directly. Armor can also be easily gained from their Hero Power to remain at sustainable Health. Warrior cards feature an emphasis on effects that trigger when a minion is damaged, cards that target damaged minions, and minions that can Charge onto the battlefield. Warriors are a class of opposites, with cards that focus on viscerally entering the fray to deal direct damage and cards that protect the Warrior from harm.</string>
   <string name="warrior_hero_power">Armor Up! allows the warrior to build a substantial stack of defensive Armor, acting as an extra barrier to enemy attacks. In contrast to Health, Armor can be stacked indefinitely. Armor Up! is a reliable option, effectively healing the warrior for 2 Health, but allowing the hero\'s combined defensive value to far exceed the maximum Health limit of 30. Shield Slam can even allow Armor to be used offensively.</string>
+  
+  <!--Filter-->
+  <string name="filter">Filter</string>
+  <string name="clear_filter">Clear</string>
+  <string name="neutral">Neutral</string>
+  <string name="filter_classes">Classes</string>
+  <string name="filter_rarity">Rarity</string>
+  <string name="filter_sets">Sets</string>
+  <string name="filter_cost">Cost</string>
+  <string name="apply_filter">APPLY FILTER</string>
+  
+  <string name="free">Free</string>
+  <string name="common">Common</string>
+  <string name="rare">Rare</string>
+  <string name="epic">Epic</string>
+  <string name="legendary">Legendary</string>
+  
+  <string name="hall_of_fame">Hall of Fame</string>
+  <string name="basic">Basic</string>
+  <string name="classic">Classic</string>
+  <string name="curse_of_naxx">Curse of Naxxramas</string>
+  <string name="goblins_vs_gnomes">Goblins vs. Gnomes</string>
+  <string name="blackrock_mountain">Blackrock Mountain</string>
+  <string name="the_grand_tournament">The Grand Tournament</string>
+  <string name="league_of_explorers">League of Explorers</string>
+  <string name="whispers_of_the_old_gods">Whispers of the Old Gods</string>
+  <string name="one_night_in_karazhan">One Night in Karazhan</string>
+  <string name="mean_streets_of_gadgetzan">Mean Streets of Gadgetzan</string>
+  <string name="journey_to_ungoro">Journey to Un\'Goro</string>
+  <string name="knights_of_the_frozen_throne">Knights of the Frozen Throne</string>
+  <string name="kobolds_and_catacombs">Kobolds and Catacombs</string>
+  <string name="the_witchwood">The Witchwood</string>
+  <string name="the_boomsday_project">The Boomsday Project</string>
+  <string name="rastakhans_rumble">Rastakhan\'s Rumble</string>
+
+  <string name="standard">Standard</string>
+  <string name="wild">Wild</string>
+
+  <string name="zero">0</string>
+  <string name="one">1</string>
+  <string name="two">2</string>
+  <string name="three">3</string>
+  <string name="four">4</string>
+  <string name="five">5</string>
+  <string name="six">6</string>
+  <string name="seven">+7</string>
+
+  <!--Sort-->
+  <string name="sort">Sort</string>
 
 </resources>

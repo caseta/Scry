@@ -15,7 +15,10 @@ enum class Sets(private val stringValue: String) {
     HALL_OF_FAME("Hall of Fame"),
     JOURNEY_TO_UNGORO("Journey to Un'Goro"),
     KNIGHTS_OF_THE_FRONZE_THRONE("Knights of the Frozen Throne"),
-    KOBOLDS_AND_CATACOMBS("Kobolds & Catacombs");
+    KOBOLDS_AND_CATACOMBS("Kobolds & Catacombs"),
+    THE_WITCHWOOD("The Witchwood"),
+    BOOMSDAY_PROJECT("The Boomsday Project"),
+    RASTAKHANS_RUMBLE("Rastakhan's Rumble");
 
     override fun toString(): String {
         return stringValue

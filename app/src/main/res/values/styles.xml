@@ -196,6 +196,25 @@
     <item name="android:background">@color/transparent</item>
   </style>
 
+  <style name="ScryButton.Bordered">
+    <item name="android:letterSpacing">@dimen/button_letter_spacing_zero</item>
+    <item name="android:elevation">@dimen/spacing_zero</item>
+    <item name="android:padding">@dimen/spacing_large</item>
+    <item name="android:foreground">?selectableItemBackground</item>
+    <item name="android:gravity">center</item>
+    <item name="android:background">@drawable/button_filter_selector</item>
+    <item name="android:textColor">?attr/colorPrimary</item>
+    <item name="android:minWidth">@dimen/bordered_button_width</item>
+    <item name="android:minHeight">@dimen/bordered_button_height</item>
+  </style>
+
+  <style name="FilterClassTextView">
+    <item name="android:layout_gravity">center</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
   <style name="HeaderText" parent="android:TextAppearance.Widget.TextView">
     <item name="android:fontFamily">@font/roboto_medium</item>
     <item name="android:textColor">@color/black</item>
@@ -210,6 +229,14 @@
 
   <style name="SubSubHeaderText" parent="SubHeaderText">
     <item name="android:textColor">@color/dark_grey</item>
+  </style>
+
+  <style name="FilterSortTextView">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textColor">?textColorOnAccentDark</item>
+    <item name="android:gravity">center</item>
+    <item name="android:foreground">?selectableItemBackground</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
   </style>
 
 </resources>

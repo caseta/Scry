@@ -27,9 +27,7 @@ open class HeroUtils @Inject constructor(
         }
     }
 
-    open fun getFavoriteHeroIcon(): Int {
-        return getHeroIconForHero(getFavoriteHero())
-    }
+    open fun getFavoriteHeroIcon(): Int = getHeroIconForHero(getFavoriteHero())
 
     open fun getHeroImageForHero(hero: Hero): Int {
         return when (hero) {
@@ -107,9 +105,7 @@ open class HeroUtils @Inject constructor(
         return map[name.toUpperCase()]
     }
 
-    open fun getFavoriteHeroImage(): Int {
-        return getHeroImageForHero(getFavoriteHero())
-    }
+    open fun getFavoriteHeroImage(): Int = getHeroImageForHero(getFavoriteHero())
 
     open fun getFavoriteHero(): Hero {
         val savedHero = sharedPreferencesHelper.getSavedHeroString()
@@ -123,10 +119,7 @@ open class HeroUtils @Inject constructor(
         return favoriteHero
     }
 
-    open fun hasFavoriteHero(): Boolean {
-        val favoriteHero = sharedPreferencesHelper.getSavedHeroString()
-        return favoriteHero.isNotEmpty()
-    }
+    open fun hasFavoriteHero(): Boolean = sharedPreferencesHelper.getSavedHeroString().isNotEmpty()
 
     open fun shouldAssetsBeWhite(): Boolean {
         return when (getFavoriteHero()) {

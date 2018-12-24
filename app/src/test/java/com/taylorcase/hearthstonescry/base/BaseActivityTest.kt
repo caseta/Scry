@@ -14,24 +14,23 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class BaseActivityTest : InjectingTest() {
 
-    private var activity: CardsActivity? = null
+    private lateinit var activity: CardsActivity
 
     @Ignore
     @Test fun testOnCreateGetsTheme() {
         buildActivity(CardsActivity::class.java).create().get()
 
-        verify(mockSharedPreferencesHelper)?.getTheme()
+        verify(mockSharedPreferencesHelper).getTheme()
     }
 
     @Test fun testOnCreateCreatesNavDrawerFragmentWhenNull() {
         activity = buildActivity(CardsActivity::class.java).create().get()
 
-        Assertions.assertThat(activity!!.navDrawerFragment).isNotNull()
+        Assertions.assertThat(activity.navDrawerFragment).isNotNull()
     }
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
 }

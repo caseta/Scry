@@ -7,18 +7,16 @@ import android.os.Handler
 import android.support.annotation.VisibleForTesting
 import android.text.Html
 import android.view.View
-import android.view.View.*
 import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.base.BaseActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
-import com.taylorcase.hearthstonescry.utils.ImageLoader
 import kotlinx.android.synthetic.main.activity_detailed_card.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 import android.view.animation.AnimationUtils
-import com.taylorcase.hearthstonescry.utils.DeviceUtils
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
+import com.taylorcase.hearthstonescry.utils.*
 
 @InjectLayout(R.layout.activity_detailed_card)
 open class DetailedCardActivity : BaseActivity(), View.OnClickListener, DetailedCardContract.View {
@@ -66,10 +64,10 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
 
         val flavorText = card.flavor
         if (flavorText.isNotEmpty()) {
-            card_flavor_text.visibility = VISIBLE
+            card_flavor_text.makeVisible()
             card_flavor_text.text = Html.fromHtml(flavorText)
         } else {
-            card_flavor_text.visibility = GONE
+            card_flavor_text.makeGone()
         }
     }
 
@@ -141,16 +139,16 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
             val bottomUp = AnimationUtils.loadAnimation(this, R.anim.bottom_up)
 
             card_text_container.startAnimation(bottomUp)
-            card_text_container.visibility = View.VISIBLE
+            card_text_container.makeVisible()
             Handler().postDelayed({ card_fab.show() }, 700)
         } else {
             card_fab.hide()
             val bottomDown = AnimationUtils.loadAnimation(this, R.anim.bottom_down)
 
             card_text_container.startAnimation(bottomDown)
-            card_text_container.visibility = View.GONE
+            card_text_container.makeGone()
         }
     }
 
-    private fun isPanelShown() = card_text_container.visibility == View.VISIBLE
+    private fun isPanelShown() = card_text_container.isVisible()
 }

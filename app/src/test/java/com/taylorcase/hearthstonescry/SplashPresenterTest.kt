@@ -16,7 +16,6 @@ import java.util.Collections.*
 class SplashPresenterTest {
 
     private val mockView = mock<SplashContract.View>()
-    private val mockCard = mock<Card>()
     private val mockCardRepo = mock<CardRepository>()
 
     @Before
@@ -38,7 +37,7 @@ class SplashPresenterTest {
 
     @Test fun testLoadCardsRefreshCardsCallsViewLoadCardsSuccess() {
         doReturn(true).whenever(mockCardRepo).refreshCards()
-        doReturn(Single.just(singletonList(mockCard))).whenever(mockCardRepo).observeAllCardsWithApi()
+        doReturn(Single.just(singletonList(Card()))).whenever(mockCardRepo).observeAllCardsWithApi()
         val presenter = demandSplashPresenter()
 
         presenter.loadCards()

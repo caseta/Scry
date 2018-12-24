@@ -12,18 +12,17 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class SelectHeroActivityTest : InjectingTest() {
 
-    private var activity: SelectHeroActivity? = null
+    private lateinit var activity: SelectHeroActivity
 
     @Test fun testOnCreateSetsUpRecycler() {
         activity = buildActivity(SelectHeroActivity::class.java).create().get()
 
-        assertThat(activity!!.select_hero_recycler).isNotNull()
-        assertThat(activity!!.select_hero_recycler.adapter).isEqualTo(mockSelectHeroAdapter)
+        assertThat(activity.select_hero_recycler).isNotNull()
+        assertThat(activity.select_hero_recycler.adapter).isEqualTo(mockSelectHeroAdapter)
     }
 
     @After
     fun destroyActivity() {
-        activity!!.finish()
-        activity = null
+        activity.finish()
     }
 }

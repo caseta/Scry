@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager.LayoutParams.*
+import com.taylorcase.hearthstonescry.utils.makeGone
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.dialog_review_app.*
 import timber.log.Timber
 
@@ -65,18 +67,18 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
 
     private fun yesClicked() {
         app_review_sub_header.text = getString(R.string.review_app_mind_rating)
-        app_review_yes.visibility = View.GONE
-        app_review_nahhh.visibility = View.GONE
-        app_review_cancel_rate.visibility = View.VISIBLE
-        app_review_rate.visibility = View.VISIBLE
+        app_review_yes.makeGone()
+        app_review_nahhh.makeGone()
+        app_review_cancel_rate.makeVisible()
+        app_review_rate.makeVisible()
     }
 
     private fun nahhhClicked() {
         app_review_sub_header.text = getString(R.string.review_app_mind_sending)
-        app_review_yes.visibility = View.GONE
-        app_review_nahhh.visibility = View.GONE
-        app_review_cancel_feedback.visibility = View.VISIBLE
-        app_review_send_feedback.visibility = View.VISIBLE
+        app_review_yes.makeGone()
+        app_review_nahhh.makeGone()
+        app_review_cancel_feedback.makeVisible()
+        app_review_send_feedback.makeVisible()
     }
 
     companion object {

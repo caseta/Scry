@@ -1,11 +1,11 @@
 package com.taylorcase.hearthstonescry
 
 import android.content.Intent
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import com.nhaarman.mockito_kotlin.*
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.Card.CREATOR.CARD_EXTRA
+import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
+import com.taylorcase.hearthstonescry.utils.makeGone
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.activity_detailed_card.*
 import org.assertj.android.api.Assertions
 import org.junit.After
@@ -19,19 +19,19 @@ import org.robolectric.RuntimeEnvironment.*
 @RunWith(RobolectricTestRunner::class)
 open class DetailedCardActivityTest : InjectingTest() {
 
-    private var activity: DetailedCardActivity? = null
+    private lateinit var activity: DetailedCardActivity
 
     @Test fun testOnCreateActivityPresenterCallsAttach() {
         activity = demandActivityWithCard(Card())
 
-        verify(mockDetailedCardPresenter)?.attach(activity!!)
+        verify(mockDetailedCardPresenter).attach(activity)
     }
 
     @Test fun testOnCreateSetsIsCardSavedFromPresenter() {
         val card = Card()
-        demandActivityWithCard(card)
+        activity = demandActivityWithCard(card)
 
-        verify(mockDetailedCardPresenter)?.isCardSaved(card)
+        verify(mockDetailedCardPresenter).isCardSaved(card)
     }
 
     @Test fun testOnCreatePopulatesWhiteHearts() {
@@ -39,18 +39,18 @@ open class DetailedCardActivityTest : InjectingTest() {
         activity = demandActivityWithCard(card)
         doReturn(true).whenever(mockHeroUtils)?.shouldAssetsBeWhite()
 
-        verify(mockHeroUtils, times(2))?.shouldAssetsBeWhite()
-        Assertions.assertThat(activity!!.heart).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_border_white_24dp))
-        Assertions.assertThat(activity!!.heartFilled).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_white_24dp))
+        verify(mockHeroUtils, times(2)).shouldAssetsBeWhite()
+        Assertions.assertThat(activity.heart).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_border_white_24dp))
+        Assertions.assertThat(activity.heartFilled).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_white_24dp))
     }
 
     @Test fun testOnCreatePopulatesBlackHearts() {
         val card = Card()
         activity = demandActivityWithCard(card)
 
-        verify(mockHeroUtils, times(2))?.shouldAssetsBeWhite()
-        Assertions.assertThat(activity!!.heart).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_border_black_24dp))
-        Assertions.assertThat(activity!!.heartFilled).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_black_24dp))
+        verify(mockHeroUtils, times(2)).shouldAssetsBeWhite()
+        Assertions.assertThat(activity.heart).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_border_black_24dp))
+        Assertions.assertThat(activity.heartFilled).isEqualTo(application.resources.getDrawable(R.drawable.ic_favorite_black_24dp))
     }
 
     @Test fun testPopulateValuesSetsFlavorText() {
@@ -58,15 +58,15 @@ open class DetailedCardActivityTest : InjectingTest() {
         card.flavor = "Flavor"
         activity = demandActivityWithCard(card)
 
-        Assertions.assertThat(activity!!.card_flavor_text).isVisible
-        org.assertj.core.api.Assertions.assertThat(activity!!.card_flavor_text.text.toString()).isEqualTo("Flavor")
+        Assertions.assertThat(activity.card_flavor_text).isVisible
+        org.assertj.core.api.Assertions.assertThat(activity.card_flavor_text.text.toString()).isEqualTo("Flavor")
     }
 
     @Test fun testPopulateValuesEmptyFlavorTextIsGone() {
         val card = Card()
         activity = demandActivityWithCard(card)
 
-        Assertions.assertThat(activity!!.card_flavor_text).isGone
+        Assertions.assertThat(activity.card_flavor_text).isGone
     }
 
     @Test fun testOnClickCardIsSavedCallsPresenterRemove() {
@@ -74,40 +74,40 @@ open class DetailedCardActivityTest : InjectingTest() {
         doReturn(true).whenever(mockDetailedCardPresenter)?.isCardSaved(card)
         activity = demandActivityWithCard(card)
 
-        activity!!.onClick(activity!!.card_fab)
+        activity.onClick(activity.card_fab)
 
-        verify(mockDetailedCardPresenter)?.removeCard(card)
-        verify(mockDetailedCardPresenter)?.isCardSaved(card)
+        verify(mockDetailedCardPresenter).removeCard(card)
+        verify(mockDetailedCardPresenter).isCardSaved(card)
     }
 
     @Test fun testOnClickCardIsNotSavedCallsPresenterSaveCard() {
         val card = Card()
         activity = demandActivityWithCard(card)
 
-        activity!!.onClick(activity!!.card_fab)
+        activity.onClick(activity.card_fab)
 
-        verify(mockDetailedCardPresenter)?.saveCard(card)
-        verify(mockDetailedCardPresenter)?.isCardSaved(card)
+        verify(mockDetailedCardPresenter).saveCard(card)
+        verify(mockDetailedCardPresenter).isCardSaved(card)
     }
 
     @Test fun testOnBackPressedSlideAnimationDownFires() {
         val card = Card()
         activity = demandActivityWithCard(card)
-        activity!!.card_text_container.visibility = GONE
+        activity.card_text_container.makeGone()
 
-        activity!!.onBackPressed()
+        activity.onBackPressed()
 
-        Assertions.assertThat(activity!!.card_text_container).isVisible
+        Assertions.assertThat(activity.card_text_container).isVisible
     }
 
     @Test fun testOnBackPressedSlideAnimationUpFires() {
         val card = Card()
         activity = demandActivityWithCard(card)
-        activity!!.card_text_container.visibility = VISIBLE
+        activity.card_text_container.makeVisible()
 
-        activity!!.onBackPressed()
+        activity.onBackPressed()
 
-        Assertions.assertThat(activity!!.card_text_container).isGone
+        Assertions.assertThat(activity.card_text_container).isGone
     }
 
     @Test fun testOnBackPressedSetsResultAndFinishedAfterTransition() {
@@ -123,9 +123,9 @@ open class DetailedCardActivityTest : InjectingTest() {
     @Test fun testOnDestroyDetachesPresenter() {
         activity = demandActivityWithCard(Card())
 
-        activity!!.onDestroy()
+        activity.onDestroy()
 
-        verify(mockDetailedCardPresenter)?.detach()
+        verify(mockDetailedCardPresenter).detach()
     }
 
     private fun demandActivityWithCard(card: Card): DetailedCardActivity {
@@ -135,7 +135,6 @@ open class DetailedCardActivityTest : InjectingTest() {
 
     @After
     fun destroyActivity() {
-        activity?.finish()
-        activity = null
+        activity.finish()
     }
 }
