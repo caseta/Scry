@@ -31,8 +31,9 @@ import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import javax.inject.Inject
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableString
+import kotlinx.android.synthetic.main.include_toolbar.*
 
-abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView, View.OnClickListener {
+abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView {
 
     @VisibleForTesting var navDrawerFragment: NavDrawerFragment? = null
     private var drawerLayout: DrawerLayout? = null
@@ -109,7 +110,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
         }
 
         if (navigationMethod == HOME) {
-            toolbar.setNavigationOnClickListener(this)
+            toolbar.setNavigationOnClickListener(ToolbarDrawerClickListener(drawerLayout))
             if (heroUtils.shouldAssetsBeWhite()) {
                 toolbar.setNavigationIcon(R.drawable.ic_dehaze_white_24dp)
             } else {
@@ -122,10 +123,6 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
                 toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
             }
         }
-    }
-
-    override fun onClick(v: View?) {
-        drawerLayout?.openDrawer(START)
     }
 
     fun setLoading(isLoading: Boolean) {
@@ -204,7 +201,18 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
 
     override fun onDestroy() {
         super.onDestroy()
+        toolbar?.setNavigationOnClickListener(null)
         drawerLayout = null
+    }
+
+    private class ToolbarDrawerClickListener(var drawerLayout: DrawerLayout?) : View.OnClickListener {
+
+        override fun onClick(v: View?) {
+            if (drawerLayout != null) {
+                drawerLayout!!.openDrawer(START)
+            }
+        }
+
     }
 
     private class ActivityDrawerListener : DrawerLayout.SimpleDrawerListener() {
@@ -213,6 +221,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
             KeyboardUtils.hideKeyboard(drawerView)
             super.onDrawerSlide(drawerView, slideOffset)
         }
+
     }
 
     companion object {

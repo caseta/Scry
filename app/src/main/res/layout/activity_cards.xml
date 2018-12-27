@@ -16,9 +16,11 @@
     style="@style/SubHeaderText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fontFamily="@font/roboto_medium"
     android:gravity="center"
     android:paddingTop="@dimen/search_no_cards_top_padding"
     android:text="@string/saved_cards_no_saved_cards"
+    android:textSize="@dimen/text_size_very_large"
     android:visibility="gone" />
 
   <LinearLayout
@@ -37,8 +39,8 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:visibility="invisible"
-      android:text="@string/sort" />
+      android:text="@string/sort"
+      android:visibility="invisible" />
 
     <View
       android:layout_width="@dimen/vertical_divider_width"
