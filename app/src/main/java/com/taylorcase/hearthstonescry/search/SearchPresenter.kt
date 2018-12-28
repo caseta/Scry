@@ -14,11 +14,9 @@ open class SearchPresenter @Inject constructor(private val cardRepository: CardR
 
     override fun populateCardNames() {
         bind(cardRepository.observeAllCardNames()
-                .subscribeOn(Schedulers.io()).doOnError { showError(it) }
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(Consumer {
-                    populateNames(it)
-                }))
+                .subscribe({ populateNames(it) }, { showError(it) }))
     }
 
     private fun populateNames(names: List<String>) {
@@ -27,10 +25,10 @@ open class SearchPresenter @Inject constructor(private val cardRepository: CardR
     }
 
     override fun performSearch(suggestion: String) {
-        cardRepository.observeCard(suggestion)
-                .subscribeOn(Schedulers.io()).doOnError { showError(it) }
+        bind(cardRepository.observeCard(suggestion)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::navigateToProperDetailedCard)
+                .subscribe({ navigateToProperDetailedCard(it) }, { showError(it) }))
     }
 
     private fun navigateToProperDetailedCard(cards: List<Card>) {

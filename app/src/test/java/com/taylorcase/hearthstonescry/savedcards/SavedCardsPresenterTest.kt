@@ -1,9 +1,6 @@
 package com.taylorcase.hearthstonescry.savedcards
 
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
@@ -50,6 +47,19 @@ class SavedCardsPresenterTest {
         verify(mockCardsRepo).observeAllCards()
         verify(mockSharedPref).getSavedCards(list)
         verify(mockView).displayCards(secondList)
+    }
+
+    @Test fun testLoadSavedCardsShowsErrorProperly() {
+        val error = IllegalStateException()
+        val single: Single<List<Card>> = Single.error(error)
+        doReturn(single).whenever(mockCardsRepo).observeAllCards()
+        val presenter = demandPresenter()
+
+        presenter.loadSavedCards()
+
+        verify(mockCardsRepo).observeAllCards()
+        verify(mockSharedPref, never()).getSavedCards(any())
+        verify(mockView, never()).displayCards(any())
     }
 
     private fun demandPresenter() : SavedCardsPresenter {

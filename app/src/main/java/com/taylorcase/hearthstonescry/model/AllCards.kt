@@ -23,7 +23,7 @@ data class AllCards(
         @SerializedName("The Boomsday Project") @Expose var bpCards: List<Card> = emptyList(),
         @SerializedName("Rastakhan's Rumble") @Expose var rrCards: List<Card> = emptyList()) {
 
-    open val listOfAllCards: List<Card>
+    val listOfAllCards: List<Card>
         get() {
             val allCardsList = ArrayList<Card>()
             allCardsList.addAll(basicCards)

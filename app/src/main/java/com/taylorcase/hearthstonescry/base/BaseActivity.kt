@@ -122,6 +122,12 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
             } else {
                 toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
             }
+        } else if (navigationMethod == MODAL) {
+            if (heroUtils.shouldAssetsBeWhite()) {
+                toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp)
+            } else {
+                toolbar.setNavigationIcon(R.drawable.ic_close_black_24dp)
+            }
         }
     }
 
@@ -137,9 +143,7 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     }
 
     override fun onBackPressed() {
-        if (!closeDrawer()) {
-            super.onBackPressed()
-        }
+        if (!closeDrawer()) super.onBackPressed()
     }
 
     fun closeDrawer(): Boolean {
@@ -227,5 +231,6 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
     companion object {
         const val HOME = 0
         const val BACK_ARROW = 1
+        const val MODAL = 2
     }
 }

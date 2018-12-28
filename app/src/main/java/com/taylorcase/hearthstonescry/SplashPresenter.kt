@@ -14,11 +14,9 @@ open class SplashPresenter @Inject constructor(private val cardRepository: CardR
         view = getView() as SplashContract.View
         if (cardRepository.refreshCards()) {
             bind(cardRepository.observeAllCardsWithApi()
-                    .subscribeOn(Schedulers.io()).doOnError { showError(it) }
+                    .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(Consumer {
-                        view.cardsLoadedSuccessfully()
-                    }))
+                    .subscribe({ view.cardsLoadedSuccessfully() }, { showError(it) }))
         } else {
             view.cardsLoadedSuccessfully()
         }

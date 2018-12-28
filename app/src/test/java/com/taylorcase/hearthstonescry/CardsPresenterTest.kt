@@ -13,6 +13,7 @@ import java.util.Collections.*
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
+import net.bytebuddy.implementation.bytecode.Throw
 import org.junit.Before
 
 class CardsPresenterTest {
@@ -43,6 +44,21 @@ class CardsPresenterTest {
         verify(mockView).displayCards(singletonList(card))
     }
 
+    @Test fun testLoadCardsShowsErrorProperly() {
+        val error = IllegalStateException()
+        val single: Single<List<Card>> = Single.error(error)
+        val presenter = demandCardsPresenter()
+        doReturn(WARLOCK).whenever(mockHeroUtils).getFavoriteHero()
+        doReturn(single).whenever(mockCardRepo).observeCardsWithHero(WARLOCK)
+
+        presenter.loadCards()
+
+        verify(mockHeroUtils).getFavoriteHero()
+        verify(mockCardRepo).observeCardsWithHero(WARLOCK)
+        verify(mockView, never()).displayCards(any())
+        verify(mockView).showError()
+    }
+
     @Test fun testRefreshAllCardsSuccessfullyCallsDisplayCards() {
         val card = Card()
         val presenter = demandCardsPresenter()
@@ -58,6 +74,22 @@ class CardsPresenterTest {
         verify(mockHeroUtils).getFavoriteHero()
         verify(mockCardRepo).observeCardsWithHero(WARLOCK)
         verify(mockView).displayCards(singletonList(card))
+    }
+
+    @Test fun testRefreshAllCardsShowsErrorProperly() {
+        val error = IllegalStateException()
+        val single: Single<List<Card>> = Single.error(error)
+        val presenter = demandCardsPresenter()
+        doReturn(true).whenever(mockNetworkManager).isConnected()
+        doReturn(single).whenever(mockCardRepo).observeAllCardsWithApi()
+
+        presenter.refreshAllCards()
+
+        verify(mockNetworkManager).isConnected()
+        verify(mockCardRepo).observeAllCardsWithApi()
+        verify(mockHeroUtils, never()).getFavoriteHero()
+        verify(mockCardRepo, never()).observeCardsWithHero(WARLOCK)
+        verify(mockView, never()).displayCards(any())
     }
 
     @Test fun testRefreshCardsCallsDisplayNetworkErrorWhenNotConnected() {

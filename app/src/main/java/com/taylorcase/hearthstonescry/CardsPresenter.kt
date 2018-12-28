@@ -47,14 +47,14 @@ open class CardsPresenter @Inject constructor(
         if (networkManager.isConnected()) {
             bind(cardRepository.observeAllCardsWithApi()
                     .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).doOnError { showError(it) }
-                    .subscribe(Consumer { resetSuccess() }))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ resetSuccess() }, { showError(it) }))
+
         } else {
             view?.displayNetworkError()
         }
     }
 
-    // TODO: Combine this with above
     private fun resetSuccess() {
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
                 .subscribeOn(Schedulers.io())

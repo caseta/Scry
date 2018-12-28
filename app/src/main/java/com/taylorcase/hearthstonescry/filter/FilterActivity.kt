@@ -35,7 +35,7 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as ScryApplication).getAppComponent()?.inject(this)
-        setupToolbar(toolbar, getString(R.string.filter), BACK_ARROW)
+        setupToolbar(toolbar, getString(R.string.filter), MODAL)
 
         populateAllFilters()
         setAllFilterClickListeners()
