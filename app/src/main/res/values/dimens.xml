@@ -9,7 +9,7 @@
   <dimen name="spacing_larger">32dp</dimen>
   <dimen name="spacing_almost_massive">48dp</dimen>
   <dimen name="spacing_massive">64dp</dimen>
-  <dimen name="spacing_ultra_massive">88dp</dimen>
+  <dimen name="spacing_very_massive">68dp</dimen>
 
   <dimen name="nav_menu_header_hero_height">200dp</dimen>
   <dimen name="nav_menu_item_height">50dp</dimen>

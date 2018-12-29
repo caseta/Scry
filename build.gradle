@@ -34,6 +34,7 @@ task clean(type: Delete) {
 }
 
 ext {
+  constraintLayoutVersion = '1.1.3'
   supportLibVersion = '27.1.1'
   archRoomVersion = '1.1.1'
   rxlifecycleVersion = '2.2.2'

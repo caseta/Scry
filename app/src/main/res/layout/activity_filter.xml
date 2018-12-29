@@ -1,265 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:animateLayoutChanges="true">
 
   <include layout="@layout/include_toolbar" />
 
-  <ScrollView
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/spacing_medium"
     android:layout_marginStart="@dimen/spacing_medium"
     android:layout_marginTop="@dimen/toolbar_min_height">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/spacing_large"
-      android:orientation="vertical">
+      android:layout_height="wrap_content">
 
       <TextView
+        android:id="@+id/filter_class_header"
         style="@style/SubHeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
         android:paddingEnd="@dimen/spacing_zero"
         android:paddingStart="@dimen/spacing_small"
         android:text="@string/filter_classes"
-        android:textSize="@dimen/text_size_very_large" />
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintTop_toTopOf="parent" />
 
-      <LinearLayout
-        android:layout_width="match_parent"
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_druid"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
-        android:orientation="horizontal">
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_druid"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_druid_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/druid"
-            android:textColor="@color/druid_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_hunter"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_hunter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hunter"
-            android:textColor="@color/hunter_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_mage"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_mage_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mage"
-            android:textColor="@color/mage_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_paladin"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_paladin_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/paladin"
-            android:textColor="@color/paladin_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_priest"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_priest_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/priest"
-            android:textColor="@color/priest_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_rogue"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_rogue_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rogue"
-            android:textColor="@color/rogue_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_shaman"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_shaman_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shaman"
-            android:textColor="@color/shaman_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_warlock"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_warlock_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/warlock"
-            android:textColor="@color/warlock_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_warrior"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_warrior_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/warrior"
-            android:textColor="@color/warrior_text_on_primary" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_neutral"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/neutral"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+        android:background="@drawable/button_filter_druid_selector"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/filter_hunter"
+        app:layout_constraintTop_toBottomOf="@+id/filter_class_header">
 
         <TextView
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:visibility="invisible" />
+          android:text="@string/druid"
+          android:textColor="@color/druid_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_hunter"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/button_filter_hunter_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_druid"
+        app:layout_constraintRight_toLeftOf="@+id/filter_mage"
+        app:layout_constraintTop_toBottomOf="@+id/filter_class_header">
 
         <TextView
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:visibility="invisible" />
+          android:text="@string/hunter"
+          android:textColor="@color/hunter_text_on_primary" />
 
-      </LinearLayout>
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_mage"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/button_filter_mage_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_hunter"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_class_header">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/mage"
+          android:textColor="@color/mage_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_paladin"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_paladin_selector"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/filter_priest"
+        app:layout_constraintTop_toBottomOf="@+id/filter_druid">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/paladin"
+          android:textColor="@color/paladin_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_priest"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_priest_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_paladin"
+        app:layout_constraintRight_toLeftOf="@+id/filter_rogue"
+        app:layout_constraintTop_toBottomOf="@+id/filter_hunter">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/priest"
+          android:textColor="@color/priest_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_rogue"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_rogue_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_priest"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_mage">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/rogue"
+          android:textColor="@color/rogue_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_shaman"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_shaman_selector"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/filter_warlock"
+        app:layout_constraintTop_toBottomOf="@+id/filter_paladin">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/shaman"
+          android:textColor="@color/shaman_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_warlock"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_warlock_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_shaman"
+        app:layout_constraintRight_toLeftOf="@+id/filter_warrior"
+        app:layout_constraintTop_toBottomOf="@+id/filter_priest">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/warlock"
+          android:textColor="@color/warlock_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_warrior"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_warrior_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_warlock"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_rogue">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/warrior"
+          android:textColor="@color/warrior_text_on_primary" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_neutral"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/filter_shaman"
+        app:layout_constraintTop_toBottomOf="@+id/filter_shaman">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/neutral"
+          android:textColor="@color/black" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       <View
+        android:id="@+id/filter_class_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/filter_neutral" />
 
       <TextView
+        android:id="@+id/filter_rarity_header"
         style="@style/SubHeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -267,132 +267,128 @@
         android:paddingEnd="@dimen/spacing_zero"
         android:paddingStart="@dimen/spacing_small"
         android:text="@string/filter_rarity"
-        android:textSize="@dimen/text_size_very_large" />
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintTop_toBottomOf="@+id/filter_class_divider" />
 
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:orientation="horizontal">
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
 
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_free"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/free"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_common"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/common"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_rare"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/rare"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/filter_free"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_epic"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/epic"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_legendary"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
-          android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
-
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/legendary"
-            android:textColor="@color/black" />
-
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/filter_common"
+        app:layout_constraintTop_toBottomOf="@+id/filter_rarity_header">
 
         <TextView
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/free"
+          android:textColor="@color/black" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_common"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_free"
+        app:layout_constraintRight_toLeftOf="@+id/filter_rare"
+        app:layout_constraintTop_toBottomOf="@+id/filter_rarity_header">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/common"
+          android:textColor="@color/black" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_rare"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/filter_common"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_rarity_header">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/rare"
+          android:textColor="@color/black" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_epic"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/filter_free"
+        app:layout_constraintTop_toBottomOf="@+id/filter_free">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:visibility="invisible" />
+          android:text="@string/epic"
+          android:textColor="@color/black" />
 
-      </LinearLayout>
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_legendary"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintLeft_toLeftOf="@+id/filter_common"
+        app:layout_constraintRight_toRightOf="@+id/filter_common"
+        app:layout_constraintTop_toBottomOf="@+id/filter_common">
+
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/legendary"
+          android:textColor="@color/black" />
+
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
       <View
+        android:id="@+id/filter_rarity_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/filter_legendary" />
 
       <TextView
+        android:id="@+id/filter_cost_header"
         style="@style/SubHeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -400,95 +396,115 @@
         android:paddingEnd="@dimen/spacing_zero"
         android:paddingStart="@dimen/spacing_small"
         android:text="@string/filter_cost"
-        android:textSize="@dimen/text_size_very_large" />
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintTop_toBottomOf="@+id/filter_rarity_divider" />
 
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_zero"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/spacing_large"
-        android:orientation="horizontal">
+        android:text="@string/zero"
+        app:layout_constraintEnd_toStartOf="@+id/filter_one"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_cost_header" />
 
-        <CheckBox
-          android:id="@+id/filter_zero"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/zero" />
-
-        <CheckBox
-          android:id="@+id/filter_one"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/one" />
-
-        <CheckBox
-          android:id="@+id/filter_two"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/two" />
-
-        <CheckBox
-          android:id="@+id/filter_three"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/three" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_one"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/spacing_large"
-        android:orientation="horizontal">
+        android:text="@string/one"
+        app:layout_constraintEnd_toStartOf="@+id/filter_two"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_zero"
+        app:layout_constraintTop_toBottomOf="@+id/filter_cost_header" />
 
-        <CheckBox
-          android:id="@+id/filter_four"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/four" />
+      <CheckBox
+        android:id="@+id/filter_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/two"
+        app:layout_constraintEnd_toStartOf="@+id/filter_three"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_one"
+        app:layout_constraintTop_toBottomOf="@+id/filter_cost_header" />
 
-        <CheckBox
-          android:id="@+id/filter_five"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/five" />
+      <CheckBox
+        android:id="@+id/filter_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/three"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_two"
+        app:layout_constraintTop_toBottomOf="@+id/filter_cost_header" />
 
-        <CheckBox
-          android:id="@+id/filter_six"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/six" />
+      <CheckBox
+        android:id="@+id/filter_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/four"
+        app:layout_constraintEnd_toStartOf="@+id/filter_five"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_zero" />
 
-        <CheckBox
-          android:id="@+id/filter_seven"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/seven" />
+      <CheckBox
+        android:id="@+id/filter_five"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/five"
+        app:layout_constraintEnd_toStartOf="@+id/filter_six"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_four"
+        app:layout_constraintTop_toBottomOf="@+id/filter_one" />
 
-      </LinearLayout>
+      <CheckBox
+        android:id="@+id/filter_six"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/six"
+        app:layout_constraintEnd_toStartOf="@+id/filter_seven"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_five"
+        app:layout_constraintTop_toBottomOf="@+id/filter_two" />
+
+      <CheckBox
+        android:id="@+id/filter_seven"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/seven"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_six"
+        app:layout_constraintTop_toBottomOf="@+id/filter_three" />
 
       <View
+        android:id="@+id/filter_cost_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/filter_seven" />
 
       <TextView
+        android:id="@+id/filter_set_header"
         style="@style/SubHeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -496,255 +512,254 @@
         android:paddingEnd="@dimen/spacing_zero"
         android:paddingStart="@dimen/spacing_small"
         android:text="@string/filter_sets"
-        android:textSize="@dimen/text_size_very_large" />
+        android:textSize="@dimen/text_size_very_large"
+        app:layout_constraintTop_toBottomOf="@+id/filter_cost_divider" />
 
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_hall_of_fame"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/hall_of_fame"
+        app:layout_constraintEnd_toStartOf="@+id/filter_basic"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_set_header" />
 
-        <CheckBox
-          android:id="@+id/filter_hall_of_fame"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/hall_of_fame" />
-
-        <CheckBox
-          android:id="@+id/filter_basic"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/basic" />
-
-        <CheckBox
-          android:id="@+id/filter_classic"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/classic" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_basic"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/basic"
+        app:layout_constraintEnd_toStartOf="@+id/filter_classic"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_hall_of_fame"
+        app:layout_constraintTop_toBottomOf="@+id/filter_set_header" />
 
-        <CheckBox
-          android:id="@+id/filter_naxx"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/curse_of_naxx" />
-
-        <CheckBox
-          android:id="@+id/filter_goblins"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/goblins_vs_gnomes" />
-
-        <CheckBox
-          android:id="@+id/filter_blackrock"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/blackrock_mountain" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_classic"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/classic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_basic"
+        app:layout_constraintTop_toBottomOf="@+id/filter_set_header" />
 
-        <CheckBox
-          android:id="@+id/filter_grand_tournament"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/the_grand_tournament" />
-
-        <CheckBox
-          android:id="@+id/filter_league_of_explorers"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/league_of_explorers" />
-
-        <CheckBox
-          android:id="@+id/filter_whispers"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/whispers_of_the_old_gods" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_naxx"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/curse_of_naxx"
+        app:layout_constraintEnd_toStartOf="@+id/filter_goblins"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_hall_of_fame" />
 
-        <CheckBox
-          android:id="@+id/filter_one_night"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/one_night_in_karazhan" />
-
-        <CheckBox
-          android:id="@+id/filter_mean_streets"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/mean_streets_of_gadgetzan" />
-
-        <CheckBox
-          android:id="@+id/filter_journey"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/journey_to_ungoro" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_goblins"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/goblins_vs_gnomes"
+        app:layout_constraintEnd_toStartOf="@+id/filter_blackrock"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_naxx"
+        app:layout_constraintTop_toBottomOf="@+id/filter_basic" />
 
-        <CheckBox
-          android:id="@+id/filter_knights"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/knights_of_the_frozen_throne" />
-
-        <CheckBox
-          android:id="@+id/filter_kobolds"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/kobolds_and_catacombs" />
-
-        <CheckBox
-          android:id="@+id/filter_witchwood"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/the_witchwood" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
+      <CheckBox
+        android:id="@+id/filter_blackrock"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:orientation="horizontal">
+        android:text="@string/blackrock_mountain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_goblins"
+        app:layout_constraintTop_toBottomOf="@+id/filter_classic" />
 
-        <CheckBox
-          android:id="@+id/filter_boomsday_project"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/the_boomsday_project" />
+      <CheckBox
+        android:id="@+id/filter_grand_tournament"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/curse_of_naxx"
+        app:layout_constraintEnd_toStartOf="@+id/filter_league_of_explorers"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_naxx" />
 
-        <CheckBox
-          android:id="@+id/filter_rastakhans_rumble"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:text="@string/rastakhans_rumble" />
+      <CheckBox
+        android:id="@+id/filter_league_of_explorers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/goblins_vs_gnomes"
+        app:layout_constraintEnd_toStartOf="@+id/filter_whispers"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_grand_tournament"
+        app:layout_constraintTop_toBottomOf="@+id/filter_goblins" />
 
-        <CheckBox
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_weight="1"
-          android:visibility="invisible" />
+      <CheckBox
+        android:id="@+id/filter_whispers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/blackrock_mountain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_league_of_explorers"
+        app:layout_constraintTop_toBottomOf="@+id/filter_blackrock" />
 
-      </LinearLayout>
+      <CheckBox
+        android:id="@+id/filter_one_night"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/curse_of_naxx"
+        app:layout_constraintEnd_toStartOf="@+id/filter_mean_streets"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_grand_tournament" />
+
+      <CheckBox
+        android:id="@+id/filter_mean_streets"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/goblins_vs_gnomes"
+        app:layout_constraintEnd_toStartOf="@+id/filter_journey"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_one_night"
+        app:layout_constraintTop_toBottomOf="@+id/filter_league_of_explorers" />
+
+      <CheckBox
+        android:id="@+id/filter_journey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/blackrock_mountain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_mean_streets"
+        app:layout_constraintTop_toBottomOf="@+id/filter_whispers" />
+
+      <CheckBox
+        android:id="@+id/filter_knights"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/knights_of_the_frozen_throne"
+        app:layout_constraintEnd_toStartOf="@+id/filter_kobolds"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_one_night" />
+
+      <CheckBox
+        android:id="@+id/filter_kobolds"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/kobolds_and_catacombs"
+        app:layout_constraintEnd_toStartOf="@+id/filter_witchwood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_knights"
+        app:layout_constraintTop_toBottomOf="@+id/filter_mean_streets" />
+
+      <CheckBox
+        android:id="@+id/filter_witchwood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/the_witchwood"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_kobolds"
+        app:layout_constraintTop_toBottomOf="@+id/filter_journey" />
+
+      <CheckBox
+        android:id="@+id/filter_boomsday_project"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/the_boomsday_project"
+        app:layout_constraintEnd_toEndOf="@+id/filter_knights"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_knights" />
+
+      <CheckBox
+        android:id="@+id/filter_rastakhans_rumble"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/rastakhans_rumble"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_boomsday_project"
+        app:layout_constraintEnd_toEndOf="@+id/filter_kobolds"
+        app:layout_constraintStart_toStartOf="@+id/filter_kobolds"
+        app:layout_constraintTop_toTopOf="@+id/filter_boomsday_project" />
 
       <View
+        android:id="@+id/filter_set_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/filter_boomsday_project" />
 
-      <LinearLayout
-        android:layout_width="match_parent"
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_standard"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_ultra_massive"
+        android:layout_marginBottom="@dimen/spacing_very_massive"
+        android:layout_marginEnd="@dimen/spacing_small"
         android:layout_marginTop="@dimen/spacing_large"
-        android:orientation="horizontal">
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/filter_wild"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_set_divider">
 
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_standard"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
           android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
+          android:text="@string/standard"
+          android:textColor="@color/black" />
 
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/standard"
-            android:textColor="@color/black" />
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
+      <com.taylorcase.hearthstonescry.CheckableFrameLayout
+        android:id="@+id/filter_wild"
+        style="@style/ScryButton.Bordered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_very_massive"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/button_filter_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter_standard"
+        app:layout_constraintTop_toBottomOf="@+id/filter_set_divider">
 
-        <com.taylorcase.hearthstonescry.CheckableFrameLayout
-          android:id="@+id/filter_wild"
-          style="@style/ScryButton.Bordered"
-          android:layout_width="0dp"
+        <TextView
+          style="@style/FilterClassTextView"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/spacing_medium"
-          android:layout_marginStart="@dimen/spacing_medium"
           android:layout_weight="1"
-          android:background="@drawable/button_filter_selector">
+          android:text="@string/wild"
+          android:textColor="@color/black" />
 
-          <TextView
-            style="@style/FilterClassTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/wild"
-            android:textColor="@color/black" />
+      </com.taylorcase.hearthstonescry.CheckableFrameLayout>
 
-        </com.taylorcase.hearthstonescry.CheckableFrameLayout>
-
-      </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
   </ScrollView>
 
@@ -753,7 +768,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:visibility="gone">
+    android:visibility="gone"
+    tools:visibility="visible">
 
     <TextView
       android:id="@+id/filter_apply_button"
