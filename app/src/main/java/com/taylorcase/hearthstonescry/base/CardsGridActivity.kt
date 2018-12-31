@@ -23,7 +23,7 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
 
     @Inject lateinit var adapter: CardsAdapter
 
-    @VisibleForTesting var cardsRecyclerView: RecyclerView? = null
+    @VisibleForTesting lateinit var cardsRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +44,8 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
         cardsRecyclerView = findViewById(R.id.cards_recycler_view)
         val layoutManager = GridLayoutManager(this, CARD_ROW_WIDTH)
         layoutManager.isAutoMeasureEnabled = false
-        cardsRecyclerView?.layoutManager = layoutManager
-        cardsRecyclerView?.adapter = adapter
+        cardsRecyclerView.layoutManager = layoutManager
+        cardsRecyclerView.adapter = adapter
     }
 
     fun showCards(cards: List<Card>) {
@@ -57,11 +57,11 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
         if (resultCode == Activity.RESULT_OK && !DeviceUtils.isSamsungDevice()) {
             val position = data.getIntExtra(EXTRA_POSITION, -1)
             postponeEnterTransition()
-            cardsRecyclerView?.addOnLayoutChangeListener({ _, _, _, _, _, _, _, _, _ ->
+            cardsRecyclerView.addOnLayoutChangeListener({ _, _, _, _, _, _, _, _, _ ->
                 cards_recycler_view.removeOnLayoutChangeListener(this)
                 startPostponedEnterTransition()
             })
-            cardsRecyclerView?.scrollToPosition(position)
+            cardsRecyclerView.scrollToPosition(position)
 
             toolbar.translationZ = -1f
         }
