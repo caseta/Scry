@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_cards)
 open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
 
     @Inject lateinit var presenter: SavedCardsContract.Presenter
@@ -29,6 +28,10 @@ open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
         cards_swipe_refresh.isEnabled = false
 
         card_sort_filter_container.makeGone()
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_cards
     }
 
     public override fun loadCards() {

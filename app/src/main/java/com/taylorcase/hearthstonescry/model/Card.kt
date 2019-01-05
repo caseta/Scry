@@ -33,10 +33,6 @@ data class Card(
         @ColumnInfo(name = "imgGold") @SerializedName("imgGold") @Expose var imgGold: String = "",
         @ColumnInfo(name = "locale") @SerializedName("locale") @Expose var locale: String = "") : Parcelable {
 
-    companion object {
-        const val CARD_EXTRA = "card_extra"
-    }
-
     // TODO: Make this config driven, so they can be updated without an app update
     fun isInStandard(): Boolean {
         if (cardSet == Sets.BASIC.toString() ||
@@ -49,5 +45,9 @@ data class Card(
             return true
         }
         return false
+    }
+
+    companion object {
+        const val CARD_EXTRA = "card_extra"
     }
 }

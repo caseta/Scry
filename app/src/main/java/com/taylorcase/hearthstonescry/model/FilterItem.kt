@@ -1,9 +1,10 @@
 package com.taylorcase.hearthstonescry.model
 
-import android.os.Parcel
 import android.os.Parcelable
 import com.taylorcase.hearthstonescry.model.enums.League
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 open class FilterItem constructor(
         val heroList: List<String> = emptyList(),
         val costList: List<String> = emptyList(),
@@ -11,37 +12,6 @@ open class FilterItem constructor(
         val league: String = "",
         val rarityList: List<String> = emptyList()
 ) : Parcelable {
-
-    constructor(parcel: Parcel) : this(
-            parcel.createStringArrayList(),
-            parcel.createStringArrayList(),
-            parcel.createStringArrayList(),
-            parcel.readString(),
-            parcel.createStringArrayList())
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeStringList(heroList)
-        parcel.writeStringList(costList)
-        parcel.writeStringList(setList)
-        parcel.writeString(league)
-        parcel.writeStringList(rarityList)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<FilterItem> {
-        override fun createFromParcel(parcel: Parcel): FilterItem {
-            return FilterItem(parcel)
-        }
-
-        override fun newArray(size: Int): Array<FilterItem?> {
-            return arrayOfNulls(size)
-        }
-
-        const val FILTER_EXTRA = "filter extra"
-    }
 
     fun isFilterEmpty(): Boolean {
         return heroList.isEmpty() && costList.isEmpty() &&
@@ -121,5 +91,9 @@ open class FilterItem constructor(
         }
 
         return true
+    }
+
+    companion object {
+        const val FILTER_EXTRA = "filter extra"
     }
 }
