@@ -1,7 +1,6 @@
 package com.taylorcase.hearthstonescry.selecthero
 
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -22,6 +21,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment.*
 import org.robolectric.shadows.ShadowApplication
+import org.robolectric.Robolectric
 
 @RunWith(RobolectricTestRunner::class)
 class SelectHeroViewHolderTest {
@@ -111,14 +111,15 @@ class SelectHeroViewHolderTest {
     }
 
     @Test fun testOnImageClickStartsDetailedSelectHeroActivity() {
-        val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
+        val activity = Robolectric.buildActivity(SelectHeroActivity::class.java).create().get()
+        val itemView = LayoutInflater.from(activity).inflate(R.layout.item_select_hero_card, FrameLayout(activity), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
 
         selectHeroViewHolder.loadHero(WARLOCK)
         selectHeroViewHolder.onClick(itemView.select_hero_image)
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
-        Assertions.assertThat(intent).isNotNull.hasComponent(application, DetailedSelectHeroActivity::class.java).hasExtra(EXTRA_HERO, WARLOCK.toString())
+        Assertions.assertThat(intent).isNotNull.hasComponent(activity, DetailedSelectHeroActivity::class.java).hasExtra(EXTRA_HERO, WARLOCK.toString())
     }
 
     companion object {

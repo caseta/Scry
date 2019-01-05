@@ -1,6 +1,6 @@
 buildscript {
-  ext.kotlinVersion = '1.2.41'
-  ext.gradlePluginVersion = '3.0.0'
+  ext.kotlinVersion = '1.2.51'
+  ext.gradlePluginVersion = '3.2.1'
   ext.playServicesVersion = '4.0.1'
   ext.fabricToolsVersion = '1.25.4'
   repositories {
@@ -43,12 +43,17 @@ ext {
   rxAndroidVersion = '2.1.0'
   okHttp3Version = '3.8.0'
   daggerVersion = '2.19'
-  moshiVersion = '1.6.0'
   glideVersion = '4.8.0'
   timberVersion = '4.7.1'
-  robolectricVersion = '3.8'
+  robolectricVersion = '4.1'
   mockitoKotlinVersion = '1.5.0'
   mockitoCoreVersion = '2.19.0'
   junitVersion = '4.12'
   crashlyticsVersion = '2.9.5'
+  firebaseVersion = '16.0.0'
+  retrofit2Version = '2.3.0'
+  gsonVersion = '2.0.2'
+  retrofit2Rxjava2AdapterVersion = '1.0.0'
+  assertjVersion = '1.1.1'
+  materialEditTextVersion = '2.1.4'
 }

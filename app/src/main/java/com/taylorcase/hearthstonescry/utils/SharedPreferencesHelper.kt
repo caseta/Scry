@@ -1,12 +1,10 @@
 package com.taylorcase.hearthstonescry.utils
 
 import android.app.Application
-import android.content.Context
 import android.content.Context.*
 import android.content.SharedPreferences
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.Card
-import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import java.util.HashSet
 import javax.inject.Inject
@@ -68,22 +66,25 @@ open class SharedPreferencesHelper @Inject constructor(var context: Application)
 
     open fun getSavedCardNames(): MutableSet<String> = sharedPreferences.getStringSet(SAVED_CARDS_SET, HashSet<String>())
 
-    private fun writeSavedCards(savedCarts: Set<String>) {
-        val editor = sharedPreferences.edit()
-        editor.putStringSet(SAVED_CARDS_SET, savedCarts)
-        editor.apply()
+    private fun writeSavedCards(savedCards: Set<String>) {
+        sharedPreferences.edit().run {
+            putStringSet(SAVED_CARDS_SET, savedCards)
+            apply()
+        }
     }
 
     open fun saveTheme(theme: Int) {
-        val editor = sharedPreferences.edit()
-        editor.putInt(SAVED_THEME, theme)
-        editor.apply()
+        sharedPreferences.edit().run {
+            putInt(SAVED_THEME, theme)
+            apply()
+        }
     }
 
     open fun saveHero(hero: Hero) {
-        val editor = sharedPreferences.edit()
-        editor.putString(FAVORITE_HERO_KEY, hero.toString())
-        editor.apply()
+        val editor = sharedPreferences.edit().apply {
+            putString(FAVORITE_HERO_KEY, hero.toString())
+            apply()
+        }
 
         updateSaveHeroCount(editor)
     }

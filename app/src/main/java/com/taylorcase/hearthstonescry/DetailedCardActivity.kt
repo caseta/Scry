@@ -18,7 +18,6 @@ import android.view.animation.AnimationUtils
 import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.*
 
-@InjectLayout(R.layout.activity_detailed_card)
 open class DetailedCardActivity : BaseActivity(), View.OnClickListener, DetailedCardContract.View {
 
     @Inject lateinit var imageLoader: ImageLoader
@@ -31,8 +30,8 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         get() = intent.getIntExtra(EXTRA_POSITION, -1)
 
     private var isCardSaved: Boolean = false
-    @VisibleForTesting var heart: Drawable? = null
-    @VisibleForTesting var heartFilled: Drawable? = null
+    @VisibleForTesting lateinit var heart: Drawable
+    @VisibleForTesting lateinit var heartFilled: Drawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +50,10 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         toggleHeart()
 
         slideUpDown()
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_detailed_card
     }
 
     private fun populateValues() {

@@ -9,7 +9,6 @@ import com.taylorcase.hearthstonescry.base.BaseActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_select_hero)
 open class SelectHeroActivity : BaseActivity() {
 
     @Inject lateinit var adapter: SelectHeroAdapter
@@ -18,6 +17,10 @@ open class SelectHeroActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         (application as ScryApplication).getAppComponent()?.inject(this)
         setupRecycler()
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_select_hero
     }
 
     private fun setupRecycler() {

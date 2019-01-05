@@ -13,16 +13,17 @@ import com.taylorcase.hearthstonescry.base.BaseActivity
 import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.include_toolbar_search.*
 import java.util.ArrayList
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_search)
 open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolder.OnSuggestionClickListener {
 
     @VisibleForTesting val allNames = ArrayList<String>()
     @VisibleForTesting var adapter: SearchAdapter? = null
+    private var disposable: Disposable? = null
 
     @Inject lateinit var presenter: SearchContract.Presenter
 
@@ -41,6 +42,10 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
         search_input_text.requestFocus()
     }
 
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_search
+    }
+
     private fun setupRecycler() {
         adapter = SearchAdapter()
         search_suggestions_recycler.adapter = adapter
@@ -49,7 +54,7 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
     }
 
     private fun setupTextListener() {
-        RxTextView.textChanges(search_input_text).filter {
+        disposable = RxTextView.textChanges(search_input_text).filter {
             if (it.isNotEmpty()) {
                 val str = it.toString()
                 val trimmed = str.trim()
@@ -96,6 +101,7 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
     public override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
+        disposable?.dispose()
         adapter?.listener = null
     }
 }

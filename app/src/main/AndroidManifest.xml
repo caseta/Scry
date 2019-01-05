@@ -13,14 +13,14 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme.Warlock">
+    android:theme="@style/AppTheme.Warlock"
+    android:usesCleartextTraffic="true">
     <activity android:name=".SplashActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".base.BaseActivity" />
     <activity android:name=".CardsActivity" />
     <activity android:name=".DetailedCardActivity" />
     <activity android:name=".search.SearchActivity" />

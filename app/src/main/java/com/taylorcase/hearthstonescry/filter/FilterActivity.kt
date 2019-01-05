@@ -25,7 +25,6 @@ import com.taylorcase.hearthstonescry.utils.*
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-@InjectLayout(R.layout.activity_filter)
 open class FilterActivity : BaseActivity(), View.OnClickListener {
 
     @VisibleForTesting lateinit var allFilters: Array<Checkable>
@@ -43,6 +42,10 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
         filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
         if (filterItem == null) filterItem = intent?.extras?.getParcelable(FilterItem.FILTER_EXTRA)
         if (filterItem == null) filterItem = FilterItem()
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_filter
     }
 
     private fun setAllFilterClickListeners() {

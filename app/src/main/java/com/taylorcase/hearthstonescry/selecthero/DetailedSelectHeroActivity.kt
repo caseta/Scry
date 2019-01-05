@@ -14,7 +14,6 @@ import com.taylorcase.hearthstonescry.utils.ImageLoader
 import kotlinx.android.synthetic.main.activity_detailed_select_hero.*
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_detailed_select_hero)
 class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectHeroContract.View {
 
     private lateinit var hero: Hero
@@ -40,6 +39,10 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
 
         detailed_select_hero_select.setOnClickListener(this)
         setupToolbar(detailed_select_hero_toolbar, "", BACK_ARROW)
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_detailed_select_hero
     }
 
     private fun setupCollapsingToolbar(title: String) {

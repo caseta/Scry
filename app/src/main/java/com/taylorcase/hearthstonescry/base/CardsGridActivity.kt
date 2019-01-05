@@ -18,7 +18,6 @@ import com.taylorcase.hearthstonescry.utils.DeviceUtils
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_cards)
 abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
 
     @Inject lateinit var adapter: CardsAdapter
@@ -57,10 +56,10 @@ abstract class CardsGridActivity : BaseActivity(), View.OnLayoutChangeListener {
         if (resultCode == Activity.RESULT_OK && !DeviceUtils.isSamsungDevice()) {
             val position = data.getIntExtra(EXTRA_POSITION, -1)
             postponeEnterTransition()
-            cardsRecyclerView.addOnLayoutChangeListener({ _, _, _, _, _, _, _, _, _ ->
+            cardsRecyclerView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
                 cards_recycler_view.removeOnLayoutChangeListener(this)
                 startPostponedEnterTransition()
-            })
+            }
             cardsRecyclerView.scrollToPosition(position)
 
             toolbar.translationZ = -1f

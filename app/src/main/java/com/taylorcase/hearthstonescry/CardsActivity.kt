@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
-@InjectLayout(R.layout.activity_cards)
 open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClickListener  {
 
     @Inject lateinit var presenter: CardsContract.Presenter
@@ -36,6 +35,10 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
 
         if (filterItem == null) filterItem = FilterItem()
+    }
+
+    override fun provideContentLayoutId(): Int {
+        return R.layout.activity_cards
     }
 
     override fun onResume() {

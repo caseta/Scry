@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.annotation.VisibleForTesting
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.view.Gravity.*
@@ -25,7 +26,6 @@ import com.taylorcase.hearthstonescry.filter.FilterActivity
 import com.taylorcase.hearthstonescry.search.SearchActivity
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.KeyboardUtils
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import javax.inject.Inject
@@ -33,7 +33,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.SpannableString
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, MvpView {
+abstract class BaseActivity : AppCompatActivity(), RequestListener<Drawable>, MvpView {
 
     @VisibleForTesting var navDrawerFragment: NavDrawerFragment? = null
     private var drawerLayout: DrawerLayout? = null
@@ -58,10 +58,12 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
 
         val inflater = LayoutInflater.from(this)
         drawerLayout = inflater.inflate(R.layout.decor_nav_drawer, null) as DrawerLayout
-        inflater.inflate(getLayoutId(), drawerLayout?.findViewById<FrameLayout>(R.id.drawer_content), true)
+        inflater.inflate(provideContentLayoutId(), drawerLayout?.findViewById<FrameLayout>(R.id.drawer_content), true)
         setContentView(drawerLayout)
         drawerLayout?.addDrawerListener(ActivityDrawerListener())
     }
+
+    abstract fun provideContentLayoutId(): Int
 
     fun displaySnackbar(message: String) {
         Snackbar.make(drawer_layout, message, Snackbar.LENGTH_SHORT).show()
@@ -158,25 +160,6 @@ abstract class BaseActivity : RxAppCompatActivity(), RequestListener<Drawable>, 
 
     private fun getAppName(): String {
         return resources.getString(R.string.app_name)
-    }
-
-    private fun getLayoutId(): Int {
-        val contentView = findAnnotation(javaClass, InjectLayout::class.java)
-                ?: throw IllegalStateException(javaClass.simpleName + " does not specify @InjectLayout")
-        return contentView.value
-    }
-
-    private fun <A : Annotation> findAnnotation(type: Class<*>, annotationType: Class<A>): A? {
-        var annotation: A? = null
-        var currentType: Class<*>? = type
-        while (currentType != null) {
-            annotation = currentType.getAnnotation(annotationType)
-            if (annotation != null) {
-                break
-            }
-            currentType = currentType.superclass
-        }
-        return annotation
     }
 
     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
