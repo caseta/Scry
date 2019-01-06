@@ -91,12 +91,8 @@ abstract class BaseActivity : AppCompatActivity(), RequestListener<Drawable>, Mv
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.action_search) {
-            startActivity(Intent(this, SearchActivity::class.java))
-        }
-        if (id == android.R.id.home) {
-            onBackPressed()
-        }
+        if (id == R.id.action_search) startActivity(Intent(this, SearchActivity::class.java))
+        if (id == android.R.id.home) onBackPressed()
 
         return super.onOptionsItemSelected(item)
     }

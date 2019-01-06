@@ -8,7 +8,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-open class SavedCardsPresenter @Inject constructor(private val sharedPreferencesHelper: SharedPreferencesHelper, private val cardRepository: CardRepository) : BasePresenter<SavedCardsContract.View>(), SavedCardsContract.Presenter {
+open class SavedCardsPresenter @Inject constructor(
+        private val sharedPreferencesHelper: SharedPreferencesHelper,
+        private val cardRepository: CardRepository
+) : BasePresenter<SavedCardsContract.View>(), SavedCardsContract.Presenter {
 
     lateinit var view: SavedCardsContract.View
 

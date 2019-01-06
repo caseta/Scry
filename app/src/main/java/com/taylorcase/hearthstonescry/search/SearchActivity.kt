@@ -55,8 +55,8 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
     private fun setupTextListener() {
         disposable = RxTextView.textChanges(search_input_text).filter {
             if (it.isNotEmpty()) {
-                val str = it.toString()
-                val trimmed = str.trim()
+                val suggestion = it.toString()
+                val trimmed = suggestion.trim()
                 if (trimmed.isNotEmpty()) {
                     return@filter true
                 }
@@ -83,9 +83,7 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_search) {
-            return true
-        }
+        if (item.itemId == R.id.action_search) return true
         return super.onOptionsItemSelected(item)
     }
 

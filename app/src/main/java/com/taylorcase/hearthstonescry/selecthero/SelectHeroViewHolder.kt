@@ -10,7 +10,11 @@ import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.utils.*
 import kotlinx.android.synthetic.main.item_select_hero_card.view.*
 
-open class SelectHeroViewHolder constructor(itemView: View, var imageLoader: ImageLoader, var heroUtils: HeroUtils) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+open class SelectHeroViewHolder constructor(
+        itemView: View,
+        private val imageLoader: ImageLoader,
+        private val heroUtils: HeroUtils
+) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     private var context: Context = itemView.context
     lateinit var hero: Hero

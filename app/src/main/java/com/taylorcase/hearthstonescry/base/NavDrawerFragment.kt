@@ -59,9 +59,7 @@ open class NavDrawerFragment : Fragment(), View.OnClickListener {
             R.id.nav_drawer_saved_cards -> startActivity(Intent(activity, SavedCardsActivity::class.java))
         }
         val activity = activity
-        if (activity is BaseActivity) {
-            activity.closeDrawer()
-        }
+        (activity as? BaseActivity)?.closeDrawer()
     }
 
     companion object {

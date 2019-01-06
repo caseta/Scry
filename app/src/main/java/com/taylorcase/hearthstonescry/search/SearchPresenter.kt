@@ -8,7 +8,9 @@ import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-open class SearchPresenter @Inject constructor(private val cardRepository: CardRepository) : BasePresenter<SearchContract.View>(), SearchContract.Presenter {
+open class SearchPresenter @Inject constructor(
+        private val cardRepository: CardRepository
+) : BasePresenter<SearchContract.View>(), SearchContract.Presenter {
 
     lateinit var view: SearchContract.View
 
