@@ -6,8 +6,12 @@ import android.view.ViewGroup
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.ImageLoader
 import javax.inject.Inject
+import javax.inject.Singleton
 
-open class CardsAdapter @Inject constructor(var imageLoader: ImageLoader) : RecyclerView.Adapter<CardsViewHolder>() {
+@Singleton
+open class CardsAdapter @Inject constructor(
+        private val imageLoader: ImageLoader
+) : RecyclerView.Adapter<CardsViewHolder>() {
 
     var cards: List<Card> = emptyList()
 

@@ -10,43 +10,50 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class ReviewAppDialogTest : FragmentTest() {
 
-    @Test fun testYesHasOnCLickListener() {
+    @Test
+    fun testYesHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_yes.hasOnClickListeners())
     }
 
-    @Test fun testNahhhHasOnCLickListener() {
+    @Test
+    fun testNahhhHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_nahhh.hasOnClickListeners())
     }
 
-    @Test fun testRateHasOnCLickListener() {
+    @Test
+    fun testRateHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_rate.hasOnClickListeners())
     }
 
-    @Test fun testSendFeedbackHasOnCLickListener() {
+    @Test
+    fun testSendFeedbackHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_send_feedback.hasOnClickListeners())
     }
 
-    @Test fun testCancelRateHasOnCLickListener() {
+    @Test
+    fun testCancelRateHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_cancel_rate.hasOnClickListeners())
     }
 
-    @Test fun testCancelFeedbackHasOnCLickListener() {
+    @Test
+    fun testCancelFeedbackHasOnCLickListener() {
         val fragment = startFragment(ReviewAppDialog())
 
         assertThat(fragment.app_review_cancel_feedback.hasOnClickListeners())
     }
 
-    @Test fun testYesClickedSetsTextAndTogglesVisibility() {
+    @Test
+    fun testYesClickedSetsTextAndTogglesVisibility() {
         val fragment = startFragment(ReviewAppDialog()) as ReviewAppDialog
 
         fragment.onClick(fragment.app_review_yes)
@@ -58,7 +65,8 @@ class ReviewAppDialogTest : FragmentTest() {
         assertThat(fragment.app_review_rate).isVisible
     }
 
-    @Test fun testNahhhClickedSetsTextAndTogglesVisibility() {
+    @Test
+    fun testNahhhClickedSetsTextAndTogglesVisibility() {
         val fragment = startFragment(ReviewAppDialog()) as ReviewAppDialog
 
         fragment.onClick(fragment.app_review_nahhh)

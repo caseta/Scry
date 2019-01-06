@@ -4,19 +4,30 @@ import android.content.Intent
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.taylorcase.hearthstonescry.InjectingTest
-import com.taylorcase.hearthstonescry.R
+import com.taylorcase.hearthstonescry.*
 import com.taylorcase.hearthstonescry.model.enums.Hero
+import com.taylorcase.hearthstonescry.utils.HeroUtils
 import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric.*
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import javax.inject.Inject
 
 @RunWith(RobolectricTestRunner::class)
-open class DetailedSelectHeroActivityTest : InjectingTest() {
+open class DetailedSelectHeroActivityTest {
+
+    @Inject lateinit var mockSelectHeroPresenter: SelectHeroContract.Presenter
+    @Inject lateinit var mockHeroUtils: HeroUtils
 
     private lateinit var activity: DetailedSelectHeroActivity
+
+    @Before
+    fun setUp() {
+        ((RuntimeEnvironment.application as TestScryApplication).getComponent() as TestAppComponent).inject(this)
+    }
 
     @Test
     fun testOnCreateActivityPresenterCallsAttach() {

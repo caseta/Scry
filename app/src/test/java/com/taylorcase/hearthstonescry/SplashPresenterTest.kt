@@ -26,7 +26,8 @@ class SplashPresenterTest {
         RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
     }
 
-    @Test fun testLoadCardsRefreshCardsFalseCallsLoadSuccess() {
+    @Test
+    fun testLoadCardsRefreshCardsFalseCallsLoadSuccess() {
         val presenter = demandSplashPresenter()
 
         presenter.loadCards()
@@ -35,7 +36,8 @@ class SplashPresenterTest {
         verify(mockCardRepo).refreshCards()
     }
 
-    @Test fun testLoadCardsRefreshCardsCallsViewLoadCardsSuccess() {
+    @Test
+    fun testLoadCardsRefreshCardsCallsViewLoadCardsSuccess() {
         doReturn(true).whenever(mockCardRepo).refreshCards()
         doReturn(Single.just(singletonList(Card()))).whenever(mockCardRepo).observeAllCardsWithApi()
         val presenter = demandSplashPresenter()
@@ -46,7 +48,7 @@ class SplashPresenterTest {
         verify(mockCardRepo).refreshCards()
     }
 
-    private fun demandSplashPresenter() : SplashPresenter {
+    private fun demandSplashPresenter(): SplashPresenter {
         val presenter = SplashPresenter(mockCardRepo)
         presenter.attach(mockView)
         return presenter

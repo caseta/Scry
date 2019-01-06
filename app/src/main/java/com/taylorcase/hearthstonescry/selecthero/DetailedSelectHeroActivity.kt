@@ -7,7 +7,6 @@ import com.taylorcase.hearthstonescry.CardsActivity
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
 import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroViewHolder.Companion.EXTRA_HERO
 import com.taylorcase.hearthstonescry.utils.ImageLoader
@@ -24,7 +23,7 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         presenter.attach(this)
 
         val intent = intent

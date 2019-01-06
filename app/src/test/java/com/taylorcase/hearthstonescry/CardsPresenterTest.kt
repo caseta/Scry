@@ -24,14 +24,16 @@ class CardsPresenterTest {
     private val mockNetworkManager = mock<NetworkManager>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
 
-    @Before fun setup() {
+    @Before
+    fun setup() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
     }
 
-    @Test fun testLoadCardsSuccessfullyCallsViewDisplayCards() {
+    @Test
+    fun testLoadCardsSuccessfullyCallsViewDisplayCards() {
         val card = Card()
         val presenter = demandCardsPresenter()
         doReturn(WARLOCK).whenever(mockHeroUtils).getFavoriteHero()
@@ -44,7 +46,8 @@ class CardsPresenterTest {
         verify(mockView).displayCards(singletonList(card))
     }
 
-    @Test fun testLoadCardsShowsErrorProperly() {
+    @Test
+    fun testLoadCardsShowsErrorProperly() {
         val error = IllegalStateException()
         val single: Single<List<Card>> = Single.error(error)
         val presenter = demandCardsPresenter()
@@ -59,7 +62,8 @@ class CardsPresenterTest {
         verify(mockView).showError()
     }
 
-    @Test fun testRefreshAllCardsSuccessfullyCallsDisplayCards() {
+    @Test
+    fun testRefreshAllCardsSuccessfullyCallsDisplayCards() {
         val card = Card()
         val presenter = demandCardsPresenter()
         doReturn(true).whenever(mockNetworkManager).isConnected()
@@ -76,7 +80,8 @@ class CardsPresenterTest {
         verify(mockView).displayCards(singletonList(card))
     }
 
-    @Test fun testRefreshAllCardsShowsErrorProperly() {
+    @Test
+    fun testRefreshAllCardsShowsErrorProperly() {
         val error = IllegalStateException()
         val single: Single<List<Card>> = Single.error(error)
         val presenter = demandCardsPresenter()
@@ -92,7 +97,8 @@ class CardsPresenterTest {
         verify(mockView, never()).displayCards(any())
     }
 
-    @Test fun testRefreshCardsCallsDisplayNetworkErrorWhenNotConnected() {
+    @Test
+    fun testRefreshCardsCallsDisplayNetworkErrorWhenNotConnected() {
         val presenter = demandCardsPresenter()
 
         presenter.refreshAllCards()
@@ -104,7 +110,7 @@ class CardsPresenterTest {
         verify(mockView).displayNetworkError()
     }
 
-    private fun demandCardsPresenter() : CardsPresenter {
+    private fun demandCardsPresenter(): CardsPresenter {
         val presenter = CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
         presenter.attach(mockView)
         return presenter

@@ -6,7 +6,6 @@ import kotlinx.android.synthetic.main.activity_select_hero.*
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
 import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import javax.inject.Inject
 
 open class SelectHeroActivity : BaseActivity() {
@@ -15,7 +14,7 @@ open class SelectHeroActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setupRecycler()
     }
 

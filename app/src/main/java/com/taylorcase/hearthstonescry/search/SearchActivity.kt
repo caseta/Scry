@@ -10,7 +10,6 @@ import com.taylorcase.hearthstonescry.DetailedCardActivity
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
 import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import io.reactivex.disposables.Disposable
@@ -29,7 +28,7 @@ open class SearchActivity : BaseActivity(), SearchContract.View, SearchViewHolde
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         presenter.attach(this)
         setupToolbar(findViewById(R.id.toolbar_search), navigationMethod = BACK_ARROW)
 

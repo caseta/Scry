@@ -29,14 +29,16 @@ class SelectHeroViewHolderTest {
     private val mockImageLoader = mock<ImageLoader>()
     private val mockHeroUtils = mock<HeroUtils>()
 
-    @Test fun testCreateSelectHeroViewHolderIsNotNull() {
+    @Test
+    fun testCreateSelectHeroViewHolderIsNotNull() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
 
         assertThat(selectHeroViewHolder).isNotNull()
     }
 
-    @Test fun testLoadHeroSetsClickListeners() {
+    @Test
+    fun testLoadHeroSetsClickListeners() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
 
@@ -48,7 +50,8 @@ class SelectHeroViewHolderTest {
         assertThat(itemView.isClickable).isTrue()
     }
 
-    @Test fun testLoadHeroLoadsHeroIcon() {
+    @Test
+    fun testLoadHeroLoadsHeroIcon() {
         doReturn(R.drawable.ic_warlock).whenever(mockHeroUtils).getHeroIconForHero(WARLOCK)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
@@ -59,7 +62,8 @@ class SelectHeroViewHolderTest {
         verify(mockHeroUtils).getHeroIconForHero(WARLOCK)
     }
 
-    @Test fun testLoadHeroLoadsHeroImage() {
+    @Test
+    fun testLoadHeroLoadsHeroImage() {
         doReturn(R.drawable.hero_warlock).whenever(mockHeroUtils).getHeroImageForHero(WARLOCK)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
@@ -70,7 +74,8 @@ class SelectHeroViewHolderTest {
         verify(mockHeroUtils).getHeroImageForHero(WARLOCK)
     }
 
-    @Test fun testLoadHeroSetsHeaderText() {
+    @Test
+    fun testLoadHeroSetsHeaderText() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
 
@@ -79,7 +84,8 @@ class SelectHeroViewHolderTest {
         assertThat(itemView.select_hero_header_text.text).isEqualTo(WARLOCK.toString())
     }
 
-    @Test fun testLoadHeroSetsDescriptionText() {
+    @Test
+    fun testLoadHeroSetsDescriptionText() {
         doReturn(WARLOCK_DESCRIPTION).whenever(mockHeroUtils).getDescriptionForHero(WARLOCK)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
@@ -90,7 +96,8 @@ class SelectHeroViewHolderTest {
         verify(mockHeroUtils).getDescriptionForHero(WARLOCK)
     }
 
-    @Test fun testOnClickDescriptionToggleHidesDescription() {
+    @Test
+    fun testOnClickDescriptionToggleHidesDescription() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
         itemView.select_hero_sub_header_text.makeVisible()
@@ -100,7 +107,8 @@ class SelectHeroViewHolderTest {
         Assertions.assertThat(itemView.select_hero_sub_header_text).isGone
     }
 
-    @Test fun testOnClickDescriptionToggleShowsDescription() {
+    @Test
+    fun testOnClickDescriptionToggleShowsDescription() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_select_hero_card, FrameLayout(application), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)
         itemView.select_hero_sub_header_text.makeGone()
@@ -110,7 +118,8 @@ class SelectHeroViewHolderTest {
         Assertions.assertThat(itemView.select_hero_sub_header_text).isVisible
     }
 
-    @Test fun testOnImageClickStartsDetailedSelectHeroActivity() {
+    @Test
+    fun testOnImageClickStartsDetailedSelectHeroActivity() {
         val activity = Robolectric.buildActivity(SelectHeroActivity::class.java).create().get()
         val itemView = LayoutInflater.from(activity).inflate(R.layout.item_select_hero_card, FrameLayout(activity), false)
         val selectHeroViewHolder = SelectHeroViewHolder(itemView, mockImageLoader, mockHeroUtils)

@@ -23,7 +23,8 @@ class CardsViewHolderTest {
     private val mockImageLoader = mock<ImageLoader>()
     private val mockView = mock<View>()
 
-    @Test fun testLoadCardSetsOnClickListener() {
+    @Test
+    fun testLoadCardSetsOnClickListener() {
         val card = Card()
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)
@@ -33,7 +34,8 @@ class CardsViewHolderTest {
         assertThat(cardsViewHolder.itemView.hasOnClickListeners()).isTrue()
     }
 
-    @Test fun testLoadCardSetsItemAsClickableAndEnabled() {
+    @Test
+    fun testLoadCardSetsItemAsClickableAndEnabled() {
         val card = Card()
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)
@@ -45,7 +47,8 @@ class CardsViewHolderTest {
     }
 
     @Ignore
-    @Test fun testOnClickSetsItemAsNotClickableAndNotEnabled() {
+    @Test
+    fun testOnClickSetsItemAsNotClickableAndNotEnabled() {
         val card = Card(img = IMG_ID, cardId = CARD_ID)
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_card, FrameLayout(application), false)
         val cardsViewHolder = CardsViewHolder(itemView, mockImageLoader)

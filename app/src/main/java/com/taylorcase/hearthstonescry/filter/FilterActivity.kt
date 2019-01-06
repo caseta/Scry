@@ -12,7 +12,6 @@ import com.taylorcase.hearthstonescry.CheckableFrameLayout
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
 import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Cost
 import com.taylorcase.hearthstonescry.model.enums.Cost.*
@@ -33,7 +32,7 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setupToolbar(toolbar, getString(R.string.filter), MODAL)
 
         populateAllFilters()

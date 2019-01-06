@@ -18,7 +18,8 @@ class CardsAdapterTest {
     private val mockImageLoader = mock<ImageLoader>()
     private val mockViewHolder = mock<CardsViewHolder>()
 
-    @Test fun testCreateViewHolderIsNotNull() {
+    @Test
+    fun testCreateViewHolderIsNotNull() {
         val adapter = CardsAdapter(mockImageLoader)
 
         val viewHolder = adapter.onCreateViewHolder(FrameLayout(application), 1)
@@ -26,7 +27,8 @@ class CardsAdapterTest {
         assertThat(viewHolder).isNotNull()
     }
 
-    @Test fun testOnBindViewHolderCallsLoadCard() {
+    @Test
+    fun testOnBindViewHolderCallsLoadCard() {
         val card = Card()
         val adapter = CardsAdapter(mockImageLoader)
         adapter.swapData(singletonList(card))
@@ -36,7 +38,8 @@ class CardsAdapterTest {
         verify(mockViewHolder).loadCard(card, 0)
     }
 
-    @Test fun testGetItemCount() {
+    @Test
+    fun testGetItemCount() {
         val card = Card()
         val adapter = CardsAdapter(mockImageLoader)
 
@@ -45,7 +48,8 @@ class CardsAdapterTest {
         assertThat(adapter.itemCount).isEqualTo(2)
     }
 
-    @Test fun testSwapData() {
+    @Test
+    fun testSwapData() {
         val card = Card()
         val adapter = CardsAdapter(mockImageLoader)
 

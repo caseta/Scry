@@ -1,38 +1,48 @@
 package com.taylorcase.hearthstonescry.savedcards
 
 import com.nhaarman.mockito_kotlin.*
-import com.taylorcase.hearthstonescry.InjectingTest
+import com.taylorcase.hearthstonescry.*
 import com.taylorcase.hearthstonescry.model.Card
 import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.decor_nav_drawer.*
 import org.assertj.android.api.Assertions
 import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric.*
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import java.util.Collections.*
+import javax.inject.Inject
 
 @RunWith(RobolectricTestRunner::class)
-class SavedCardsActivityTest : InjectingTest() {
+class SavedCardsActivityTest {
+
+    @Inject lateinit var mockSavedCardsPresenter: SavedCardsContract.Presenter
+    @Inject lateinit var mockCardsAdapter: CardsAdapter
 
     private lateinit var activity: SavedCardsActivity
 
-    @Test fun testOnCreateActivityPresenterCallsAttach() {
+    @Before
+    fun setUp() {
+        ((RuntimeEnvironment.application as TestScryApplication).getComponent() as TestAppComponent).inject(this)
         activity = buildActivity(SavedCardsActivity::class.java).create().get()
+    }
 
+    @Test
+    fun testOnCreateActivityPresenterCallsAttach() {
         verify(mockSavedCardsPresenter).attach(activity)
     }
 
-    @Test fun testOnCreateActivitySwipeRefreshIsDisabled() {
-        activity = buildActivity(SavedCardsActivity::class.java).create().get()
-
+    @Test
+    fun testOnCreateActivitySwipeRefreshIsDisabled() {
         Assertions.assertThat(activity.cards_swipe_refresh).isDisabled
     }
 
-    @Test fun testLoadCardsSavedCountIsGreaterThanZeroCallsLoadSavedCards() {
+    @Test
+    fun testLoadCardsSavedCountIsGreaterThanZeroCallsLoadSavedCards() {
         doReturn(1).whenever(mockSavedCardsPresenter)?.getSavedCardCount()
-        activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
         activity.loadCards()
 
@@ -40,9 +50,9 @@ class SavedCardsActivityTest : InjectingTest() {
         verify(mockSavedCardsPresenter).loadSavedCards()
     }
 
-    @Test fun testLoadCardsWithZeroSavedCardsShowsEmptyList() {
+    @Test
+    fun testLoadCardsWithZeroSavedCardsShowsEmptyList() {
         doReturn(-1).whenever(mockSavedCardsPresenter)?.getSavedCardCount()
-        activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
         activity.loadCards()
 
@@ -54,9 +64,9 @@ class SavedCardsActivityTest : InjectingTest() {
         Assertions.assertThat(activity.cards_recycler_view).isGone
     }
 
-    @Test fun testDisplayCardsCallsAdapterSwapData() {
+    @Test
+    fun testDisplayCardsCallsAdapterSwapData() {
         val cards = singletonList(Card())
-        activity = buildActivity(SavedCardsActivity::class.java).create().get()
 
         activity.displayCards(cards)
 
@@ -64,9 +74,8 @@ class SavedCardsActivityTest : InjectingTest() {
         verify(mockCardsAdapter).swapData(cards)
     }
 
-    @Test fun testOnDestroyDetachesPresenter() {
-        activity = buildActivity(SavedCardsActivity::class.java).create().get()
-
+    @Test
+    fun testOnDestroyDetachesPresenter() {
         activity.onDestroy()
 
         verify(mockSavedCardsPresenter).detach()

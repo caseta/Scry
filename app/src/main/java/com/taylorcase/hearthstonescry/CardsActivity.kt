@@ -7,7 +7,6 @@ import android.support.annotation.VisibleForTesting
 import android.view.View
 import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.base.CardsGridActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.filter.FilterActivity
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.FilterItem
@@ -23,7 +22,7 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setupToolbar(toolbar)
         presenter.attach(this)
 

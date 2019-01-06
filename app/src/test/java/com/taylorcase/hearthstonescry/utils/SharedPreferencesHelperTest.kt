@@ -23,7 +23,8 @@ class SharedPreferencesHelperTest {
     private val mockSharedPreferences = mock<SharedPreferences>()
     private val mockEditor = mock<SharedPreferences.Editor>()
 
-    @Test fun testGetSavedCardNamesReturnsSavedSet() {
+    @Test
+    fun testGetSavedCardNamesReturnsSavedSet() {
         val expectedSet = HashSet<String>()
         expectedSet.add(CARD_NAME)
         val helper = demandHelperWithSavedCardName()
@@ -34,7 +35,8 @@ class SharedPreferencesHelperTest {
         verifySavedCardName()
     }
 
-    @Test fun testGetSavedCardNameReturnsEmptySetWhenThereAreNoSavedCards() {
+    @Test
+    fun testGetSavedCardNameReturnsEmptySetWhenThereAreNoSavedCards() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         val expectedSet = HashSet<String>()
         val helper = SharedPreferencesHelper(mockContext)
@@ -45,7 +47,8 @@ class SharedPreferencesHelperTest {
         verifySavedCardName()
     }
 
-    @Test fun testGetSavedCardsWithOneCard() {
+    @Test
+    fun testGetSavedCardsWithOneCard() {
         val card = Card(name = CARD_NAME)
         val secondCard = Card(name = SECOND_CARD_NAME)
         val expectedSavedCardsList = ArrayList<Card>()
@@ -59,7 +62,8 @@ class SharedPreferencesHelperTest {
         assertThat(savedCards).hasSize(1)
     }
 
-    @Test fun testGetSavedCardsReturnsNoCardsWithZeroMatches() {
+    @Test
+    fun testGetSavedCardsReturnsNoCardsWithZeroMatches() {
         val secondCard = Card(name = SECOND_CARD_NAME)
         val expectedSavedCardsList = ArrayList<Card>()
         val helper = demandHelperWithSavedCardName()
@@ -71,14 +75,16 @@ class SharedPreferencesHelperTest {
         assertThat(savedCards).hasSize(0)
     }
 
-    @Test fun testGetSavedCardsCountIsOne() {
+    @Test
+    fun testGetSavedCardsCountIsOne() {
         val helper = demandHelperWithSavedCardName()
 
         assertThat(helper.getSavedCardsCount()).isEqualTo(1)
         verifySavedCardName()
     }
 
-    @Test fun testGetSavedCardsCountIsZero() {
+    @Test
+    fun testGetSavedCardsCountIsZero() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         val helper = SharedPreferencesHelper(mockContext)
 
@@ -86,7 +92,8 @@ class SharedPreferencesHelperTest {
         verifySavedCardName()
     }
 
-    @Test fun testIsCardSavedTrue() {
+    @Test
+    fun testIsCardSavedTrue() {
         val card = Card(name = CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
@@ -94,7 +101,8 @@ class SharedPreferencesHelperTest {
         verifySavedCardName()
     }
 
-    @Test fun testIsCardSavedFalse() {
+    @Test
+    fun testIsCardSavedFalse() {
         val card = Card(name = SECOND_CARD_NAME)
         val helper = demandHelperWithSavedCardName()
 
@@ -102,7 +110,8 @@ class SharedPreferencesHelperTest {
         verifySavedCardName()
     }
 
-    @Test fun testSaveCardWritesToSharedPreferencesWithNoPreviousCards() {
+    @Test
+    fun testSaveCardWritesToSharedPreferencesWithNoPreviousCards() {
         val card = Card(name = CARD_NAME)
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
@@ -116,7 +125,8 @@ class SharedPreferencesHelperTest {
         verifyEditorStringSetAddition(expectedSet)
     }
 
-    @Test fun testSaveCardWritesToSharedPreferencesWithPreviousCards() {
+    @Test
+    fun testSaveCardWritesToSharedPreferencesWithPreviousCards() {
         val secondCard = Card(name = SECOND_CARD_NAME)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val expectedSet = HashSet<String>()
@@ -130,7 +140,8 @@ class SharedPreferencesHelperTest {
         verifyEditorStringSetAddition(expectedSet)
     }
 
-    @Test fun testRemoveCard() {
+    @Test
+    fun testRemoveCard() {
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val card = Card(name = CARD_NAME)
         val helper = demandHelperWithSavedCardName()
@@ -141,7 +152,8 @@ class SharedPreferencesHelperTest {
         verifyEditorStringSetAddition(HashSet())
     }
 
-    @Test fun testSaveTheme() {
+    @Test
+    fun testSaveTheme() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val helper = SharedPreferencesHelper(mockContext)
@@ -154,7 +166,8 @@ class SharedPreferencesHelperTest {
         verify(mockEditor).apply()
     }
 
-    @Test fun testSaveHero() {
+    @Test
+    fun testSaveHero() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(mockEditor).whenever(mockSharedPreferences).edit()
         val helper = SharedPreferencesHelper(mockContext)
@@ -167,7 +180,8 @@ class SharedPreferencesHelperTest {
         verify(mockEditor, times(2)).apply()
     }
 
-    @Test fun testGetSavedHeroString() {
+    @Test
+    fun testGetSavedHeroString() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(Hero.WARLOCK.toString()).whenever(mockSharedPreferences).getString(FAVORITE_HERO_KEY, "")
         val helper = SharedPreferencesHelper(mockContext)
@@ -177,7 +191,8 @@ class SharedPreferencesHelperTest {
         verify(mockSharedPreferences).getString(FAVORITE_HERO_KEY, "")
     }
 
-    @Test fun testGetSavedHeroStringReturnsEmptyWhenThereIsNoSavedHero() {
+    @Test
+    fun testGetSavedHeroStringReturnsEmptyWhenThereIsNoSavedHero() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn("").whenever(mockSharedPreferences).getString(FAVORITE_HERO_KEY, "")
         val helper = SharedPreferencesHelper(mockContext)
@@ -187,7 +202,8 @@ class SharedPreferencesHelperTest {
         verify(mockSharedPreferences).getString(FAVORITE_HERO_KEY, "")
     }
 
-    @Test fun testGetTheme() {
+    @Test
+    fun testGetTheme() {
         doReturn(mockSharedPreferences).whenever(mockContext).getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
         doReturn(R.style.AppTheme_Warrior).whenever(mockSharedPreferences).getInt(SAVED_THEME, R.style.AppTheme_Warlock)
         val helper = SharedPreferencesHelper(mockContext)

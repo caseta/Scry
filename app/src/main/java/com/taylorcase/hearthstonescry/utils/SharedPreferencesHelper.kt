@@ -117,7 +117,7 @@ open class SharedPreferencesHelper @Inject constructor(var context: Application)
 
     // Ask the user to rate the app the second time they change heroes
     // Also make sure they only get asked once
-    open fun shouldAskUserToRateApp() : Boolean {
+    open fun shouldAskUserToRateApp(): Boolean {
         val hasBeenAsked = sharedPreferences.getInt(ASK_TO_RATE_APP_KEY, USER_HAS_NOT_BEEN_ASKED_TO_RATE)
         val saveHeroCount = sharedPreferences.getInt(SAVE_HERO_COUNT_KEY, SAVE_HERO_COUNT_ZERO)
         return hasBeenAsked == USER_HAS_NOT_BEEN_ASKED_TO_RATE && saveHeroCount > 1

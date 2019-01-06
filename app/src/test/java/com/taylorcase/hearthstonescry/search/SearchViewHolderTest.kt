@@ -17,14 +17,16 @@ class SearchViewHolderTest {
 
     private val mockSuggestionListener = mock<SearchViewHolder.OnSuggestionClickListener>()
 
-    @Test fun testCreateSetsTextViewWithClickListener() {
+    @Test
+    fun testCreateSetsTextViewWithClickListener() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
         val searchViewHolder = SearchViewHolder(itemView)
 
         assertThat(searchViewHolder).isNotNull()
     }
 
-    @Test fun testSetSuggestionListener() {
+    @Test
+    fun testSetSuggestionListener() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
         val searchViewHolder = SearchViewHolder(itemView)
         assertThat(searchViewHolder.onSuggestionClickListener).isNull()
@@ -34,7 +36,8 @@ class SearchViewHolderTest {
         assertThat(searchViewHolder.onSuggestionClickListener).isNotNull()
     }
 
-    @Test fun testOnClickCallsListenerSuggestionClicked() {
+    @Test
+    fun testOnClickCallsListenerSuggestionClicked() {
         val itemView = LayoutInflater.from(application).inflate(R.layout.item_search_suggestion, FrameLayout(application), false)
         val searchViewHolder = SearchViewHolder(itemView)
         searchViewHolder.onSuggestionClickListener = mockSuggestionListener
