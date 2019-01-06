@@ -5,7 +5,9 @@ import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
 import javax.inject.Inject
 
-open class DetailedCardPresenter @Inject constructor(private val sharedPreferencesHelper: SharedPreferencesHelper) : BasePresenter<DetailedCardContract.View>(), DetailedCardContract.Presenter {
+open class DetailedCardPresenter @Inject constructor(
+        private val sharedPreferencesHelper: SharedPreferencesHelper
+) : BasePresenter<DetailedCardContract.View>(), DetailedCardContract.Presenter {
 
     lateinit var view: DetailedCardContract.View
 

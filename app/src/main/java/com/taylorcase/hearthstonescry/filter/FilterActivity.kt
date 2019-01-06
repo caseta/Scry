@@ -1,6 +1,8 @@
 package com.taylorcase.hearthstonescry.filter
 
 import android.app.Activity
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.VisibleForTesting
@@ -27,8 +29,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 open class FilterActivity : BaseActivity(), View.OnClickListener {
 
     @VisibleForTesting lateinit var allFilters: Array<Checkable>
-
-    @VisibleForTesting private var filterItem: FilterItem? = null
+    @VisibleForTesting lateinit var filterViewModel: FilterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +39,13 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
         populateAllFilters()
         setAllFilterClickListeners()
 
-        filterItem = savedInstanceState?.getParcelable(FilterItem.FILTER_EXTRA)
-        if (filterItem == null) filterItem = intent?.extras?.getParcelable(FilterItem.FILTER_EXTRA)
-        if (filterItem == null) filterItem = FilterItem()
+        filterViewModel = ViewModelProviders.of(this).get(FilterViewModel::class.java)
+
+        val filterItem: FilterItem? = intent?.extras?.getParcelable(FilterItem.FILTER_EXTRA)
+        if (filterItem != null) {
+            filterViewModel.filterItem = filterItem
+            intent.removeExtra(FilterItem.FILTER_EXTRA)
+        }
     }
 
     override fun provideContentLayoutId(): Int {
@@ -61,12 +66,12 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
     public override fun onResume() {
         super.onResume()
 
-        filterItem?.let {
-            populateHero(it)
-            populateCost(it)
-            populateSets(it)
-            populateLeague(it)
-            populateRarity(it)
+        filterViewModel.filterItem.run {
+            populateHero(this)
+            populateCost(this)
+            populateSets(this)
+            populateLeague(this)
+            populateRarity(this)
         }
 
         toggleApplyVisibility()
@@ -184,7 +189,9 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun createFilterItem() : FilterItem {
-        return FilterItem(createHeroList(), createCostList(), createSetList(), createLeague(), createRarityList())
+        val filterItem = FilterItem(createHeroList(), createCostList(), createSetList(), createLeague(), createRarityList())
+        filterViewModel.filterItem = filterItem
+        return filterItem
     }
 
     private fun createHeroList(): ArrayList<String> {
@@ -256,25 +263,19 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
 
     private fun createLeague(): String {
         var league = ""
-        if (filter_standard.isChecked) { league = League.STANDARD.toString() }
-        if (filter_wild.isChecked) { league = League.WILD.toString() }
+        if (filter_standard.isChecked) league = League.STANDARD.toString()
+        if (filter_wild.isChecked) league = League.WILD.toString()
 
         return league
     }
 
     private fun toggleApplyVisibility() {
-        if (allFiltersDeselected()) {
-            filter_apply_container.makeGone()
-        } else {
-            filter_apply_container.makeVisible()
-        }
+        if (allFiltersDeselected()) filter_apply_container.makeGone() else filter_apply_container.makeVisible()
     }
 
     private fun allFiltersDeselected(): Boolean {
         for (filter in allFilters) {
-            if (filter.isChecked) {
-                return false
-            }
+            if (filter.isChecked) return false
         }
         return true
     }
@@ -295,15 +296,14 @@ open class FilterActivity : BaseActivity(), View.OnClickListener {
                 filter.makeUnChecked()
             }
             filter_apply_container.makeGone()
-            filterItem = FilterItem()
+            filterViewModel.filterItem = FilterItem()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onSaveInstanceState(bundle: Bundle?) {
-        super.onSaveInstanceState(bundle)
-
-        bundle?.putParcelable(FilterItem.FILTER_EXTRA, createFilterItem())
+    public override fun onDestroy() {
+        super.onDestroy()
+        filterViewModel.filterItem = createFilterItem()
     }
 
     companion object {

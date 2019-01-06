@@ -6,7 +6,9 @@ import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-open class SplashPresenter @Inject constructor(private val cardRepository: CardRepository) : BasePresenter<SplashContract.View>(), SplashContract.Presenter {
+open class SplashPresenter @Inject constructor(
+        private val cardRepository: CardRepository
+) : BasePresenter<SplashContract.View>(), SplashContract.Presenter {
 
     lateinit var view: SplashContract.View
 

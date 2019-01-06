@@ -22,19 +22,13 @@ abstract class BasePresenter<V : MvpView> : MvpPresenter<V> {
     }
 
     fun getView(): Any? {
-        return if (viewReference == null) {
-            null
-        } else {
-            viewReference?.get()
-        }
+        return if (viewReference == null) null else viewReference?.get()
     }
 
     protected fun showError(error: Throwable) {
         Timber.e(error)
         val view = getView()
-        if (view != null && view is MvpView) {
-            view.showError()
-        }
+        if (view != null && view is MvpView) view.showError()
     }
 
     fun bind(disposable: Disposable?) {

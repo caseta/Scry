@@ -99,11 +99,7 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
     }
 
     private fun toggleHeart() {
-        if (isCardSaved) {
-            card_fab.setImageDrawable(heartFilled)
-        } else {
-            card_fab.setImageDrawable(heart)
-        }
+        if (isCardSaved) card_fab.setImageDrawable(heartFilled) else card_fab.setImageDrawable(heart)
     }
 
     private fun populateProperHearts() {
@@ -118,11 +114,7 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
 
     override fun onBackPressed() {
         slideUpDown()
-        if (!DeviceUtils.isSamsungDevice()) {
-            setResultAndFinish()
-        } else {
-            finish()
-        }
+        if (!DeviceUtils.isSamsungDevice()) setResultAndFinish() else finish()
     }
 
     private fun setResultAndFinish() {

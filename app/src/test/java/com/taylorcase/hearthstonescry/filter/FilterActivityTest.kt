@@ -2,10 +2,16 @@ package com.taylorcase.hearthstonescry.filter
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.view.MenuItem
+import com.nhaarman.mockito_kotlin.*
+import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.*
 import com.taylorcase.hearthstonescry.utils.makeChecked
+import com.taylorcase.hearthstonescry.utils.makeUnChecked
+import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.activity_filter.*
+import org.assertj.android.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.After
 import org.junit.Test
@@ -18,7 +24,18 @@ import org.robolectric.shadows.ShadowActivity
 @RunWith(RobolectricTestRunner::class)
 class FilterActivityTest {
 
+    private val mockMenuItem = mock<MenuItem>()
+
     private lateinit var activity: FilterActivity
+
+    @Test
+    fun testOnCreateSetsFilterItemFromExtraToViewModel() {
+        val filterItem = FilterItem(heroList = arrayListOf(Hero.WARLOCK.toString()))
+        val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
+        activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
+
+        assertThat(activity.filterViewModel.filterItem.heroList[0]).isEqualTo(Hero.WARLOCK.toString())
+    }
 
     @Test
     fun testOnResumeSetsWarlockCheckedProperly() {
@@ -524,6 +541,58 @@ class FilterActivityTest {
         activity.onClick(activity.filter_apply_button)
 
         assertFinishWithRarity(Rarity.LEGENDARY, shadowActivity)
+    }
+
+    @Test
+    fun testOnClickFilterStandardUnChecksWild() {
+        activity = buildActivity(FilterActivity::class.java).create().get()
+        activity.filter_standard.makeUnChecked()
+        activity.filter_wild.makeChecked()
+
+        activity.onClick(activity.filter_standard)
+
+        assertThat(activity.filter_wild.isChecked).isFalse()
+    }
+
+    @Test
+    fun testOnClickFilterWildUnChecksStandard() {
+        activity = buildActivity(FilterActivity::class.java).create().get()
+        activity.filter_wild.makeUnChecked()
+        activity.filter_standard.makeChecked()
+
+        activity.onClick(activity.filter_wild)
+
+        assertThat(activity.filter_standard.isChecked).isFalse()
+    }
+
+    @Test
+    fun testOnOptionsItemSelectedUnChecksAllFilters() {
+        doReturn(R.id.action_clear_filter).whenever(mockMenuItem).itemId
+        activity = buildActivity(FilterActivity::class.java).create().get()
+        activity.filter_legendary.isChecked = true
+        activity.filter_warlock.isChecked = true
+        activity.filter_classic.isChecked = true
+        activity.filter_one.isChecked = true
+        activity.filter_apply_container.makeVisible()
+
+        activity.onOptionsItemSelected(mockMenuItem)
+
+        assertThat(activity.filter_legendary.isChecked).isFalse()
+        assertThat(activity.filter_warlock.isChecked).isFalse()
+        assertThat(activity.filter_classic.isChecked).isFalse()
+        assertThat(activity.filter_one.isChecked).isFalse()
+        Assertions.assertThat(activity.filter_apply_container).isGone
+        verify(mockMenuItem, times(2)).itemId
+    }
+
+    @Test
+    fun testOnDestroySetsViewModelFilterItem() {
+        activity = buildActivity(FilterActivity::class.java).create().get()
+        activity.filter_legendary.isChecked = true
+
+        activity.onDestroy()
+
+        assertThat(activity.filterViewModel.filterItem.rarityList[0]).isEqualTo(Rarity.LEGENDARY.toString())
     }
 
     @Test

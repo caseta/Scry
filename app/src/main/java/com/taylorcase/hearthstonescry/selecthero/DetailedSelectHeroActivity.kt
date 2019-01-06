@@ -22,7 +22,6 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         (application as ScryApplication).getComponent().inject(this)
         presenter.attach(this)
 

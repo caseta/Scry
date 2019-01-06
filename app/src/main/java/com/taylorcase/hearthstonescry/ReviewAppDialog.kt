@@ -18,7 +18,7 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
-        dialog.window.setLayout(MATCH_PARENT, WRAP_CONTENT)
+        dialog?.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)
         setupListeners()
     }
 

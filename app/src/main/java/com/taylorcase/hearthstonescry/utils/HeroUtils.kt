@@ -131,9 +131,6 @@ open class HeroUtils @Inject constructor(
     }
 
     open fun getCurrentAssetsColor(): Int {
-        if (shouldAssetsBeWhite()) {
-            return R.color.white
-        }
-        return R.color.black
+        return if (shouldAssetsBeWhite()) R.color.white else R.color.black
     }
 }
