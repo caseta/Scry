@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.taylorcase.hearthstonescry.CardsActivity
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
@@ -24,7 +22,7 @@ open class NavDrawerFragment : Fragment(), View.OnClickListener {
     @Inject lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity?.application as ScryApplication).getAppComponent()?.inject(this)
+        (activity?.application as ScryApplication).getComponent().inject(this)
         return inflater.inflate(R.layout.fragment_nav_drawer, container, false)
     }
 

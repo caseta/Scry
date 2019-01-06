@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.taylorcase.hearthstonescry.R
+import javax.inject.Inject
+import javax.inject.Singleton
 
 open class GlideImageLoader : ImageLoader {
 

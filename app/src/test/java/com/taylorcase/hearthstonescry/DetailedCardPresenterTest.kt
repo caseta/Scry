@@ -11,7 +11,8 @@ class DetailedCardPresenterTest {
     private val mockSharedPref = mock<SharedPreferencesHelper>()
     private val mockView = mock<DetailedCardContract.View>()
 
-    @Test fun testIsCardSavedCallsSharedPreferencesHelper() {
+    @Test
+    fun testIsCardSavedCallsSharedPreferencesHelper() {
         val presenter = demandPresenter()
         val card = Card()
 
@@ -19,7 +20,8 @@ class DetailedCardPresenterTest {
         verify(mockSharedPref).isCardSaved(card)
     }
 
-    @Test fun testSaveCardCallsSharedPreferencesHelper() {
+    @Test
+    fun testSaveCardCallsSharedPreferencesHelper() {
         val presenter = demandPresenter()
         val card = Card()
 
@@ -28,7 +30,8 @@ class DetailedCardPresenterTest {
         verify(mockSharedPref).saveCard(card)
     }
 
-    @Test fun testRemoveCardCallsSharedPreferencesHelper() {
+    @Test
+    fun testRemoveCardCallsSharedPreferencesHelper() {
         val presenter = demandPresenter()
         val card = Card()
 
@@ -37,7 +40,7 @@ class DetailedCardPresenterTest {
         verify(mockSharedPref).removeCard(card)
     }
 
-    private fun demandPresenter() : DetailedCardPresenter {
+    private fun demandPresenter(): DetailedCardPresenter {
         val presenter = DetailedCardPresenter(mockSharedPref)
         presenter.attach(mockView)
         return presenter

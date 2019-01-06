@@ -6,43 +6,50 @@ import org.junit.Test
 
 class FilterItemTest {
 
-    @Test fun testIsFilterEmptyIsTrue() {
+    @Test
+    fun testIsFilterEmptyIsTrue() {
         val filterItem = FilterItem()
 
         assertThat(filterItem.isFilterEmpty()).isTrue()
     }
 
-    @Test fun testIsFilterEmptyIsFalseWithHero() {
+    @Test
+    fun testIsFilterEmptyIsFalseWithHero() {
         val filterItem = FilterItem(heroList = arrayListOf(Hero.WARLOCK.toString()))
 
         assertThat(filterItem.isFilterEmpty()).isFalse()
     }
 
-    @Test fun testIsFilterEmptyIsFalseWithCost() {
+    @Test
+    fun testIsFilterEmptyIsFalseWithCost() {
         val filterItem = FilterItem(costList = arrayListOf(Cost.SEVEN.toString()))
 
         assertThat(filterItem.isFilterEmpty()).isFalse()
     }
 
-    @Test fun testIsFilterEmptyIsFalseWithSet() {
+    @Test
+    fun testIsFilterEmptyIsFalseWithSet() {
         val filterItem = FilterItem(setList = arrayListOf(Sets.RASTAKHANS_RUMBLE.toString()))
 
         assertThat(filterItem.isFilterEmpty()).isFalse()
     }
 
-    @Test fun testIsFilterEmptyIsFalseWithLeague() {
+    @Test
+    fun testIsFilterEmptyIsFalseWithLeague() {
         val filterItem = FilterItem(league = League.STANDARD.toString())
 
         assertThat(filterItem.isFilterEmpty()).isFalse()
     }
 
-    @Test fun testIsFilterEmptyIsFalseWithRarity() {
+    @Test
+    fun testIsFilterEmptyIsFalseWithRarity() {
         val filterItem = FilterItem(rarityList = arrayListOf(Rarity.LEGENDARY.toString()))
 
         assertThat(filterItem.isFilterEmpty()).isFalse()
     }
 
-    @Test fun testIsCardValidAllFieldsTrue() {
+    @Test
+    fun testIsCardValidAllFieldsTrue() {
         val filterItem = demandMalganisFilterItem()
 
         val card = Card()
@@ -54,7 +61,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isTrue()
     }
 
-    @Test fun testIsCardValidAllFieldsTrueLowCost() {
+    @Test
+    fun testIsCardValidAllFieldsTrueLowCost() {
         val filterItem = FilterItem(
                 arrayListOf(Hero.WARLOCK.toString()),
                 arrayListOf(Cost.TWO.toString()),
@@ -71,7 +79,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isTrue()
     }
 
-    @Test fun testIsCardValidIsFalseBadSet() {
+    @Test
+    fun testIsCardValidIsFalseBadSet() {
         val filterItem = demandMalganisFilterItem()
 
         val card = Card()
@@ -83,7 +92,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isFalse()
     }
 
-    @Test fun testIsCardValidIsFalseBadHero() {
+    @Test
+    fun testIsCardValidIsFalseBadHero() {
         val filterItem = demandMalganisFilterItem()
 
         val card = Card()
@@ -95,7 +105,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isFalse()
     }
 
-    @Test fun testIsCardValidIsFalseBadRarity() {
+    @Test
+    fun testIsCardValidIsFalseBadRarity() {
         val filterItem = demandMalganisFilterItem()
 
         val card = Card()
@@ -107,7 +118,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isFalse()
     }
 
-    @Test fun testIsCardValidIsFalseBadCost() {
+    @Test
+    fun testIsCardValidIsFalseBadCost() {
         val filterItem = demandMalganisFilterItem()
 
         val card = Card()
@@ -119,7 +131,8 @@ class FilterItemTest {
         assertThat(filterItem.isCardValid(card)).isFalse()
     }
 
-    @Test fun testIsCardValidIsFalseBadLeague() {
+    @Test
+    fun testIsCardValidIsFalseBadLeague() {
         val filterItem = FilterItem(
                 arrayListOf(Hero.WARLOCK.toString()),
                 arrayListOf(Cost.SEVEN.toString()),

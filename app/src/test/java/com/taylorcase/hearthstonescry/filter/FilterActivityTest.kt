@@ -2,7 +2,6 @@ package com.taylorcase.hearthstonescry.filter
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import com.taylorcase.hearthstonescry.InjectingTest
 import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.*
 import com.taylorcase.hearthstonescry.utils.makeChecked
@@ -17,11 +16,12 @@ import org.robolectric.Shadows
 import org.robolectric.shadows.ShadowActivity
 
 @RunWith(RobolectricTestRunner::class)
-class FilterActivityTest : InjectingTest() {
+class FilterActivityTest {
 
     private lateinit var activity: FilterActivity
 
-    @Test fun testOnResumeSetsWarlockCheckedProperly() {
+    @Test
+    fun testOnResumeSetsWarlockCheckedProperly() {
         val filterItem = FilterItem(heroList = arrayListOf(Hero.WARLOCK.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -31,7 +31,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_warlock.isChecked).isTrue()
     }
 
-    @Test fun testOnResumeSetsNeutralCheckedProperly() {
+    @Test
+    fun testOnResumeSetsNeutralCheckedProperly() {
         val filterItem = FilterItem(heroList = arrayListOf(Hero.NEUTRAL.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -41,7 +42,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_neutral.isChecked).isTrue()
     }
 
-    @Test fun testOnResumeSetsCostCheckedProperly() {
+    @Test
+    fun testOnResumeSetsCostCheckedProperly() {
         val filterItem = FilterItem(costList = arrayListOf(Cost.SEVEN.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -51,7 +53,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_seven.isChecked).isTrue()
     }
 
-    @Test fun testOnResumeSetsRastaRumbleCheckedProperly() {
+    @Test
+    fun testOnResumeSetsRastaRumbleCheckedProperly() {
         val filterItem = FilterItem(setList = arrayListOf(Sets.RASTAKHANS_RUMBLE.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -61,7 +64,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_rastakhans_rumble.isChecked).isTrue()
     }
 
-    @Test fun testOnResumeSetsStandardCheckedProperly() {
+    @Test
+    fun testOnResumeSetsStandardCheckedProperly() {
         val filterItem = FilterItem(league = League.STANDARD.toString())
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -71,7 +75,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_standard.isChecked).isTrue()
     }
 
-    @Test fun testOnResumeSetsLegendaryCheckedProperly() {
+    @Test
+    fun testOnResumeSetsLegendaryCheckedProperly() {
         val filterItem = FilterItem(rarityList = arrayListOf(Rarity.LEGENDARY.toString()))
         val intent = Intent().putExtra(FilterItem.FILTER_EXTRA, filterItem)
         activity = buildActivity(FilterActivity::class.java, intent).create().visible().get()
@@ -81,7 +86,8 @@ class FilterActivityTest : InjectingTest() {
         assertThat(activity.filter_legendary.isChecked).isTrue()
     }
 
-    @Test fun testOnClickApplyFilterAddsDruid() {
+    @Test
+    fun testOnClickApplyFilterAddsDruid() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_druid.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -91,7 +97,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.DRUID, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsHunter() {
+    @Test
+    fun testOnClickApplyFilterAddsHunter() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_hunter.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -101,7 +108,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.HUNTER, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsMage() {
+    @Test
+    fun testOnClickApplyFilterAddsMage() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_mage.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -111,7 +119,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.MAGE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsPaladin() {
+    @Test
+    fun testOnClickApplyFilterAddsPaladin() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_paladin.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -121,7 +130,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.PALADIN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsPriest() {
+    @Test
+    fun testOnClickApplyFilterAddsPriest() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_priest.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -131,7 +141,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.PRIEST, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsRogue() {
+    @Test
+    fun testOnClickApplyFilterAddsRogue() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_rogue.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -141,7 +152,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.ROGUE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsShaman() {
+    @Test
+    fun testOnClickApplyFilterAddsShaman() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_shaman.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -151,7 +163,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.SHAMAN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsWarlock() {
+    @Test
+    fun testOnClickApplyFilterAddsWarlock() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_warlock.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -161,7 +174,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.WARLOCK, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsWarrior() {
+    @Test
+    fun testOnClickApplyFilterAddsWarrior() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_warrior.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -171,7 +185,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithHero(Hero.WARRIOR, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsOne() {
+    @Test
+    fun testOnClickApplyFilterAddsOne() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_one.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -181,7 +196,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.ONE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsTwo() {
+    @Test
+    fun testOnClickApplyFilterAddsTwo() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_two.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -191,7 +207,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.TWO, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsThree() {
+    @Test
+    fun testOnClickApplyFilterAddsThree() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_three.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -201,7 +218,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.THREE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsFour() {
+    @Test
+    fun testOnClickApplyFilterAddsFour() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_four.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -211,7 +229,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.FOUR, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsFive() {
+    @Test
+    fun testOnClickApplyFilterAddsFive() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_five.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -221,7 +240,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.FIVE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsSix() {
+    @Test
+    fun testOnClickApplyFilterAddsSix() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_six.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -231,7 +251,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.SIX, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsSeven() {
+    @Test
+    fun testOnClickApplyFilterAddsSeven() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_seven.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -241,7 +262,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithCost(Cost.SEVEN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsHallOfFame() {
+    @Test
+    fun testOnClickApplyFilterAddsHallOfFame() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_hall_of_fame.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -251,7 +273,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.HALL_OF_FAME, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsBasic() {
+    @Test
+    fun testOnClickApplyFilterAddsBasic() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_basic.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -261,7 +284,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.BASIC, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsClassic() {
+    @Test
+    fun testOnClickApplyFilterAddsClassic() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_classic.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -271,7 +295,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.CLASSIC, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsNaxx() {
+    @Test
+    fun testOnClickApplyFilterAddsNaxx() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_naxx.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -281,7 +306,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.CURSE_OF_NAXXRAMAS, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsGoblins() {
+    @Test
+    fun testOnClickApplyFilterAddsGoblins() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_goblins.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -291,7 +317,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.GOBLINS_VS_GNOMES, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsBlackRock() {
+    @Test
+    fun testOnClickApplyFilterAddsBlackRock() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_blackrock.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -301,7 +328,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.BLACKROCK_MOUNTAIN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsGrandTournament() {
+    @Test
+    fun testOnClickApplyFilterAddsGrandTournament() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_grand_tournament.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -311,7 +339,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.THE_GRAND_TOURNAMENT, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsLeague() {
+    @Test
+    fun testOnClickApplyFilterAddsLeague() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_league_of_explorers.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -321,7 +350,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.LEAGUE_OF_EXPLORERS, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsWhispers() {
+    @Test
+    fun testOnClickApplyFilterAddsWhispers() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_whispers.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -331,7 +361,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.WHISPERS_OF_THE_OLD_GODS, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsKarazhan() {
+    @Test
+    fun testOnClickApplyFilterAddsKarazhan() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_one_night.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -341,7 +372,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.ONE_NIGHT_IN_KARAZHAN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsMeanStreets() {
+    @Test
+    fun testOnClickApplyFilterAddsMeanStreets() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_mean_streets.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -351,7 +383,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.MEAN_STREETS_OF_GADGETZAN, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsJourney() {
+    @Test
+    fun testOnClickApplyFilterAddsJourney() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_journey.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -361,7 +394,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.JOURNEY_TO_UNGORO, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsKnights() {
+    @Test
+    fun testOnClickApplyFilterAddsKnights() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_knights.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -371,7 +405,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.KNIGHTS_OF_THE_FRONZE_THRONE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsKobolds() {
+    @Test
+    fun testOnClickApplyFilterAddsKobolds() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_kobolds.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -381,7 +416,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.KOBOLDS_AND_CATACOMBS, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsWitchwood() {
+    @Test
+    fun testOnClickApplyFilterAddsWitchwood() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_witchwood.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -391,7 +427,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.THE_WITCHWOOD, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsBoomsday() {
+    @Test
+    fun testOnClickApplyFilterAddsBoomsday() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_boomsday_project.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -401,7 +438,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.BOOMSDAY_PROJECT, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsRastakhansRumble() {
+    @Test
+    fun testOnClickApplyFilterAddsRastakhansRumble() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_rastakhans_rumble.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -411,7 +449,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithSet(Sets.RASTAKHANS_RUMBLE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsStandard() {
+    @Test
+    fun testOnClickApplyFilterAddsStandard() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_standard.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -421,7 +460,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithLeague(League.STANDARD, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsWild() {
+    @Test
+    fun testOnClickApplyFilterAddsWild() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_wild.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -431,7 +471,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithLeague(League.WILD, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsFree() {
+    @Test
+    fun testOnClickApplyFilterAddsFree() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_free.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -441,7 +482,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithRarity(Rarity.FREE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsCommon() {
+    @Test
+    fun testOnClickApplyFilterAddsCommon() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_common.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -451,7 +493,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithRarity(Rarity.COMMON, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsRare() {
+    @Test
+    fun testOnClickApplyFilterAddsRare() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_rare.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -461,7 +504,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithRarity(Rarity.RARE, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsEpic() {
+    @Test
+    fun testOnClickApplyFilterAddsEpic() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_epic.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -471,7 +515,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithRarity(Rarity.EPIC, shadowActivity)
     }
 
-    @Test fun testOnClickApplyFilterAddsLegendary() {
+    @Test
+    fun testOnClickApplyFilterAddsLegendary() {
         activity = buildActivity(FilterActivity::class.java).create().get()
         activity.filter_legendary.makeChecked()
         val shadowActivity = Shadows.shadowOf(activity)
@@ -481,7 +526,8 @@ class FilterActivityTest : InjectingTest() {
         assertFinishWithRarity(Rarity.LEGENDARY, shadowActivity)
     }
 
-    @Test fun testFilterApplyClickListenerIsSet() {
+    @Test
+    fun testFilterApplyClickListenerIsSet() {
         activity = buildActivity(FilterActivity::class.java).create().get()
 
         assertThat(activity.allFilters).hasSize(FILTER_COUNT)

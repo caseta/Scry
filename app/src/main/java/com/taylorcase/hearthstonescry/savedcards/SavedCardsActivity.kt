@@ -1,12 +1,9 @@
 package com.taylorcase.hearthstonescry.savedcards
 
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import com.taylorcase.hearthstonescry.base.CardsGridActivity
 import com.taylorcase.hearthstonescry.R
 import com.taylorcase.hearthstonescry.ScryApplication
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.makeGone
 import com.taylorcase.hearthstonescry.utils.makeVisible
@@ -20,7 +17,7 @@ open class SavedCardsActivity : CardsGridActivity(), SavedCardsContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setupToolbar(toolbar)
 
         presenter.attach(this)

@@ -11,7 +11,6 @@ import com.taylorcase.hearthstonescry.api.HearthstoneApi
 import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.search.SearchContract
 import com.taylorcase.hearthstonescry.search.SearchPresenter
-import com.taylorcase.hearthstonescry.selecthero.SelectHeroAdapter
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroContract
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroPresenter
 import com.taylorcase.hearthstonescry.utils.*
@@ -22,45 +21,50 @@ import javax.inject.Singleton
 @Module
 open class AppModule(private val application: Application) {
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     open fun provideContext(): Application = application
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     internal open fun providesHearthstoneApi(): HearthstoneApi = RetroClient.apiService
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     internal open fun providesImageLoader(): ImageLoader = GlideImageLoader()
 
-    @Provides @Singleton
-    internal open fun providesConnectivityManager(application: Application) : ConnectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    @Provides
+    @Singleton
+    internal open fun providesNetworkManager(): NetworkManager {
+        return NetworkManager(application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+    }
 
-    @Provides @Singleton
-    internal open fun providesSplashPresenter(presenter: SplashPresenter) : SplashContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesSplashPresenter(presenter: SplashPresenter): SplashContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesCardsPresenter(presenter: CardsPresenter) : CardsContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesCardsPresenter(presenter: CardsPresenter): CardsContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesDetailedCardPresenter(presenter: DetailedCardPresenter) : DetailedCardContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesDetailedCardPresenter(presenter: DetailedCardPresenter): DetailedCardContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesSavedCardsPresenter(presenter: SavedCardsPresenter) : SavedCardsContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesSavedCardsPresenter(presenter: SavedCardsPresenter): SavedCardsContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesSearchPresenter(presenter: SearchPresenter) : SearchContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesSearchPresenter(presenter: SearchPresenter): SearchContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesSelectHeroPresenter(presenter: SelectHeroPresenter) : SelectHeroContract.Presenter = presenter
+    @Provides
+    @Singleton
+    internal open fun providesSelectHeroPresenter(presenter: SelectHeroPresenter): SelectHeroContract.Presenter = presenter
 
-    @Provides @Singleton
-    internal open fun providesSelectHeroAdapter(imageLoader: ImageLoader, context: Application, heroUtils: HeroUtils) : SelectHeroAdapter = SelectHeroAdapter(imageLoader, context, heroUtils)
+    @Provides
+    @Singleton
+    internal open fun providesSharedPreferencesHelper(application: Application): SharedPreferencesHelper = SharedPreferencesHelper(application)
 
-    @Provides @Singleton
-    internal open fun providesCardsAdapter(imageLoader: ImageLoader) : CardsAdapter = CardsAdapter(imageLoader)
-
-    @Provides @Singleton
-    internal open fun providesSharedPreferencesHelper(application: Application) : SharedPreferencesHelper =  SharedPreferencesHelper(application)
-
-    @Provides @Singleton
-    internal open fun providesHeroUtils(sharedPreferencesHelper: SharedPreferencesHelper, application: Application) : HeroUtils = HeroUtils(sharedPreferencesHelper, application)
 }

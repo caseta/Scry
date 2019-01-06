@@ -18,14 +18,16 @@ class SavedCardsPresenterTest {
     private val mockSharedPref = mock<SharedPreferencesHelper>()
     private val mockCardsRepo = mock<CardRepository>()
 
-    @Before fun setup() {
+    @Before
+    fun setup() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
     }
 
-    @Test fun testGetSavedCardCountCallsSharedPreferencesHelper() {
+    @Test
+    fun testGetSavedCardCountCallsSharedPreferencesHelper() {
         val presenter = demandPresenter()
 
         presenter.getSavedCardCount()
@@ -33,7 +35,8 @@ class SavedCardsPresenterTest {
         verify(mockSharedPref).getSavedCardsCount()
     }
 
-    @Test fun testLoadSavedCardsDisplaysCardsSuccessfully() {
+    @Test
+    fun testLoadSavedCardsDisplaysCardsSuccessfully() {
         val card = Card()
         val secondCard = Card()
         val list = singletonList(card)
@@ -49,7 +52,8 @@ class SavedCardsPresenterTest {
         verify(mockView).displayCards(secondList)
     }
 
-    @Test fun testLoadSavedCardsShowsErrorProperly() {
+    @Test
+    fun testLoadSavedCardsShowsErrorProperly() {
         val error = IllegalStateException()
         val single: Single<List<Card>> = Single.error(error)
         doReturn(single).whenever(mockCardsRepo).observeAllCards()
@@ -62,7 +66,7 @@ class SavedCardsPresenterTest {
         verify(mockView, never()).displayCards(any())
     }
 
-    private fun demandPresenter() : SavedCardsPresenter {
+    private fun demandPresenter(): SavedCardsPresenter {
         val presenter = SavedCardsPresenter(mockSharedPref, mockCardsRepo)
         presenter.attach(mockView)
         return presenter

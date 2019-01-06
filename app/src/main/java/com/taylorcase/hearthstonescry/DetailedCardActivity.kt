@@ -9,7 +9,6 @@ import android.text.Html
 import android.view.View
 import com.taylorcase.hearthstonescry.CardsViewHolder.Companion.EXTRA_POSITION
 import com.taylorcase.hearthstonescry.base.BaseActivity
-import com.taylorcase.hearthstonescry.base.InjectLayout
 import com.taylorcase.hearthstonescry.model.Card
 import kotlinx.android.synthetic.main.activity_detailed_card.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -35,7 +34,7 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setupToolbar(toolbar, navigationMethod = BACK_ARROW)
 
         presenter.attach(this)

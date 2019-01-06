@@ -25,7 +25,8 @@ class SearchPresenterTest {
         RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
     }
 
-    @Test fun populateCardNamesCallsViewSuccessfully() {
+    @Test
+    fun populateCardNamesCallsViewSuccessfully() {
         val cardNames = singletonList(CARD_NAME)
         doReturn(Single.just(cardNames)).whenever(mockCardRepo).observeAllCardNames()
         val presenter = demandSearchPresenter()
@@ -36,7 +37,8 @@ class SearchPresenterTest {
         verify(mockCardRepo).observeAllCardNames()
     }
 
-    @Test fun testPopulateNamesThrowsError() {
+    @Test
+    fun testPopulateNamesThrowsError() {
         val cardNames = singletonList(CARD_NAME)
         val single: Single<List<String>> = Single.error(Throwable("error"))
         doReturn(single).whenever(mockCardRepo).observeAllCardNames()
@@ -49,7 +51,8 @@ class SearchPresenterTest {
         verify(mockCardRepo).observeAllCardNames()
     }
 
-    @Test fun performSearchCallsViewToNavigateSuccessfully() {
+    @Test
+    fun performSearchCallsViewToNavigateSuccessfully() {
         val card = Card()
         val cards = singletonList(card)
         doReturn(Observable.just(cards)).whenever(mockCardRepo).observeCard(CARD_NAME)
@@ -61,7 +64,7 @@ class SearchPresenterTest {
         verify(mockView).navigateToProperDetailedCard(card)
     }
 
-    private fun demandSearchPresenter() : SearchPresenter {
+    private fun demandSearchPresenter(): SearchPresenter {
         val presenter = SearchPresenter(mockCardRepo)
         presenter.attach(mockView)
         return presenter

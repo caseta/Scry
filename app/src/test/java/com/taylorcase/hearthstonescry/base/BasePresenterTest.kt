@@ -17,7 +17,8 @@ class BasePresenterTest {
     private val mockNetworkManager = mock<NetworkManager>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
 
-    @Test fun testAttachSetsReference() {
+    @Test
+    fun testAttachSetsReference() {
         val presenter = demandPresenter()
 
         presenter.attach(mockView)
@@ -25,7 +26,8 @@ class BasePresenterTest {
         assertThat(presenter.viewReference).isNotNull()
     }
 
-    @Test fun testDetachSetsReferenceAsNull() {
+    @Test
+    fun testDetachSetsReferenceAsNull() {
         val presenter = demandPresenter()
         presenter.attach(mockView)
 
@@ -34,20 +36,22 @@ class BasePresenterTest {
         assertThat(presenter.viewReference).isNull()
     }
 
-    @Test fun testGetViewReturnsNullWhenViewReferenceIsNull() {
+    @Test
+    fun testGetViewReturnsNullWhenViewReferenceIsNull() {
         val presenter = demandPresenter()
 
         assertThat(presenter.getView()).isNull()
     }
 
-    @Test fun testGetViewReturnsNotNullWhenViewReferenceIsNotNull() {
+    @Test
+    fun testGetViewReturnsNotNullWhenViewReferenceIsNotNull() {
         val presenter = demandPresenter()
         presenter.attach(mockView)
 
         assertThat(presenter.getView()).isNotNull()
     }
 
-    private fun demandPresenter() : CardsPresenter {
+    private fun demandPresenter(): CardsPresenter {
         return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
     }
 }

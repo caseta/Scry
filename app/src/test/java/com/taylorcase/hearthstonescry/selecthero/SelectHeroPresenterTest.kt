@@ -12,7 +12,8 @@ class SelectHeroPresenterTest {
     private val mockView = mock<SelectHeroContract.View>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
 
-    @Test fun testGetHeroAndThemeSavesThemeWarlock() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeWarlock() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_warlock)
@@ -20,7 +21,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Warlock)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroWarlock() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroWarlock() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_warlock)
@@ -28,7 +30,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.WARLOCK)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroWarrior() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroWarrior() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_warrior)
@@ -36,7 +39,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.WARRIOR)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeWarrior() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeWarrior() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_warrior)
@@ -44,7 +48,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Warrior)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroMage() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroMage() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_mage)
@@ -52,7 +57,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.MAGE)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeMage() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeMage() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_mage)
@@ -60,7 +66,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Mage)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroPaladin() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroPaladin() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_paladin)
@@ -68,7 +75,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.PALADIN)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemePaladin() {
+    @Test
+    fun testGetHeroAndThemeSavesThemePaladin() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_paladin)
@@ -76,7 +84,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Paladin)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroPriest() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroPriest() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_priest)
@@ -84,7 +93,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.PRIEST)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemePriest() {
+    @Test
+    fun testGetHeroAndThemeSavesThemePriest() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_priest)
@@ -92,7 +102,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Priest)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroRogue() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroRogue() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_rogue)
@@ -100,7 +111,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.ROGUE)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeRogue() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeRogue() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_rogue)
@@ -108,7 +120,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Rogue)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroShaman() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroShaman() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_shaman)
@@ -116,7 +129,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.SHAMAN)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeShaman() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeShaman() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_shaman)
@@ -124,7 +138,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Shaman)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeDruid() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeDruid() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_druid)
@@ -132,7 +147,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Druid)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroDruid() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroDruid() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_druid)
@@ -140,7 +156,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.DRUID)
     }
 
-    @Test fun testGetHeroAndThemeSavesThemeHunter() {
+    @Test
+    fun testGetHeroAndThemeSavesThemeHunter() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_hunter)
@@ -148,7 +165,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveTheme(R.style.AppTheme_Hunter)
     }
 
-    @Test fun testGetHeroAndThemeSavesHeroHunter() {
+    @Test
+    fun testGetHeroAndThemeSavesHeroHunter() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_hunter)
@@ -156,7 +174,8 @@ class SelectHeroPresenterTest {
         verify(mockSharedPreferencesHelper).saveHero(Hero.HUNTER)
     }
 
-    @Test fun testGetHeroAndThemeCallsViewFinish() {
+    @Test
+    fun testGetHeroAndThemeCallsViewFinish() {
         val presenter = demandPresenter()
 
         presenter.getHeroAndTheme(R.drawable.ic_warlock)

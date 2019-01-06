@@ -42,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity(), RequestListener<Drawable>, Mv
     @Inject lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setTheme(sharedPreferencesHelper.getTheme())
         super.onCreate(savedInstanceState)
 

@@ -1,17 +1,20 @@
 package com.taylorcase.hearthstonescry.selecthero
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.taylorcase.hearthstonescry.R
-import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.model.enums.Hero.*
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.ImageLoader
 import javax.inject.Inject
+import javax.inject.Singleton
 
-open class SelectHeroAdapter @Inject constructor(var imageLoader: ImageLoader, var context: Context, var heroUtils: HeroUtils) : RecyclerView.Adapter<SelectHeroViewHolder>() {
+@Singleton
+open class SelectHeroAdapter @Inject constructor(
+        private val imageLoader: ImageLoader,
+        private val heroUtils: HeroUtils
+) : RecyclerView.Adapter<SelectHeroViewHolder>() {
 
     private var heroList = listOf(WARLOCK, DRUID, HUNTER, MAGE, PALADIN, PRIEST, ROGUE, SHAMAN, WARRIOR)
 

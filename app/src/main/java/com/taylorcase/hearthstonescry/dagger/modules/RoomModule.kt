@@ -16,9 +16,11 @@ class RoomModule(application: Application) {
             .allowMainThreadQueries()
             .build()
 
-    @Singleton @Provides
+    @Singleton
+    @Provides
     internal fun provideAppDatabase(): AppDatabase = database
 
-    @Singleton @Provides
+    @Singleton
+    @Provides
     internal fun provideCardDao(): CardDao = database.cardDao()
 }

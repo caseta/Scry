@@ -12,11 +12,12 @@ import java.util.Collections.*
 
 @RunWith(RobolectricTestRunner::class)
 class SearchAdapterTest {
-    
+
     private val mockViewHolder = mock<SearchViewHolder>()
     private val mockListener = mock<SearchViewHolder.OnSuggestionClickListener>()
 
-    @Test fun testCreateViewHolderIsNotNull() {
+    @Test
+    fun testCreateViewHolderIsNotNull() {
         val adapter = SearchAdapter()
 
         val viewHolder = adapter.onCreateViewHolder(FrameLayout(application), 1)
@@ -24,7 +25,8 @@ class SearchAdapterTest {
         assertThat(viewHolder).isNotNull()
     }
 
-    @Test fun testOnBindViewHolderSetsSuggestionClickListener() {
+    @Test
+    fun testOnBindViewHolderSetsSuggestionClickListener() {
         val adapter = SearchAdapter()
         adapter.listener = mockListener
         adapter.swapData(singletonList(CARD_NAME))
@@ -34,7 +36,8 @@ class SearchAdapterTest {
         assertThat(adapter.listener).isEqualTo(mockListener)
     }
 
-    @Test fun testGetItemCount() {
+    @Test
+    fun testGetItemCount() {
         val adapter = SearchAdapter()
 
         adapter.swapData(listOf(CARD_NAME, CARD_NAME))
@@ -42,7 +45,8 @@ class SearchAdapterTest {
         assertThat(adapter.itemCount).isEqualTo(2)
     }
 
-    @Test fun testSwapData() {
+    @Test
+    fun testSwapData() {
         val adapter = SearchAdapter()
 
         assertThat(adapter.itemCount).isEqualTo(0)

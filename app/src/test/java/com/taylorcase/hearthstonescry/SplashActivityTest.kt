@@ -4,44 +4,54 @@ import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroActivity
+import com.taylorcase.hearthstonescry.utils.HeroUtils
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.assertj.android.api.Assertions.*
 import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric.*
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import org.robolectric.RuntimeEnvironment.*
 import org.robolectric.shadows.ShadowApplication
+import javax.inject.Inject
 
 @RunWith(RobolectricTestRunner::class)
-class SplashActivityTest : InjectingTest() {
+class SplashActivityTest {
+
+    @Inject lateinit var mockSplashPresenter: SplashContract.Presenter
+    @Inject lateinit var mockHeroUtils: HeroUtils
 
     private lateinit var activity: SplashActivity
 
-    @Test fun testOnCreateActivityPresenterCallsAttach() {
+    @Before
+    fun setUp() {
+        ((application as TestScryApplication).getComponent() as TestAppComponent).inject(this)
         activity = buildActivity(SplashActivity::class.java).create().get()
+    }
 
+    @Test
+    fun testOnCreateActivityPresenterCallsAttach() {
         verify(mockSplashPresenter).attach(activity)
     }
 
-    @Test fun testOnCreateActivityLoaderIsVisible() {
-        activity = buildActivity(SplashActivity::class.java).create().get()
-
+    @Test
+    fun testOnCreateActivityLoaderIsVisible() {
         assertThat(activity.cards_loader).isVisible
     }
 
-    @Test fun testCardsLoadedSuccessfullyCardsLoaderVisibilityGone() {
-        activity = buildActivity(SplashActivity::class.java).create().get()
-
+    @Test
+    fun testCardsLoadedSuccessfullyCardsLoaderVisibilityGone() {
         activity.cardsLoadedSuccessfully()
 
         assertThat(activity.cards_loader).isGone
     }
 
-    @Test fun testCardsLoadedSuccessfullyHasFavoriteHeroStartsCardsActivity() {
+    @Test
+    fun testCardsLoadedSuccessfullyHasFavoriteHeroStartsCardsActivity() {
         doReturn(true).whenever(mockHeroUtils)?.hasFavoriteHero()
-        activity = buildActivity(SplashActivity::class.java).create().get()
 
         activity.cardsLoadedSuccessfully()
 
@@ -50,9 +60,8 @@ class SplashActivityTest : InjectingTest() {
         verify(mockHeroUtils).hasFavoriteHero()
     }
 
-    @Test fun testCardsLoadedSuccessfullyDoesNotHaveFavoriteHeroStartsSelectHeroActivity() {
-        activity = buildActivity(SplashActivity::class.java).create().get()
-
+    @Test
+    fun testCardsLoadedSuccessfullyDoesNotHaveFavoriteHeroStartsSelectHeroActivity() {
         activity.cardsLoadedSuccessfully()
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
@@ -60,20 +69,18 @@ class SplashActivityTest : InjectingTest() {
         verify(mockHeroUtils).hasFavoriteHero()
     }
 
-    @Test fun testOnCreateActivityCallsPresenterLoadCards() {
-        activity = buildActivity(SplashActivity::class.java).create().get()
-
+    @Test
+    fun testOnCreateActivityCallsPresenterLoadCards() {
         verify(mockSplashPresenter).loadCards()
     }
 
-    @Test fun testOnDestroyDetachesPresenter() {
-        activity = buildActivity(SplashActivity::class.java).create().get()
-
+    @Test
+    fun testOnDestroyDetachesPresenter() {
         activity.onDestroy()
 
         verify(mockSplashPresenter).detach()
     }
-    
+
     @After
     fun destroyActivity() {
         activity.finish()

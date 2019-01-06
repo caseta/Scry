@@ -21,7 +21,8 @@ class CardRepositoryTest {
     private val mockApi = mock<HearthstoneApi>()
     private val mockCardDao = mock<CardDao>()
 
-    @Test fun testRefreshCardsIsTrueWhenCachedIsEmpty() {
+    @Test
+    fun testRefreshCardsIsTrueWhenCachedIsEmpty() {
         doReturn(0).whenever(mockCardDao).countCards()
         val cardRepo = demandCardRepo()
 
@@ -29,13 +30,15 @@ class CardRepositoryTest {
         verify(mockCardDao).countCards()
     }
 
-    @Test fun testRefreshCardsIsFalseWhenCachedIsNotEmpty() {
+    @Test
+    fun testRefreshCardsIsFalseWhenCachedIsNotEmpty() {
         val cardRepo = demandCardRepoUsingCachedCards()
 
         Assertions.assertThat(cardRepo.refreshCards()).isFalse()
     }
 
-    @Test fun testRefreshCardsIsFalseWhenUseDatabaseIsTrue() {
+    @Test
+    fun testRefreshCardsIsFalseWhenUseDatabaseIsTrue() {
         doReturn(1).whenever(mockCardDao).countCards()
         val cardRepo = demandCardRepo()
 
@@ -43,7 +46,8 @@ class CardRepositoryTest {
         verify(mockCardDao).countCards()
     }
 
-    @Test fun testObserveCardsWithHeroUsingCached() {
+    @Test
+    fun testObserveCardsWithHeroUsingCached() {
         val card = demandValidCard()
         val cardRepo = demandCardRepoUsingCachedCards()
 
@@ -52,7 +56,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(singletonList(card)).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveCardsWithHeroUsingDatabase() {
+    @Test
+    fun testObserveCardsWithHeroUsingDatabase() {
         val cardList = singletonList(demandValidCard())
         doReturn(Single.just(cardList)).whenever(mockCardDao).observeAllCardsWithHero(Hero.WARLOCK.toString())
         val cardRepo = demandCardRepoUsingDatabase()
@@ -63,7 +68,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(cardList).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveCardsWithHeroUsingApi() {
+    @Test
+    fun testObserveCardsWithHeroUsingApi() {
         val card = demandValidCard()
         val allCards = AllCards(basicCards = singletonList(card))
         doReturn(Observable.just(allCards)).whenever(mockApi).getAllCards(any())
@@ -75,7 +81,8 @@ class CardRepositoryTest {
         verify(mockApi).getAllCards(any())
     }
 
-    @Test fun testObserveCardWithCachedCards() {
+    @Test
+    fun testObserveCardWithCachedCards() {
         val card = demandValidCard()
         val cardRepo = demandCardRepoUsingCachedCards()
 
@@ -84,7 +91,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(singletonList(card)).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveCardWithDatabase() {
+    @Test
+    fun testObserveCardWithDatabase() {
         val cardList = singletonList(demandValidCard())
         doReturn(Single.just(cardList)).whenever(mockCardDao).observeCard(CARD_NAME)
         val cardRepo = demandCardRepoUsingDatabase()
@@ -95,7 +103,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(cardList).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveCardWithApi() {
+    @Test
+    fun testObserveCardWithApi() {
         val cardList = singletonList(demandValidCard())
         doReturn(Observable.just(cardList)).whenever(mockApi).getCard(any(), any())
         val cardRepo = demandCardRepoUsingApi()
@@ -106,7 +115,8 @@ class CardRepositoryTest {
         verify(mockApi).getCard(any(), any())
     }
 
-    @Test fun testObserveAllCardsWithCachedCards() {
+    @Test
+    fun testObserveAllCardsWithCachedCards() {
         val card = demandValidCard()
         val cardRepo = demandCardRepoUsingCachedCards()
 
@@ -115,7 +125,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(singletonList(card)).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveAllCardsWithDatabase() {
+    @Test
+    fun testObserveAllCardsWithDatabase() {
         val card = demandValidCard()
         doReturn(Single.just(singletonList(card))).whenever(mockCardDao).observeAllCards()
         val cardRepo = demandCardRepoUsingDatabase()
@@ -126,7 +137,8 @@ class CardRepositoryTest {
         verify(mockCardDao).observeAllCards()
     }
 
-    @Test fun testObserveAllCardsWithApi() {
+    @Test
+    fun testObserveAllCardsWithApi() {
         val card = demandValidCard()
         val allCards = AllCards(basicCards = singletonList(card))
         doReturn(Observable.just(allCards)).whenever(mockApi).getAllCards(any())
@@ -137,7 +149,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(singletonList(card)).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testObserveAllCardNames() {
+    @Test
+    fun testObserveAllCardNames() {
         demandValidCard()
         val cardRepo = demandCardRepoUsingCachedCards()
 
@@ -146,7 +159,8 @@ class CardRepositoryTest {
         cardsObservable.test().assertValue(singletonList(CARD_NAME)).assertSubscribed().assertComplete().assertNoErrors()
     }
 
-    @Test fun testSettingCachedCards() {
+    @Test
+    fun testSettingCachedCards() {
         val card = demandValidCard()
         val cardRepo = demandCardRepoUsingApi()
         Assertions.assertThat(cardRepo.cachedCards).isEmpty()
@@ -156,7 +170,8 @@ class CardRepositoryTest {
         Assertions.assertThat(cardRepo.cachedCards).isNotEmpty()
     }
 
-    @Test fun testStoringCardsInDatabase() {
+    @Test
+    fun testStoringCardsInDatabase() {
         val card = demandValidCard()
         val cardRepo = demandCardRepo()
 
@@ -192,7 +207,7 @@ class CardRepositoryTest {
         return cardRepo
     }
 
-    private fun demandValidCard() : Card {
+    private fun demandValidCard(): Card {
         return Card(name = CARD_NAME, artist = "Artist", img = "img", playerClass = "Warlock", rarity = "Legendary")
     }
 

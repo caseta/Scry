@@ -12,7 +12,7 @@ import timber.log.Timber
 
 open class ScryApplication : Application() {
 
-    private var appComponent: AppComponent? = null
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -24,21 +24,17 @@ open class ScryApplication : Application() {
             FirebaseAnalytics.getInstance(this)
         }
 
-        initComponent()
+        appComponent = createComponent()
     }
 
-    open fun getAppModule(): AppModule {
-        return AppModule(this)
-    }
-
-    fun initComponent() {
-        appComponent = DaggerAppComponent.builder()
-                .appModule(getAppModule())
+    open fun createComponent(): AppComponent {
+        return DaggerAppComponent.builder()
+                .appModule(AppModule(this))
                 .roomModule(RoomModule(this))
                 .build()
     }
 
-    fun getAppComponent(): AppComponent? {
+    fun getComponent(): AppComponent {
         return appComponent
     }
 }

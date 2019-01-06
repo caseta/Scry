@@ -3,10 +3,7 @@ package com.taylorcase.hearthstonescry
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.taylorcase.hearthstonescry.selecthero.SelectHeroActivity
 import com.taylorcase.hearthstonescry.utils.HeroUtils
 import com.taylorcase.hearthstonescry.utils.ImageLoader
@@ -23,7 +20,7 @@ open class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ScryApplication).getAppComponent()?.inject(this)
+        (application as ScryApplication).getComponent().inject(this)
         setContentView(R.layout.activity_splash)
 
         presenter.attach(this)

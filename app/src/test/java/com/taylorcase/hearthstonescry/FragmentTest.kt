@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import org.junit.After
 import org.robolectric.Robolectric.*
 
-abstract class FragmentTest : InjectingTest() {
+abstract class FragmentTest {
 
     lateinit var activity: AppCompatActivity
     private lateinit var fragment: Fragment
