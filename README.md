@@ -1,11 +1,10 @@
 # Scry
 [![Build Status](https://travis-ci.com/caseta/Scry.svg?branch=master)](https://travis-ci.com/caseta/Scry) [![codecov](https://codecov.io/gh/caseta/Scry/branch/master/graph/badge.svg)](https://codecov.io/gh/caseta/Scry)
 
-Showcase Android app that lets users browse through Hearthstone cards, create decks, save cards, etc.
+Android app that lets users browse through Hearthstone cards, save cards, etc.
 
 - Kotlin
-- Room
-- Repository Pattern - caching, disk, network
+- Repository Pattern with Room
 - RxJava 2
 - Dagger 2
 - MVP - Model View Presenter
@@ -27,10 +26,9 @@ Maintenance
 - [x] Setup error callbacks for all network RxJava 2 calls
 - [x] Add leak canary
 - [ ] Add new paging library
-- [ ] Update packages to use Jetpack
+- [ ] Update packages to androidx
 
 Known Issues
 ------
-- [ ] Weird Shared Element Transition issue. Click on a card on the grid, click back. Sometimes, just before that card settles in it's original place, it flashes and swaps places with another card above it in the grid
-- [ ] Tweak drawing over parent for top app bar when a card does a shared element transition
+- [ ] A few Shared Element Transition issues -- overdrawing, etc. Also issues with Samsung devices because of their unique Activity transition animation
 - [ ] Fix the proper color of Collapsing toolbar text when it is expanded. Sometimes black when should be white, etc.
