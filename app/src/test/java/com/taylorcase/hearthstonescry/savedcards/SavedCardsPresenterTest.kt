@@ -1,6 +1,7 @@
 package com.taylorcase.hearthstonescry.savedcards
 
 import com.nhaarman.mockito_kotlin.*
+import com.taylorcase.hearthstonescry.BasePresenterTest
 import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
@@ -12,19 +13,11 @@ import org.junit.Before
 import org.junit.Test
 import java.util.Collections.singletonList
 
-class SavedCardsPresenterTest {
+class SavedCardsPresenterTest : BasePresenterTest() {
 
     private val mockView = mock<SavedCardsContract.View>()
     private val mockSharedPref = mock<SharedPreferencesHelper>()
     private val mockCardsRepo = mock<CardRepository>()
-
-    @Before
-    fun setup() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-    }
 
     @Test
     fun testGetSavedCardCountCallsSharedPreferencesHelper() {
@@ -67,7 +60,7 @@ class SavedCardsPresenterTest {
     }
 
     private fun demandPresenter(): SavedCardsPresenter {
-        val presenter = SavedCardsPresenter(mockSharedPref, mockCardsRepo)
+        val presenter = SavedCardsPresenter(mockSharedPref, mockCardsRepo, mockScheduleComposer)
         presenter.attach(mockView)
         return presenter
     }

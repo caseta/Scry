@@ -7,6 +7,7 @@ import com.taylorcase.hearthstonescry.base.CardsGridActivity
 import com.taylorcase.hearthstonescry.base.NavDrawerFragment
 import com.taylorcase.hearthstonescry.dagger.modules.AppModule
 import com.taylorcase.hearthstonescry.dagger.modules.RoomModule
+import com.taylorcase.hearthstonescry.dagger.modules.RxModule
 import com.taylorcase.hearthstonescry.room.CardDao
 import com.taylorcase.hearthstonescry.savedcards.SavedCardsActivity
 import com.taylorcase.hearthstonescry.search.SearchActivity
@@ -19,7 +20,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, RoomModule::class])
+@Component(modules = [AppModule::class, RoomModule::class, RxModule::class])
 interface AppComponent {
 
     fun inject(baseActivity: BaseActivity)

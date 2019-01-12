@@ -191,9 +191,7 @@ abstract class BaseActivity : AppCompatActivity(), RequestListener<Drawable>, Mv
     private class ToolbarDrawerClickListener(var drawerLayout: DrawerLayout?) : View.OnClickListener {
 
         override fun onClick(v: View?) {
-            if (drawerLayout != null) {
-                drawerLayout!!.openDrawer(START)
-            }
+            if (drawerLayout != null) drawerLayout?.openDrawer(START)
         }
 
     }

@@ -7,6 +7,7 @@ import com.taylorcase.hearthstonescry.dagger.components.AppComponent
 import com.taylorcase.hearthstonescry.dagger.components.DaggerAppComponent
 import com.taylorcase.hearthstonescry.dagger.modules.AppModule
 import com.taylorcase.hearthstonescry.dagger.modules.RoomModule
+import com.taylorcase.hearthstonescry.dagger.modules.RxModule
 import io.fabric.sdk.android.Fabric
 import timber.log.Timber
 
@@ -31,6 +32,7 @@ open class ScryApplication : Application() {
         return DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .roomModule(RoomModule(this))
+                .rxModule(RxModule())
                 .build()
     }
 

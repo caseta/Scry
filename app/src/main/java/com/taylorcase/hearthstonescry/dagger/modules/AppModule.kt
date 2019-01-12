@@ -35,9 +35,7 @@ open class AppModule(private val application: Application) {
 
     @Provides
     @Singleton
-    internal open fun providesNetworkManager(): NetworkManager {
-        return NetworkManager(application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
-    }
+    internal open fun providesNetworkManager(): NetworkManager = NetworkManager(application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 
     @Provides
     @Singleton

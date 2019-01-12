@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_cards.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
-open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClickListener  {
+open class CardsActivity : CardsGridActivity(), CardsContract.View {
 
     @Inject lateinit var presenter: CardsContract.Presenter
 
@@ -27,7 +27,7 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         presenter.attach(this)
 
         setupOnRefreshListener()
-        cards_filter_button.setOnClickListener(this)
+        cards_filter_button.setOnClickListener { onCardsFilterClicked() }
 
         askToRateApp()
 
@@ -82,17 +82,13 @@ open class CardsActivity : CardsGridActivity(), CardsContract.View, View.OnClick
         bundle?.putParcelable(FilterItem.FILTER_EXTRA, filterItem)
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.cards_filter_button -> {
-                cards_filter_button.isEnabled = false
-                val intent = Intent(this, FilterActivity::class.java)
-                if (filterItem != null) {
-                    intent.putExtra(FilterItem.FILTER_EXTRA, filterItem)
-                }
-                startActivityForResult(intent, FILTER_DATA_REQUEST)
-            }
+    private fun onCardsFilterClicked() {
+        cards_filter_button.isEnabled = false
+        val intent = Intent(this, FilterActivity::class.java)
+        if (filterItem != null) {
+            intent.putExtra(FilterItem.FILTER_EXTRA, filterItem)
         }
+        startActivityForResult(intent, FILTER_DATA_REQUEST)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -15,7 +15,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.DeviceUtils
 
-open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView) {
 
     @VisibleForTesting var context: Context = itemView.context
     private val cardImageView: ImageView = itemView.findViewById(R.id.card_image)
@@ -25,7 +25,7 @@ open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader)
     @VisibleForTesting lateinit var card: Card
 
     open fun loadCard(card: Card, position: Int) {
-        itemView.setOnClickListener(this)
+        itemView.setOnClickListener { onCardClick() }
         setClickable(true)
 
         this.card = card
@@ -36,7 +36,7 @@ open class CardsViewHolder(itemView: View, private val imageLoader: ImageLoader)
         imageLoader.loadImage(card.img, cardImageView)
     }
 
-    override fun onClick(v: View?) {
+    private fun onCardClick() {
         setClickable(false)
 
         val detailedCardIntent = Intent(context, DetailedCardActivity::class.java).putExtra(CARD_EXTRA, card)

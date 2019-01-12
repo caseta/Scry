@@ -14,7 +14,7 @@ import com.taylorcase.hearthstonescry.utils.makeVisible
 import kotlinx.android.synthetic.main.dialog_review_app.*
 import timber.log.Timber
 
-open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
+open class ReviewAppDialog : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
@@ -23,27 +23,16 @@ open class ReviewAppDialog : DialogFragment(), View.OnClickListener {
     }
 
     private fun setupListeners() {
-        app_review_yes.setOnClickListener(this)
-        app_review_nahhh.setOnClickListener(this)
-        app_review_rate.setOnClickListener(this)
-        app_review_send_feedback.setOnClickListener(this)
-        app_review_cancel_rate.setOnClickListener(this)
-        app_review_cancel_feedback.setOnClickListener(this)
+        app_review_yes.setOnClickListener { yesClicked() }
+        app_review_nahhh.setOnClickListener { nahhhClicked() }
+        app_review_rate.setOnClickListener { rateAppClicked() }
+        app_review_send_feedback.setOnClickListener { sendFeedbackClicked() }
+        app_review_cancel_rate.setOnClickListener { dismiss() }
+        app_review_cancel_feedback.setOnClickListener { dismiss() }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_review_app, container, false)
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.app_review_send_feedback -> sendFeedbackClicked()
-            R.id.app_review_rate -> rateAppClicked()
-            R.id.app_review_yes -> yesClicked()
-            R.id.app_review_nahhh -> nahhhClicked()
-            R.id.app_review_cancel_rate -> dismiss()
-            R.id.app_review_cancel_feedback -> dismiss()
-        }
     }
 
     private fun sendFeedbackClicked() {

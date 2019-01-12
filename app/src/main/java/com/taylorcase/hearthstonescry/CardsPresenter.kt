@@ -7,9 +7,7 @@ import com.taylorcase.hearthstonescry.model.FilterItem
 import com.taylorcase.hearthstonescry.model.enums.Hero
 import com.taylorcase.hearthstonescry.model.enums.Rarity
 import com.taylorcase.hearthstonescry.model.enums.Sets
-import com.taylorcase.hearthstonescry.utils.HeroUtils
-import com.taylorcase.hearthstonescry.utils.NetworkManager
-import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
+import com.taylorcase.hearthstonescry.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +17,8 @@ open class CardsPresenter @Inject constructor(
         private val heroUtils: HeroUtils,
         private val cardRepository: CardRepository,
         private val networkManager: NetworkManager,
-        private val sharedPreferencesHelper: SharedPreferencesHelper
+        private val sharedPreferencesHelper: SharedPreferencesHelper,
+        private val schedulerComposer: SchedulerComposer
 ) : BasePresenter<CardsContract.View>(), CardsContract.Presenter {
 
     val view: CardsContract.View?
@@ -31,23 +30,20 @@ open class CardsPresenter @Inject constructor(
 
     override fun loadCards() {
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(schedulerComposer.singleIoComposer())
                 .subscribe(::displayCards) { showError(it) })
     }
 
     override fun loadCardsWithFilters(filterItem: FilterItem) {
         bind(cardRepository.observeCardsWithFilters(filterItem)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(schedulerComposer.singleComputationComposer())
                 .subscribe(::displayCards) { showError(it) })
     }
 
     override fun refreshAllCards() {
         if (networkManager.isConnected()) {
             bind(cardRepository.observeAllCardsWithApi()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .compose(schedulerComposer.singleIoComposer())
                     .subscribe({ resetSuccess() }, { showError(it) }))
 
         } else {
@@ -57,8 +53,7 @@ open class CardsPresenter @Inject constructor(
 
     private fun resetSuccess() {
         bind(cardRepository.observeCardsWithHero(heroUtils.getFavoriteHero())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(schedulerComposer.singleIoComposer())
                 .subscribe(::displayCards) { showError(it) })
     }
 
