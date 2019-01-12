@@ -1,6 +1,7 @@
 package com.taylorcase.hearthstonescry.search
 
 import com.nhaarman.mockito_kotlin.*
+import com.taylorcase.hearthstonescry.BasePresenterTest
 import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.model.Card
 import io.reactivex.Observable
@@ -12,18 +13,10 @@ import org.junit.Before
 import org.junit.Test
 import java.util.Collections.*
 
-class SearchPresenterTest {
+class SearchPresenterTest : BasePresenterTest() {
 
     private val mockView = mock<SearchContract.View>()
     private val mockCardRepo = mock<CardRepository>()
-
-    @Before
-    fun setup() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-    }
 
     @Test
     fun populateCardNamesCallsViewSuccessfully() {
@@ -65,7 +58,7 @@ class SearchPresenterTest {
     }
 
     private fun demandSearchPresenter(): SearchPresenter {
-        val presenter = SearchPresenter(mockCardRepo)
+        val presenter = SearchPresenter(mockCardRepo, mockScheduleComposer)
         presenter.attach(mockView)
         return presenter
     }

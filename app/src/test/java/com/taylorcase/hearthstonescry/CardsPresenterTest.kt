@@ -4,9 +4,7 @@ import com.nhaarman.mockito_kotlin.*
 import com.taylorcase.hearthstonescry.base.CardsContract
 import com.taylorcase.hearthstonescry.model.Card
 import com.taylorcase.hearthstonescry.model.enums.Hero.*
-import com.taylorcase.hearthstonescry.utils.HeroUtils
-import com.taylorcase.hearthstonescry.utils.NetworkManager
-import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
+import com.taylorcase.hearthstonescry.utils.*
 import io.reactivex.Single
 import org.junit.Test
 import java.util.Collections.*
@@ -16,21 +14,13 @@ import io.reactivex.plugins.RxJavaPlugins
 import net.bytebuddy.implementation.bytecode.Throw
 import org.junit.Before
 
-class CardsPresenterTest {
+class CardsPresenterTest : BasePresenterTest() {
 
     private val mockView = mock<CardsContract.View>()
     private val mockHeroUtils = mock<HeroUtils>()
     private val mockCardRepo = mock<CardRepository>()
     private val mockNetworkManager = mock<NetworkManager>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
-
-    @Before
-    fun setup() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-    }
 
     @Test
     fun testLoadCardsSuccessfullyCallsViewDisplayCards() {
@@ -111,7 +101,7 @@ class CardsPresenterTest {
     }
 
     private fun demandCardsPresenter(): CardsPresenter {
-        val presenter = CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
+        val presenter = CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper, mockScheduleComposer)
         presenter.attach(mockView)
         return presenter
     }

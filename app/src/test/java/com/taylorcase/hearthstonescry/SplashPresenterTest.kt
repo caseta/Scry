@@ -5,6 +5,8 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.taylorcase.hearthstonescry.model.Card
+import com.taylorcase.hearthstonescry.utils.SchedulerComposer
+import com.taylorcase.hearthstonescry.utils.SchedulerProvider
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -13,18 +15,10 @@ import org.junit.Before
 import org.junit.Test
 import java.util.Collections.*
 
-class SplashPresenterTest {
+class SplashPresenterTest : BasePresenterTest() {
 
     private val mockView = mock<SplashContract.View>()
     private val mockCardRepo = mock<CardRepository>()
-
-    @Before
-    fun setup() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-    }
 
     @Test
     fun testLoadCardsRefreshCardsFalseCallsLoadSuccess() {
@@ -49,7 +43,7 @@ class SplashPresenterTest {
     }
 
     private fun demandSplashPresenter(): SplashPresenter {
-        val presenter = SplashPresenter(mockCardRepo)
+        val presenter = SplashPresenter(mockCardRepo, mockScheduleComposer)
         presenter.attach(mockView)
         return presenter
     }

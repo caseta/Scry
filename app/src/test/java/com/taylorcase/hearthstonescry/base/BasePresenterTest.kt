@@ -3,9 +3,7 @@ package com.taylorcase.hearthstonescry.base
 import com.nhaarman.mockito_kotlin.mock
 import com.taylorcase.hearthstonescry.CardRepository
 import com.taylorcase.hearthstonescry.CardsPresenter
-import com.taylorcase.hearthstonescry.utils.HeroUtils
-import com.taylorcase.hearthstonescry.utils.NetworkManager
-import com.taylorcase.hearthstonescry.utils.SharedPreferencesHelper
+import com.taylorcase.hearthstonescry.utils.*
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 
@@ -16,6 +14,8 @@ class BasePresenterTest {
     private val mockCardRepo = mock<CardRepository>()
     private val mockNetworkManager = mock<NetworkManager>()
     private val mockSharedPreferencesHelper = mock<SharedPreferencesHelper>()
+    private val mockSchedulerProvider = mock<SchedulerProvider>()
+    private val mockScheduleComposer: SchedulerComposer = SchedulerComposer(mockSchedulerProvider)
 
     @Test
     fun testAttachSetsReference() {
@@ -52,6 +52,6 @@ class BasePresenterTest {
     }
 
     private fun demandPresenter(): CardsPresenter {
-        return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper)
+        return CardsPresenter(mockHeroUtils, mockCardRepo, mockNetworkManager, mockSharedPreferencesHelper, mockScheduleComposer)
     }
 }
