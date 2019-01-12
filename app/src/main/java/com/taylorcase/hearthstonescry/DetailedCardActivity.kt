@@ -17,7 +17,7 @@ import android.view.animation.AnimationUtils
 import com.taylorcase.hearthstonescry.model.Card.Companion.CARD_EXTRA
 import com.taylorcase.hearthstonescry.utils.*
 
-open class DetailedCardActivity : BaseActivity(), View.OnClickListener, DetailedCardContract.View {
+open class DetailedCardActivity : BaseActivity(), DetailedCardContract.View {
 
     @Inject lateinit var imageLoader: ImageLoader
     @Inject lateinit var presenter: DetailedCardContract.Presenter
@@ -38,7 +38,7 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         setupToolbar(toolbar, navigationMethod = BACK_ARROW)
 
         presenter.attach(this)
-        card_fab.setOnClickListener(this)
+        card_fab.setOnClickListener { onSaveClicked() }
 
         setLoading(true)
 
@@ -73,21 +73,17 @@ open class DetailedCardActivity : BaseActivity(), View.OnClickListener, Detailed
         }
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.card_fab -> {
-                isCardSaved = if (isCardSaved) {
-                    presenter.removeCard(card)
-                    false
-                } else {
-                    presenter.saveCard(card)
-                    true
-                }
-
-                displaySnackbarMessage()
-                toggleHeart()
-            }
+    private fun onSaveClicked() {
+        isCardSaved = if (isCardSaved) {
+            presenter.removeCard(card)
+            false
+        } else {
+            presenter.saveCard(card)
+            true
         }
+
+        displaySnackbarMessage()
+        toggleHeart()
     }
 
     private fun displaySnackbarMessage() {

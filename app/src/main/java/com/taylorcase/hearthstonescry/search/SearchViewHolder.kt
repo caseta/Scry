@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import com.taylorcase.hearthstonescry.R
 
-open class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+open class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     @VisibleForTesting var onSuggestionClickListener: OnSuggestionClickListener? = null
     @VisibleForTesting var searchSuggestionTextView: TextView? = null
@@ -17,10 +17,10 @@ open class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view), View.On
 
     init {
         searchSuggestionTextView = itemView.findViewById(R.id.search_suggestion_text_view)
-        searchSuggestionTextView?.setOnClickListener(this)
+        searchSuggestionTextView?.setOnClickListener { onSuggestionClicked() }
     }
 
-    override fun onClick(v: View?) {
+    private fun onSuggestionClicked() {
         onSuggestionClickListener?.onSuggestionClicked(searchSuggestionTextView?.text.toString())
     }
 }

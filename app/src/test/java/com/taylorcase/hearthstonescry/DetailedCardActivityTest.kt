@@ -96,7 +96,7 @@ open class DetailedCardActivityTest {
         doReturn(true).whenever(mockDetailedCardPresenter)?.isCardSaved(card)
         activity = demandActivityWithCard(card)
 
-        activity.onClick(activity.card_fab)
+        activity.card_fab.performClick()
 
         verify(mockDetailedCardPresenter).removeCard(card)
         verify(mockDetailedCardPresenter).isCardSaved(card)
@@ -107,7 +107,7 @@ open class DetailedCardActivityTest {
         val card = Card()
         activity = demandActivityWithCard(card)
 
-        activity.onClick(activity.card_fab)
+        activity.card_fab.performClick()
 
         verify(mockDetailedCardPresenter).saveCard(card)
         verify(mockDetailedCardPresenter).isCardSaved(card)

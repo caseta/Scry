@@ -43,7 +43,7 @@ class SearchViewHolderTest {
         searchViewHolder.onSuggestionClickListener = mockSuggestionListener
         searchViewHolder.searchSuggestionTextView!!.text = CARD_NAME
 
-        searchViewHolder.onClick(null)
+        searchViewHolder.searchSuggestionTextView!!.performClick()
 
         verify(mockSuggestionListener).onSuggestionClicked(CARD_NAME)
     }

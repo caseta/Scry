@@ -13,7 +13,7 @@ import com.taylorcase.hearthstonescry.utils.ImageLoader
 import kotlinx.android.synthetic.main.activity_detailed_select_hero.*
 import javax.inject.Inject
 
-class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectHeroContract.View {
+class DetailedSelectHeroActivity : BaseActivity(), SelectHeroContract.View {
 
     private lateinit var hero: Hero
 
@@ -35,7 +35,7 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
             setupCollapsingToolbar(hero.toString())
         }
 
-        detailed_select_hero_select.setOnClickListener(this)
+        detailed_select_hero_select.setOnClickListener { onHeroClicked() }
         setupToolbar(detailed_select_hero_toolbar, "", BACK_ARROW)
     }
 
@@ -58,7 +58,7 @@ class DetailedSelectHeroActivity : BaseActivity(), View.OnClickListener, SelectH
         detailed_select_hero_power.text = heroUtils.getHeroPowerForHero(hero)
     }
 
-    override fun onClick(v: View?) {
+    private fun onHeroClicked() {
         presenter.getHeroAndTheme(heroUtils.getHeroIconForHero(hero))
     }
 

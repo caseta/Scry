@@ -56,7 +56,7 @@ class CardsViewHolderTest {
         cardsViewHolder.context = buildActivity(Activity::class.java).create().start().visible().get()
 
         cardsViewHolder.loadCard(card, 0)
-        cardsViewHolder.onClick(mockView)
+        cardsViewHolder.itemView.performClick()
 
         Assertions.assertThat(cardsViewHolder.itemView).isNotClickable
         assertThat(cardsViewHolder.itemView.isEnabled).isFalse()
@@ -66,5 +66,4 @@ class CardsViewHolderTest {
         private const val IMG_ID = "id"
         private const val CARD_ID = "cardId"
     }
-
 }

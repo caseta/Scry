@@ -99,7 +99,7 @@ open class CardsActivityTest {
         activity = buildActivity(CardsActivity::class.java).create().get()
         activity.filterItem = mockFilterItem
 
-        activity.onClick(activity.cards_filter_button)
+        activity.cards_filter_button.performClick()
 
         val intent = ShadowApplication.getInstance().nextStartedActivity
         Assertions.assertThat(intent).hasComponent(application, FilterActivity::class.java).hasExtra(FilterItem.FILTER_EXTRA, mockFilterItem)

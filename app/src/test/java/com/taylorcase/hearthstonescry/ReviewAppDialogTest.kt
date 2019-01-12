@@ -56,7 +56,7 @@ class ReviewAppDialogTest : FragmentTest() {
     fun testYesClickedSetsTextAndTogglesVisibility() {
         val fragment = startFragment(ReviewAppDialog()) as ReviewAppDialog
 
-        fragment.onClick(fragment.app_review_yes)
+        fragment.app_review_yes.callOnClick()
 
         assertThat(fragment.app_review_sub_header).hasText(R.string.review_app_mind_rating)
         assertThat(fragment.app_review_yes).isGone
@@ -69,7 +69,7 @@ class ReviewAppDialogTest : FragmentTest() {
     fun testNahhhClickedSetsTextAndTogglesVisibility() {
         val fragment = startFragment(ReviewAppDialog()) as ReviewAppDialog
 
-        fragment.onClick(fragment.app_review_nahhh)
+        fragment.app_review_nahhh.callOnClick()
 
         assertThat(fragment.app_review_sub_header).hasText(R.string.review_app_mind_sending)
         assertThat(fragment.app_review_yes).isGone
