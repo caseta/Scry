@@ -1,4 +1,4 @@
-# Scry
+# [Scry](https://play.google.com/store/apps/details?id=com.taylorcase.hearthstonescry&hl=en)
 [![Build Status](https://travis-ci.com/caseta/Scry.svg?branch=master)](https://travis-ci.com/caseta/Scry) [![codecov](https://codecov.io/gh/caseta/Scry/branch/master/graph/badge.svg)](https://codecov.io/gh/caseta/Scry)
 
 Android app that lets users browse through Hearthstone cards, save cards, etc.
